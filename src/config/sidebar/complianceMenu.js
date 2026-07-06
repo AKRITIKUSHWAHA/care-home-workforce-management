@@ -14,10 +14,6 @@ export const complianceMenu = [
       { id: 'governance-hub', label: 'Governance Hub' },
       { id: 'compliance-board', label: 'Compliance Board' },
       { id: 'audits', label: 'Audit Dashboard' },
-      { id: 'audit-fire', label: 'Fire Audit' },
-      { id: 'audit-medication', label: 'Medication Audit' },
-      { id: 'audit-cleaning', label: 'Cleaning Audit' },
-      { id: 'audit-kitchen', label: 'Kitchen Audit' },
       { id: 'statutory-notifications', label: 'Statutory Notifications' }
     ]
   },
