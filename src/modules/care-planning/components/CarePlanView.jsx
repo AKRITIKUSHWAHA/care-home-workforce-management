@@ -5,6 +5,7 @@ import BodyMap from './BodyMap';
 import RiskAssessments from './RiskAssessments';
 import RestrictivePractices from './RestrictivePractices';
 import SafeguardingActionRecords from './SafeguardingActionRecords';
+import { cqcGuidance } from '../configs/cqcGuidance';
 
 const CareNotesTab = ({ patientName }) => {
   const { careNotes, addCareNote } = useApp();
@@ -194,6 +195,8 @@ const mockPlanData = {
 const Section = ({ title, field, data, isEditing, onChange, isExpanded, onToggle, attachments }) => {
   // Mock logic: randomly decide if a section is overdue for monthly review for demo purposes
   const [isReviewed, setIsReviewed] = useState(field === 'personalProfile' || field === 'mobility');
+  const [activeSubTab, setActiveSubTab] = useState('details');
+  const guidance = cqcGuidance[field];
 
   return (
     <div className={`bg-white dark:bg-slate-900 rounded-xl border ${!isReviewed ? 'border-red-400 dark:border-red-500/50 shadow-sm shadow-red-100 dark:shadow-none' : 'border-slate-200 dark:border-slate-800 shadow-sm'} overflow-hidden mb-3 transition-colors`}>
@@ -208,48 +211,146 @@ const Section = ({ title, field, data, isEditing, onChange, isExpanded, onToggle
       {isExpanded && (
         <div className="p-4 space-y-4 animate-fade-in border-t border-slate-100 dark:border-slate-800">
           
-          {/* Main Content */}
-          {isEditing ? (
-            typeof data === 'string' ? (
-              <textarea 
-                className="w-full p-3 border border-slate-350 rounded-xl text-sm dark:bg-slate-900 dark:border-slate-700 dark:text-white min-h-[100px]"
-                value={data}
-                onChange={(e) => onChange(field, e.target.value)}
-                placeholder={`Enter details for ${title}...`}
-              />
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {Object.entries(data).map(([subField, val]) => (
-                  <div key={subField}>
-                    <label className="block text-xs font-medium text-slate-500 mb-1 capitalize">
-                      {subField.replace(/([A-Z])/g, ' $1').trim()}
-                    </label>
-                    <input 
-                      type="text"
-                      className="w-full p-2 border border-slate-350 rounded-lg text-sm dark:bg-slate-900 dark:border-slate-700 dark:text-white"
-                      value={val}
-                      onChange={(e) => onChange(field, { ...data, [subField]: e.target.value })}
-                    />
+          {/* Sub Tab Headers (Only if guidance is available) */}
+          {guidance && (
+            <div className="flex border-b border-slate-200 dark:border-slate-800 pb-2 mb-3 gap-2">
+              <button 
+                type="button"
+                onClick={() => setActiveSubTab('details')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${activeSubTab === 'details' ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-400 hover:text-slate-600'}`}
+              >
+                Care Details
+              </button>
+              <button 
+                type="button"
+                onClick={() => setActiveSubTab('guidance')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${activeSubTab === 'guidance' ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-400 hover:text-slate-600'}`}
+              >
+                CQC 10-Point Guidance
+              </button>
+              <button 
+                type="button"
+                onClick={() => setActiveSubTab('language')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${activeSubTab === 'language' ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-400 hover:text-slate-600'}`}
+              >
+                Speech Language Guide
+              </button>
+            </div>
+          )}
+
+          {/* Sub Tab Contents */}
+          {activeSubTab === 'details' && (
+            <>
+              {isEditing ? (
+                typeof data === 'string' ? (
+                  <textarea 
+                    className="w-full p-3 border border-slate-350 rounded-xl text-sm dark:bg-slate-900 dark:border-slate-700 dark:text-white min-h-[100px]"
+                    value={data}
+                    onChange={(e) => onChange(field, e.target.value)}
+                    placeholder={`Enter details for ${title}...`}
+                  />
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {Object.entries(data).map(([subField, val]) => (
+                      <div key={subField}>
+                        <label className="block text-xs font-medium text-slate-500 mb-1 capitalize">
+                          {subField.replace(/([A-Z])/g, ' $1').trim()}
+                        </label>
+                        <input 
+                          type="text"
+                          className="w-full p-2 border border-slate-350 rounded-lg text-sm dark:bg-slate-900 dark:border-slate-700 dark:text-white"
+                          value={val}
+                          onChange={(e) => onChange(field, { ...data, [subField]: e.target.value })}
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            )
-          ) : (
-            <div className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              {typeof data === 'string' ? (
-                <p>{data}</p>
+                )
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {Object.entries(data).map(([subField, val]) => (
-                    <div key={subField}>
-                      <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
-                        {subField.replace(/([A-Z])/g, ' $1').trim()}
-                      </span>
-                      <span className="font-medium text-slate-800 dark:text-slate-200">{val}</span>
+                <div className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {typeof data === 'string' ? (
+                    <p>{data}</p>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {Object.entries(data).map(([subField, val]) => (
+                        <div key={subField}>
+                          <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                            {subField.replace(/([A-Z])/g, ' $1').trim()}
+                          </span>
+                          <span className="font-medium text-slate-800 dark:text-slate-200">{val}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  )}
                 </div>
               )}
+            </>
+          )}
+
+          {activeSubTab === 'guidance' && guidance && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">1. WHY it matters</span>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.why}</p>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">2. HOW to do it safely</span>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.how}</p>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">3. WHAT good practice looks like</span>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.good}</p>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">4. WHAT poor practice looks like</span>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.poor}</p>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">5. WHEN to escalate concerns</span>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.when}</p>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">6. WHO should be informed</span>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.who}</p>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">7. WHAT should be recorded</span>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.record}</p>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">8. Dignity & Wellbeing Link</span>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.dignity}</p>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">9. HOW success is measured</span>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.success}</p>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">10. WHAT evidence an inspector expects</span>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.evidence}</p>
+              </div>
+            </div>
+          )}
+
+          {activeSubTab === 'language' && guidance && (
+            <div className="space-y-4 mt-2">
+              <div className="p-4 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-250 dark:border-emerald-900/50">
+                <span className="text-[10px] font-black uppercase tracking-wider bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-350 px-2 py-0.5 rounded-md mb-2 inline-block">
+                  ✓ What Staff Should Say (Respectful Communication)
+                </span>
+                <p className="text-xs font-extrabold text-emerald-800 dark:text-emerald-300 italic font-serif">
+                  "{guidance.say}"
+                </p>
+              </div>
+              
+              <div className="p-4 bg-rose-50 dark:bg-rose-955/20 rounded-2xl border border-rose-250 dark:border-rose-900/50">
+                <span className="text-[10px] font-black uppercase tracking-wider bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-350 px-2 py-0.5 rounded-md mb-2 inline-block">
+                  ✗ What Staff Should Never Say (Avoid)
+                </span>
+                <p className="text-xs font-extrabold text-rose-800 dark:text-rose-300 italic font-serif">
+                  "{guidance.notSay}"
+                </p>
+              </div>
             </div>
           )}
 

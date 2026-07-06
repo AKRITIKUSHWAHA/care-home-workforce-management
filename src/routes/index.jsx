@@ -116,6 +116,50 @@ import Complaints from '../modules/safeguarding/Complaints';
 import ClientRecordsHub from '../modules/clients/ClientRecordsHub';
 import ComplianceCalendarDashboard from '../modules/compliance/ComplianceCalendarDashboard';
 
+// --- DIGITIZED SPREADSHEETS IMPORT ---
+import CleaningScheduleDashboard from '../modules/compliance/CleaningScheduleDashboard';
+import FireComplianceBook from '../modules/compliance/FireComplianceBook';
+import GovernanceWorkbook from '../modules/compliance/GovernanceWorkbook';
+import MasterActionPlan from '../modules/compliance/MasterActionPlan';
+import ComplianceCalendar from '../modules/compliance/ComplianceCalendar';
+import HandoverAllocationSheet from '../modules/operations/HandoverAllocationSheet';
+import ResidentTracker from '../modules/clients/ResidentTracker';
+import OrganisationChart from '../modules/workforce/OrganisationChart';
+import PersonnelFilesDashboard from '../modules/workforce/PersonnelFilesDashboard';
+const renderSharedView = (currentView, currentRole) => {
+  switch (currentView) {
+    case 'ecm-live': return <ECMLive />;
+    case 'qr-secure': return <QRSecure />;
+    case 'messages': return <Messages />;
+    case 'client-records': return <ClientRecordsHub />;
+    case 'training-matrix': return <TrainingMatrix />;
+    case 'supervisions': return <Supervisions />;
+    case 'dbs-vetting': return <DBSVetting />;
+    case 'visit-approval': return <VisitApproval />;
+    case 'invoices': return <Invoices />;
+    case 'contracts': return <Contracts />;
+    case 'governance-hub': return <GovernanceHub />;
+    case 'compliance-board': return <ComplianceBoard />;
+    case 'statutory-notifications': return <StatutoryNotifications />;
+    case 'safeguarding': return <SafeguardingHub />;
+    case 'concerns': return <Concerns />;
+    case 'complaints': return <Complaints />;
+    
+    // Digitized Excel sheets
+    case 'cleaning-schedule': return <CleaningScheduleDashboard />;
+    case 'fire-compliance-book': return <FireComplianceBook />;
+    case 'governance-workbook': return <GovernanceWorkbook />;
+    case 'master-action-plan': return <MasterActionPlan />;
+    case 'compliance-calendar': return <ComplianceCalendar />;
+    case 'handover-allocation': return <HandoverAllocationSheet />;
+    case 'resident-tracker': return <ResidentTracker />;
+    case 'organisation-chart': return <OrganisationChart />;
+    case 'personnel-files': return <PersonnelFilesDashboard />;
+
+    default: return null;
+  }
+};
+
 export const AppRouter = () => {
   const { currentRole, currentView } = useApp();
 
@@ -175,23 +219,9 @@ export const AppRouter = () => {
       case 'incidents':
         return <IncidentReporting userRole="Admin" />;
       
-      case 'ecm-live': return <ECMLive />;
-      case 'qr-secure': return <QRSecure />;
-      case 'messages': return <Messages />;
-      case 'client-records': return <ClientRecordsHub />;
-      case 'training-matrix': return <TrainingMatrix />;
-      case 'supervisions': return <Supervisions />;
-      case 'dbs-vetting': return <DBSVetting />;
-      case 'visit-approval': return <VisitApproval />;
-      case 'invoices': return <Invoices />;
-      case 'contracts': return <Contracts />;
-      case 'governance-hub': return <GovernanceHub />;
-      case 'compliance-board': return <ComplianceBoard />;
-      case 'statutory-notifications': return <StatutoryNotifications />;
-      case 'safeguarding': return <SafeguardingHub />;
-      case 'concerns': return <Concerns />;
-      case 'complaints': return <Complaints />;
       default:
+        const shared = renderSharedView(currentView, currentRole);
+        if (shared) return shared;
         return <ComplianceCalendarDashboard />;
     }
   }
@@ -234,23 +264,9 @@ export const AppRouter = () => {
       case 'incidents':
         return <IncidentReporting userRole="HR" />;
       
-      case 'ecm-live': return <ECMLive />;
-      case 'qr-secure': return <QRSecure />;
-      case 'messages': return <Messages />;
-      case 'client-records': return <ClientRecordsHub />;
-      case 'training-matrix': return <TrainingMatrix />;
-      case 'supervisions': return <Supervisions />;
-      case 'dbs-vetting': return <DBSVetting />;
-      case 'visit-approval': return <VisitApproval />;
-      case 'invoices': return <Invoices />;
-      case 'contracts': return <Contracts />;
-      case 'governance-hub': return <GovernanceHub />;
-      case 'compliance-board': return <ComplianceBoard />;
-      case 'statutory-notifications': return <StatutoryNotifications />;
-      case 'safeguarding': return <SafeguardingHub />;
-      case 'concerns': return <Concerns />;
-      case 'complaints': return <Complaints />;
       default:
+        const shared = renderSharedView(currentView, currentRole);
+        if (shared) return shared;
         return <HRDashboard />;
     }
   }
@@ -295,23 +311,9 @@ export const AppRouter = () => {
       case 'incidents':
         return <IncidentReporting userRole="Compliance Officer" />;
       
-      case 'ecm-live': return <ECMLive />;
-      case 'qr-secure': return <QRSecure />;
-      case 'messages': return <Messages />;
-      case 'client-records': return <ClientRecordsHub />;
-      case 'training-matrix': return <TrainingMatrix />;
-      case 'supervisions': return <Supervisions />;
-      case 'dbs-vetting': return <DBSVetting />;
-      case 'visit-approval': return <VisitApproval />;
-      case 'invoices': return <Invoices />;
-      case 'contracts': return <Contracts />;
-      case 'governance-hub': return <GovernanceHub />;
-      case 'compliance-board': return <ComplianceBoard />;
-      case 'statutory-notifications': return <StatutoryNotifications />;
-      case 'safeguarding': return <SafeguardingHub />;
-      case 'concerns': return <Concerns />;
-      case 'complaints': return <Complaints />;
       default:
+        const shared = renderSharedView(currentView, currentRole);
+        if (shared) return shared;
         return <ComplianceCalendarDashboard />;
     }
   }
@@ -364,23 +366,9 @@ export const AppRouter = () => {
       case 'incidents':
         return <IncidentReporting userRole="Manager" />;
       
-      case 'ecm-live': return <ECMLive />;
-      case 'qr-secure': return <QRSecure />;
-      case 'messages': return <Messages />;
-      case 'client-records': return <ClientRecordsHub />;
-      case 'training-matrix': return <TrainingMatrix />;
-      case 'supervisions': return <Supervisions />;
-      case 'dbs-vetting': return <DBSVetting />;
-      case 'visit-approval': return <VisitApproval />;
-      case 'invoices': return <Invoices />;
-      case 'contracts': return <Contracts />;
-      case 'governance-hub': return <GovernanceHub />;
-      case 'compliance-board': return <ComplianceBoard />;
-      case 'statutory-notifications': return <StatutoryNotifications />;
-      case 'safeguarding': return <SafeguardingHub />;
-      case 'concerns': return <Concerns />;
-      case 'complaints': return <Complaints />;
       default:
+        const shared = renderSharedView(currentView, currentRole);
+        if (shared) return shared;
         return <ComplianceCalendarDashboard />;
     }
   }
@@ -430,23 +418,9 @@ export const AppRouter = () => {
       case 'incidents':
         return <IncidentReporting userRole="Employee" />;
       
-      case 'ecm-live': return <ECMLive />;
-      case 'qr-secure': return <QRSecure />;
-      case 'messages': return <Messages />;
-      case 'client-records': return <ClientRecordsHub />;
-      case 'training-matrix': return <TrainingMatrix />;
-      case 'supervisions': return <Supervisions />;
-      case 'dbs-vetting': return <DBSVetting />;
-      case 'visit-approval': return <VisitApproval />;
-      case 'invoices': return <Invoices />;
-      case 'contracts': return <Contracts />;
-      case 'governance-hub': return <GovernanceHub />;
-      case 'compliance-board': return <ComplianceBoard />;
-      case 'statutory-notifications': return <StatutoryNotifications />;
-      case 'safeguarding': return <SafeguardingHub />;
-      case 'concerns': return <Concerns />;
-      case 'complaints': return <Complaints />;
       default:
+        const shared = renderSharedView(currentView, currentRole);
+        if (shared) return shared;
         return <EmployeeDashboard />;
     }
   }
@@ -460,23 +434,9 @@ export const AppRouter = () => {
       case 'settings':
         return <ReceptionistSettings />;
       
-      case 'ecm-live': return <ECMLive />;
-      case 'qr-secure': return <QRSecure />;
-      case 'messages': return <Messages />;
-      case 'client-records': return <ClientRecordsHub />;
-      case 'training-matrix': return <TrainingMatrix />;
-      case 'supervisions': return <Supervisions />;
-      case 'dbs-vetting': return <DBSVetting />;
-      case 'visit-approval': return <VisitApproval />;
-      case 'invoices': return <Invoices />;
-      case 'contracts': return <Contracts />;
-      case 'governance-hub': return <GovernanceHub />;
-      case 'compliance-board': return <ComplianceBoard />;
-      case 'statutory-notifications': return <StatutoryNotifications />;
-      case 'safeguarding': return <SafeguardingHub />;
-      case 'concerns': return <Concerns />;
-      case 'complaints': return <Complaints />;
       default:
+        const shared = renderSharedView(currentView, currentRole);
+        if (shared) return shared;
         return <VisitorTablet />;
     }
   }

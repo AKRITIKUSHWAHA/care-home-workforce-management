@@ -14,10 +14,20 @@ export const managerMenu = [
     submenu: [
       { id: 'ecm-live', label: 'ECM / GPS Live' },
       { id: 'qr-secure', label: 'QR Secure & Fleet' },
-      { id: 'messages', label: 'Staff Messages' }
+      { id: 'messages', label: 'Staff Messages' },
+      { id: 'handover-allocation', label: 'Handover & Allocation' }
     ]
   },
-  { id: 'client-records', label: 'Client Records', icon: UserPlus },
+  {
+    id: 'client-records-group',
+    label: 'Client Records',
+    icon: UserPlus,
+    isExpandable: true,
+    submenu: [
+      { id: 'client-records', label: 'Client Records Hub' },
+      { id: 'resident-tracker', label: 'Resident Occupancy Tracker' }
+    ]
+  },
   {
     id: 'workforce',
     label: 'Workforce',
@@ -25,7 +35,9 @@ export const managerMenu = [
     isExpandable: true,
     submenu: [
       { id: 'employees', label: 'Employee Profiles' },
-      { id: 'supervisions', label: 'Supervisions & Appraisals' }
+      { id: 'supervisions', label: 'Supervisions & Appraisals' },
+      { id: 'organisation-chart', label: 'Organisation Chart' },
+      { id: 'personnel-files', label: 'Personnel Files Audit' }
     ]
   },
   { id: 'document-verification', label: 'Document Verification', icon: FileText },
@@ -50,7 +62,12 @@ export const managerMenu = [
     isExpandable: true,
     submenu: [
       { id: 'compliance-board', label: 'Compliance Board' },
-      { id: 'audits', label: 'Audit Dashboard' }
+      { id: 'audits', label: 'Audit Dashboard' },
+      { id: 'cleaning-schedule', label: 'Domestic Cleaning Logs' },
+      { id: 'fire-compliance-book', label: 'Fire Registry Book' },
+      { id: 'governance-workbook', label: 'CQC Governance Ledger' },
+      { id: 'master-action-plan', label: 'Master Action Plan' },
+      { id: 'compliance-calendar', label: 'Compliance Task Calendar' }
     ]
   },
   { id: 'observation', label: 'Observation', icon: Eye },

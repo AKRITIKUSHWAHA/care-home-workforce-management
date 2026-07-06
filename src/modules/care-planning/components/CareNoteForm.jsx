@@ -768,6 +768,40 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
           </div>
         </div>
 
+        {/* Care Plan Prompt Checklists */}
+        <div className="bg-blue-50/60 dark:bg-blue-950/10 border border-blue-200 dark:border-blue-800/50 p-4 rounded-xl space-y-2">
+          <span className="text-[10px] font-black uppercase text-blue-600 dark:text-blue-400 tracking-wider flex items-center gap-1.5">
+            <Info className="w-3.5 h-3.5" /> Care Plan Writing Prompts Guide
+          </span>
+          <p className="text-xs text-slate-500 leading-normal">
+            For CQC compliance and outstanding care records, ensure your daily notes cover these key areas. Click any prompt to append it to your comments:
+          </p>
+          <div className="flex flex-wrap gap-1.5 pt-1">
+            {[
+              'Morning routine', 'Evening routine', 'Bathing', 'Washing', 'Hair', 
+              'Oral care', 'Dentures', 'Shaving', 'Skin inspection', 'Nail care', 
+              'Dressing', 'Jewellery', 'Make-up'
+            ].map((prompt) => (
+              <button
+                key={prompt}
+                type="button"
+                onClick={() => {
+                  const currentText = formData.notes || '';
+                  const separator = currentText ? '\n' : '';
+                  setFormData({
+                    ...formData,
+                    notes: currentText + separator + `[${prompt}: ]`
+                  });
+                  commentsRef.current?.focus();
+                }}
+                className="px-2 py-1 bg-white hover:bg-blue-100 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-850 rounded-lg text-[10.5px] font-semibold text-slate-600 dark:text-slate-350 transition-colors shadow-sm cursor-pointer"
+              >
+                + {prompt}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Custom Comments */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">

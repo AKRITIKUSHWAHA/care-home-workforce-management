@@ -14,7 +14,12 @@ export const complianceMenu = [
       { id: 'governance-hub', label: 'Governance Hub' },
       { id: 'compliance-board', label: 'Compliance Board' },
       { id: 'audits', label: 'Audit Dashboard' },
-      { id: 'statutory-notifications', label: 'Statutory Notifications' }
+      { id: 'statutory-notifications', label: 'Statutory Notifications' },
+      { id: 'cleaning-schedule', label: 'Domestic Cleaning Logs' },
+      { id: 'fire-compliance-book', label: 'Fire Registry Book' },
+      { id: 'governance-workbook', label: 'CQC Governance Ledger' },
+      { id: 'master-action-plan', label: 'Master Action Plan' },
+      { id: 'compliance-calendar', label: 'Compliance Task Calendar' }
     ]
   },
   { id: 'observation', label: 'Observation', icon: Eye },

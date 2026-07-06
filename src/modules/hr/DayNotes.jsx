@@ -34,6 +34,12 @@ const DayNotes = () => {
   const [notePriority, setNotePriority] = useState("Low");
   const [noteVisibility, setNoteVisibility] = useState("All Staff");
 
+  // CQC Daily Shift Checklist States
+  const [cqcStaffing, setCqcStaffing] = useState(true);
+  const [cqcCareNotes, setCqcCareNotes] = useState(true);
+  const [cqcMarCharts, setCqcMarCharts] = useState(true);
+  const [cqcSafetyExits, setCqcSafetyExits] = useState(true);
+
   // Permissions helpers
   const isReceptionist = currentRole === 'Receptionist';
   const isEmployee = currentRole === 'Employee';
@@ -124,7 +130,7 @@ const DayNotes = () => {
                   className={`w-full flex items-center justify-between px-3 py-2 text-xs font-semibold rounded-xl transition-all
                     ${isSelected 
                       ? 'bg-brand-50 text-brand-600 dark:bg-brand-950/20 dark:text-brand-400 border border-brand-200 dark:border-brand-900/50' 
-                      : 'text-slate-650 hover:bg-slate-50 dark:hover:bg-slate-905'
+                      : 'text-slate-650 hover:bg-slate-55 dark:hover:bg-slate-905'
                     }
                   `}
                 >
@@ -164,7 +170,7 @@ const DayNotes = () => {
                       <div className="flex items-center gap-2">
                         <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-bold border 
                           ${note.priority === 'High' ? 'bg-rose-50 text-rose-700 border-rose-100 dark:bg-rose-950/20 dark:text-rose-450 dark:border-rose-900/30' : 
-                            note.priority === 'Medium' ? 'bg-amber-50 text-amber-700 border-amber-100 dark:bg-amber-950/20 dark:text-amber-450 dark:border-amber-900/30' : 
+                            note.priority === 'Medium' ? 'bg-amber-50 text-amber-700 border-amber-100 dark:bg-amber-950/20 dark:text-amber-450 dark:border-rose-900/30' : 
                             'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
                           }`}
                         >
@@ -264,6 +270,7 @@ const DayNotes = () => {
                     className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 dark:border-slate-800 dark:bg-slate-900 dark:text-white font-semibold"
                   >
                     <option value="General Note">General Note</option>
+                    <option value="Daily Shift Record">Daily Shift Record</option>
                     <option value="Shift Note">Shift Note</option>
                     <option value="Management Note">Management Note</option>
                     <option value="Clinical Note">Clinical Note</option>
@@ -294,6 +301,52 @@ const DayNotes = () => {
                     onChange={(e) => setCustomNoteType(e.target.value)}
                     className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 dark:border-slate-800 dark:bg-slate-900 dark:text-white outline-none focus:border-brand-500 focus:bg-white font-semibold"
                   />
+                </div>
+              )}
+
+              {noteType === 'Daily Shift Record' && (
+                <div className="p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2 text-xs font-semibold">
+                  <span className="font-bold text-slate-700 dark:text-slate-300 block mb-1">CQC Compliance Checklist Verification:</span>
+                  
+                  <label className="flex items-center gap-2 cursor-pointer select-none">
+                    <input 
+                      type="checkbox" 
+                      checked={cqcStaffing} 
+                      onChange={(e) => setCqcStaffing(e.target.checked)} 
+                      className="rounded border-slate-350 text-brand-600 focus:ring-brand-500" 
+                    />
+                    <span className="text-slate-600 dark:text-slate-400">Shift staffing fully compliant?</span>
+                  </label>
+
+                  <label className="flex items-center gap-2 cursor-pointer select-none">
+                    <input 
+                      type="checkbox" 
+                      checked={cqcCareNotes} 
+                      onChange={(e) => setCqcCareNotes(e.target.checked)} 
+                      className="rounded border-slate-350 text-brand-600 focus:ring-brand-500" 
+                    />
+                    <span className="text-slate-600 dark:text-slate-400">Care notes logs completed for all residents?</span>
+                  </label>
+
+                  <label className="flex items-center gap-2 cursor-pointer select-none">
+                    <input 
+                      type="checkbox" 
+                      checked={cqcMarCharts} 
+                      onChange={(e) => setCqcMarCharts(e.target.checked)} 
+                      className="rounded border-slate-350 text-brand-600 focus:ring-brand-500" 
+                    />
+                    <span className="text-slate-600 dark:text-slate-400">Medication MAR charts verified & signed off?</span>
+                  </label>
+
+                  <label className="flex items-center gap-2 cursor-pointer select-none">
+                    <input 
+                      type="checkbox" 
+                      checked={cqcSafetyExits} 
+                      onChange={(e) => setCqcSafetyExits(e.target.checked)} 
+                      className="rounded border-slate-350 text-brand-600 focus:ring-brand-500" 
+                    />
+                    <span className="text-slate-600 dark:text-slate-400">Building fire exits inspected & clear?</span>
+                  </label>
                 </div>
               )}
 

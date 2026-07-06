@@ -23,7 +23,16 @@ const CATEGORY_NAMES = {
 const DependencyTool = () => {
   const { dependencyLogs, setDependencyLogs, employees } = useApp();
   const [selectedMonth, setSelectedMonth] = useState('June');
-  const [activeTab, setActiveTab] = useState('calculator'); // 'calculator' | 'baseline' | 'additional' | 'guidance'
+  const [activeTab, setActiveTab] = useState('calculator'); // 'calculator' | 'baseline' | 'additional' | 'guidance' | 'peeps'
+  const [peepsLogs, setPeepsLogs] = useState(() => {
+    const saved = localStorage.getItem('care_peeps_logs');
+    return saved ? JSON.parse(saved) : [
+      { name: 'Margaret Smith', priority: 'High', assistance: '2-Staff Assistance', status: 'Compliant' },
+      { name: 'Arthur Pendelton', priority: 'Medium', assistance: '1-Staff Assistance', status: 'Compliant' },
+      { name: 'Margaret Atwood', priority: 'Low', assistance: 'Self-Evacuate', status: 'Compliant' },
+      { name: 'John Miller', priority: 'High', assistance: 'Hoist / Sling Needed', status: 'Compliant' }
+    ];
+  });
   
   // Local states for month configuration
   const [monthData, setMonthData] = useState(null);
@@ -300,6 +309,16 @@ const DependencyTool = () => {
           }`}
         >
           Spreadsheet Guidance
+        </button>
+        <button
+          onClick={() => setActiveTab('peeps')}
+          className={`px-5 py-3 text-xs font-bold border-b-2 transition-colors ${
+            activeTab === 'peeps'
+              ? 'border-[#2e6559] text-[#2e6559] dark:border-[#3a8273] dark:text-[#3a8273]'
+              : 'border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
+          }`}
+        >
+          PEEPs & First Aid Audit
         </button>
       </div>
 
@@ -996,6 +1015,84 @@ const DependencyTool = () => {
                 <br />
                 Shift lengths are defined as: <strong>Early (6 hrs)</strong>, <strong>Late (6 hrs)</strong>, and <strong>Night (12 hrs)</strong>.
               </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Tab content 5: PEEPs & First Aid Audit */}
+      {activeTab === 'peeps' && (
+        <div className="space-y-6 animate-fade-in text-xs font-semibold">
+          {/* PEEPs Grid */}
+          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-4">
+            <div className="flex justify-between items-center pb-2 border-b dark:border-slate-800">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+                Personal Emergency Evacuation Plans (PEEPs) Checklist
+              </h3>
+            </div>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border-collapse">
+                <thead className="bg-slate-50 dark:bg-slate-950 text-slate-500 uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
+                  <tr>
+                    <th className="px-4 py-3">Resident Name</th>
+                    <th className="px-4 py-3">Evacuation Priority</th>
+                    <th className="px-4 py-3">Required Support Details</th>
+                    <th className="px-4 py-3 text-center">PEEP Document Review Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
+                  {peepsLogs.map((log, idx) => (
+                    <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20 transition-colors">
+                      <td className="px-4 py-3.5 font-bold text-slate-900 dark:text-white">{log.name}</td>
+                      <td className="px-4 py-3.5">
+                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider border
+                          ${log.priority === 'High' 
+                            ? 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-500/10 dark:text-rose-450' 
+                            : log.priority === 'Medium'
+                            ? 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-450'
+                            : 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-500/10 dark:text-blue-450'}`}>
+                          {log.priority}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3.5 text-slate-600 dark:text-slate-350">{log.assistance}</td>
+                      <td className="px-4 py-3.5 text-center">
+                        <span className="px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-450">
+                          {log.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* First Aid Coverage Audit */}
+          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-4">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+              Weekly First Aid Coverage Audit
+            </h3>
+            <p className="text-xs text-slate-500 leading-normal">
+              CQC compliance audit ensuring at least one trained First Aider is rostered on duty for every shift.
+            </p>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                { shift: 'Early Shift (8AM - 2PM)', status: 'Compliant', staff: 'Sarah Jenkins' },
+                { shift: 'Late Shift (2PM - 8PM)', status: 'Compliant', staff: 'James Carter' },
+                { shift: 'Night Shift (8PM - 8AM)', status: 'Compliant', staff: 'John (Senior Carer)' }
+              ].map((fa, faIdx) => (
+                <div key={faIdx} className="p-3 bg-slate-50 dark:bg-slate-855 border border-slate-100 dark:border-slate-800 rounded-xl flex justify-between items-center">
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 block">{fa.shift}</span>
+                    <span className="text-xs font-bold text-slate-700 dark:text-slate-300">{fa.staff} (First Aider)</span>
+                  </div>
+                  <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-450">
+                    {fa.status}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
