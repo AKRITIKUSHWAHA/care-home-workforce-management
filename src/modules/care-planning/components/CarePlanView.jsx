@@ -347,7 +347,7 @@ const CqcStructuredSection = ({ title, field, data, isEditing, onChange, isExpan
             )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3.5">
             {cqcFields.map((fieldItem) => (
               <div 
                 key={fieldItem.key} 
@@ -564,7 +564,7 @@ const CarePlanView = ({ patientName = "Margaret Smith", onBack }) => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto space-y-5 pb-20 animate-fade-in text-slate-800 dark:text-slate-100">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-5 pb-20 animate-fade-in text-slate-800 dark:text-slate-100">
       
       {/* ⚠️ CLINICAL WARNING FLAGS & BANNERS */}
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
