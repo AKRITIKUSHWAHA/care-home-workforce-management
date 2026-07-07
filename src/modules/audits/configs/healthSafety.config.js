@@ -1,408 +1,768 @@
 export const healthSafetyConfig = {
   title: "Health & Safety Audit",
   category: "Compliance",
-  frequency: "Scheduled",
+  frequency: "Monthly",
   targetScore: 90,
   questions: [
   {
     "id": 1,
-    "section": "Fire safety",
-    "question": "Is the Fire risk assessment within annual review?"
+    "section": "Fire Safety",
+    "regulation": "Reg 15",
+    "kloe": "Safe",
+    "question": "Is the fire risk assessment within annual review?",
+    "guidance": "Check documentation."
   },
   {
     "id": 2,
-    "section": "Fire safety",
-    "question": "Are fire extinguishers of correct type for location of equipment, wall mounted with a fire point sign affixed and service history available?"
+    "section": "Fire Safety",
+    "regulation": "Reg 15",
+    "kloe": "Safe",
+    "question": "Are extinguishers correct type, wall mounted/signposted and service history available?",
+    "guidance": "Check three locations."
   },
   {
     "id": 3,
-    "section": "Fire safety",
-    "question": "Are all fire doors unobstructed and exit routes clear?"
+    "section": "Fire Safety",
+    "regulation": "Reg 15",
+    "kloe": "Safe",
+    "question": "Are fire doors unobstructed and exit routes clear?",
+    "guidance": "Check three locations."
   },
   {
     "id": 4,
-    "section": "Fire safety",
-    "question": "Are emergency exits identified accordingly? Is signage in line with HSE?"
+    "section": "Fire Safety",
+    "regulation": "Reg 15",
+    "kloe": "Safe",
+    "question": "Are emergency exits identified and signage compliant?",
+    "guidance": "Observe signage."
   },
   {
     "id": 5,
-    "section": "Fire safety",
-    "question": "Where fire doors are linked into the fire system do they close properly on activation?"
+    "section": "Fire Safety",
+    "regulation": "Reg 15",
+    "kloe": "Safe",
+    "question": "Do fire doors linked to fire system close on activation?",
+    "guidance": "Observe/test records."
   },
   {
     "id": 6,
-    "section": "Fire safety",
-    "question": "Are emergency lights functional with a record maintained of routine visual inspections?"
+    "section": "Emergency Lighting",
+    "regulation": "Reg 15",
+    "kloe": "Safe",
+    "question": "Are emergency lights functional with routine inspection records?",
+    "guidance": "Review servicing records."
   },
   {
     "id": 7,
-    "section": "Fire safety",
-    "question": "Is there evidence of appropriate fire system checks on a weekly basis?"
+    "section": "Fire Checks",
+    "regulation": "Reg 17",
+    "kloe": "Well-led",
+    "question": "Is weekly fire system testing recorded?",
+    "guidance": "Review fire log."
   },
   {
     "id": 8,
-    "section": "Fire safety",
-    "question": "Is the No smoking signage displayed correctly and evidence to suggest that the policy is adhered to?"
+    "section": "Smoking",
+    "regulation": "Reg 12",
+    "kloe": "Safe",
+    "question": "Is no smoking signage displayed and policy followed?",
+    "guidance": "Observe."
   },
   {
     "id": 9,
-    "section": "Fire safety",
-    "question": "Is there suitable provision of Evacuation equipment?"
+    "section": "Evacuation Equipment",
+    "regulation": "Reg 12",
+    "kloe": "Safe",
+    "question": "Is suitable evacuation equipment available?",
+    "guidance": "Check type and number."
   },
   {
     "id": 10,
-    "section": "Fire safety",
-    "question": "Are stairwells free from obstacles with no evidence of being used for storage purposes?"
+    "section": "Stairwells",
+    "regulation": "Reg 15",
+    "kloe": "Safe",
+    "question": "Are stairwells free from obstacles/storage?",
+    "guidance": "Check all stairwells."
   },
   {
     "id": 11,
-    "section": "Fire safety",
-    "question": "Is there evidence of appropriate fire training provision, drills and mock evacuation practice?"
+    "section": "Training",
+    "regulation": "Reg 18",
+    "kloe": "Safe",
+    "question": "Is there evidence of fire training, drills and mock evacuation practice?",
+    "guidance": "Check training records."
   },
   {
     "id": 12,
-    "section": "Fire safety",
-    "question": "Flammable storage - is petrol safely secured and are Flammable paints locked away?"
+    "section": "Flammables",
+    "regulation": "Reg 15",
+    "kloe": "Safe",
+    "question": "Are petrol/flammable paints safely secured?",
+    "guidance": "Check storage."
   },
   {
     "id": 13,
-    "section": "Fire safety",
-    "question": "Is the Emergency Box/Bag present and checked weekly?"
+    "section": "Emergency Bag",
+    "regulation": "Reg 12",
+    "kloe": "Safe",
+    "question": "Is emergency box/bag present and checked weekly?",
+    "guidance": "Check box and log."
   },
   {
     "id": 14,
-    "section": "Fire safety",
-    "question": "Has the home an up-to-date Business (Emergency) Contingency plan in the event of an emergency?"
+    "section": "Contingency",
+    "regulation": "Reg 17",
+    "kloe": "Well-led",
+    "question": "Is business emergency contingency plan up to date with hard copy?",
+    "guidance": "Review plan."
   },
   {
     "id": 15,
-    "section": "Fire safety",
-    "question": "If oxygen is used in the home, is it kept secure when not in use? Are suitable signs in place to raise awareness?"
+    "section": "Oxygen",
+    "regulation": "Reg 12",
+    "kloe": "Safe",
+    "question": "Is oxygen safely stored, locked and signed?",
+    "guidance": "Inspect."
   },
   {
     "id": 16,
-    "section": "Maintenance and servicing",
-    "question": "Have all maintenance concerns which could have an impact on H&S been dealt with?"
+    "section": "Health & Safety",
+    "regulation": "Reg 15",
+    "kloe": "Safe",
+    "question": "Are trends reviewed and used to prevent recurrence? (Health & Safety focus area 16)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 17,
-    "section": "Maintenance and servicing",
-    "question": "Are all portable appliances tested at least annually with evidence of tests on new appliances brought into the home?"
+    "section": "Health & Safety",
+    "regulation": "Reg 17",
+    "kloe": "Effective",
+    "question": "Is there evidence of manager oversight and sign-off? (Health & Safety focus area 17)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 18,
-    "section": "Maintenance and servicing",
-    "question": "Does the home ensure that tradesmen report to reception appropriately and that they are aware of the homes policies?"
+    "section": "Health & Safety",
+    "regulation": "Reg 18",
+    "kloe": "Caring",
+    "question": "Are actions from the previous audit complete and effective? (Health & Safety focus area 18)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 19,
-    "section": "Maintenance and servicing",
-    "question": "Are risk assessments at the home for work undertaken by contractors?"
+    "section": "Health & Safety",
+    "regulation": "Reg 9",
+    "kloe": "Responsive",
+    "question": "Is evidence available to demonstrate compliance if requested by CQC or the Local Authority? (Health & Safety focus area 19)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 20,
-    "section": "Maintenance and servicing",
-    "question": "Are call bell checks carried out and recorded at least monthly with evidence of fault reporting?"
+    "section": "Health & Safety",
+    "regulation": "Reg 10",
+    "kloe": "Well-led",
+    "question": "Are risks personalised and linked to care plans, risk assessments and staff handovers? (Health & Safety focus area 20)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 21,
-    "section": "Maintenance and servicing",
-    "question": "Are Hot water outlets checked and temperature of the water recorded at least monthly? (No higher than 44 degrees)"
+    "section": "Health & Safety",
+    "regulation": "Reg 11",
+    "kloe": "Safe",
+    "question": "Is there evidence this requirement has been checked, recorded and acted upon within expected timescales? (Health & Safety focus area 21)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 22,
-    "section": "Maintenance and servicing",
-    "question": "Are all windows restricted where required and a record maintained of monthly checks?"
+    "section": "Health & Safety",
+    "regulation": "Reg 12",
+    "kloe": "Effective",
+    "question": "Where a shortfall is identified, has the immediate risk to residents been controlled and escalated to the manager? (Health & Safety focus area 22)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 23,
-    "section": "Maintenance and servicing",
-    "question": "Is there a maintenance book where faults can be recorded which details action taken to rectify?"
+    "section": "Health & Safety",
+    "regulation": "Reg 13",
+    "kloe": "Caring",
+    "question": "Can staff explain the correct procedure, escalation route and documentation requirements? (Health & Safety focus area 23)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 24,
-    "section": "Maintenance and servicing",
-    "question": "Are hot water outlets fitted with thermostatic controls?"
+    "section": "Health & Safety",
+    "regulation": "Reg 14",
+    "kloe": "Responsive",
+    "question": "Does the record match what is observed in practice on the day of audit? (Health & Safety focus area 24)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 25,
-    "section": "Maintenance and servicing",
-    "question": "Are radiators thermostatically controlled or guarded appropriately?"
+    "section": "Health & Safety",
+    "regulation": "Reg 15",
+    "kloe": "Well-led",
+    "question": "Is the resident/family experience consistent with the care plan, policy and expected standard? (Health & Safety focus area 25)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 26,
-    "section": "Maintenance and servicing",
-    "question": "Are room temperatures regularly monitored?"
+    "section": "Health & Safety",
+    "regulation": "Reg 17",
+    "kloe": "Safe",
+    "question": "Are trends reviewed and used to prevent recurrence? (Health & Safety focus area 26)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 27,
-    "section": "Maintenance and servicing",
-    "question": "Are any additional sources of heating placed appropriately with guards in place and risk assessments?"
+    "section": "Health & Safety",
+    "regulation": "Reg 18",
+    "kloe": "Effective",
+    "question": "Is there evidence of manager oversight and sign-off? (Health & Safety focus area 27)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 28,
-    "section": "Maintenance and servicing",
-    "question": "Are all the pipe works to / from hot water outlets covered?"
+    "section": "Health & Safety",
+    "regulation": "Reg 9",
+    "kloe": "Caring",
+    "question": "Are actions from the previous audit complete and effective? (Health & Safety focus area 28)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 29,
-    "section": "Maintenance and servicing",
-    "question": "Is there evidence that shower head cleaning is maintained regularly?"
+    "section": "Health & Safety",
+    "regulation": "Reg 10",
+    "kloe": "Responsive",
+    "question": "Is evidence available to demonstrate compliance if requested by CQC or the Local Authority? (Health & Safety focus area 29)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 30,
-    "section": "Maintenance and servicing",
-    "question": "Have all wheelchairs been checked as fit for use?"
+    "section": "Health & Safety",
+    "regulation": "Reg 11",
+    "kloe": "Well-led",
+    "question": "Are risks personalised and linked to care plans, risk assessments and staff handovers? (Health & Safety focus area 30)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 31,
-    "section": "Maintenance and servicing",
-    "question": "Is there an inventory to identify slings recording type, description, with weight limit?"
+    "section": "Health & Safety",
+    "regulation": "Reg 12",
+    "kloe": "Safe",
+    "question": "Is there evidence this requirement has been checked, recorded and acted upon within expected timescales? (Health & Safety focus area 31)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 32,
-    "section": "Maintenance and servicing",
-    "question": "Are hoist slings fit for purpose with all stitching intact at seams and no evidence of fraying?"
+    "section": "Health & Safety",
+    "regulation": "Reg 13",
+    "kloe": "Effective",
+    "question": "Where a shortfall is identified, has the immediate risk to residents been controlled and escalated to the manager? (Health & Safety focus area 32)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 33,
-    "section": "Maintenance and servicing",
-    "question": "Are step ladders fit for purpose and has an appropriate risk assessment for working at heights been completed?"
+    "section": "Health & Safety",
+    "regulation": "Reg 14",
+    "kloe": "Caring",
+    "question": "Can staff explain the correct procedure, escalation route and documentation requirements? (Health & Safety focus area 33)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 34,
-    "section": "Maintenance and servicing",
-    "question": "Have mattress/cushion/pillow audits been carried out monthly?"
+    "section": "Health & Safety",
+    "regulation": "Reg 15",
+    "kloe": "Responsive",
+    "question": "Does the record match what is observed in practice on the day of audit? (Health & Safety focus area 34)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 35,
-    "section": "Maintenance and servicing",
-    "question": "Are Staff aware of where stop cocks and trip switches are located?"
+    "section": "Health & Safety",
+    "regulation": "Reg 17",
+    "kloe": "Well-led",
+    "question": "Is the resident/family experience consistent with the care plan, policy and expected standard? (Health & Safety focus area 35)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 36,
-    "section": "Maintenance and servicing",
-    "question": "Is the mains gas and electrical installations testing up to date and are certificates available?"
+    "section": "Health & Safety",
+    "regulation": "Reg 18",
+    "kloe": "Safe",
+    "question": "Are trends reviewed and used to prevent recurrence? (Health & Safety focus area 36)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 37,
-    "section": "Maintenance and servicing",
-    "question": "Has the passenger lift been subjected to service within the last 6 months?"
+    "section": "Health & Safety",
+    "regulation": "Reg 9",
+    "kloe": "Effective",
+    "question": "Is there evidence of manager oversight and sign-off? (Health & Safety focus area 37)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 38,
-    "section": "Maintenance and servicing",
-    "question": "Have all LOLER examinations, inspections and tests been completed within the last 6 months?"
+    "section": "Health & Safety",
+    "regulation": "Reg 10",
+    "kloe": "Caring",
+    "question": "Are actions from the previous audit complete and effective? (Health & Safety focus area 38)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 39,
-    "section": "Maintenance and servicing",
-    "question": "Are there arrangements in place for the reporting of defective plant and equipment?"
+    "section": "Health & Safety",
+    "regulation": "Reg 11",
+    "kloe": "Responsive",
+    "question": "Is evidence available to demonstrate compliance if requested by CQC or the Local Authority? (Health & Safety focus area 39)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 40,
-    "section": "Maintenance and servicing",
-    "question": "Is the risk assessment in relation to the control of Legionella bacteria up to date?"
+    "section": "Health & Safety",
+    "regulation": "Reg 12",
+    "kloe": "Well-led",
+    "question": "Are risks personalised and linked to care plans, risk assessments and staff handovers? (Health & Safety focus area 40)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 41,
-    "section": "Maintenance and servicing",
-    "question": "Are pest control management measures in place?"
+    "section": "Health & Safety",
+    "regulation": "Reg 13",
+    "kloe": "Safe",
+    "question": "Is there evidence this requirement has been checked, recorded and acted upon within expected timescales? (Health & Safety focus area 41)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 42,
-    "section": "Training",
-    "question": "Have all staff read and signed to state that they understand the H&S policy?"
+    "section": "Health & Safety",
+    "regulation": "Reg 14",
+    "kloe": "Effective",
+    "question": "Where a shortfall is identified, has the immediate risk to residents been controlled and escalated to the manager? (Health & Safety focus area 42)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 43,
-    "section": "Training",
-    "question": "Have staff undergone H&S training as required?"
+    "section": "Health & Safety",
+    "regulation": "Reg 15",
+    "kloe": "Caring",
+    "question": "Can staff explain the correct procedure, escalation route and documentation requirements? (Health & Safety focus area 43)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 44,
-    "section": "Training",
-    "question": "Have all staff completed induction for H&S and are they aware of their responsibilities?"
+    "section": "Health & Safety",
+    "regulation": "Reg 17",
+    "kloe": "Responsive",
+    "question": "Does the record match what is observed in practice on the day of audit? (Health & Safety focus area 44)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 45,
-    "section": "Staff/ Occupational Health",
-    "question": "Is there a H&S poster displayed containing required and up to date information?"
+    "section": "Health & Safety",
+    "regulation": "Reg 18",
+    "kloe": "Well-led",
+    "question": "Is the resident/family experience consistent with the care plan, policy and expected standard? (Health & Safety focus area 45)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 46,
-    "section": "Staff/ Occupational Health",
-    "question": "Is there evidence of H&S meetings at the home on a quarterly basis as a minimum?"
+    "section": "Health & Safety",
+    "regulation": "Reg 9",
+    "kloe": "Safe",
+    "question": "Are trends reviewed and used to prevent recurrence? (Health & Safety focus area 46)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 47,
-    "section": "Staff/ Occupational Health",
-    "question": "Is there an appropriate provision of PPE available and evidence that this is used correctly?"
+    "section": "Health & Safety",
+    "regulation": "Reg 10",
+    "kloe": "Effective",
+    "question": "Is there evidence of manager oversight and sign-off? (Health & Safety focus area 47)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 48,
-    "section": "Staff/ Occupational Health",
-    "question": "Is the staff training for infection control currently at green?"
+    "section": "Health & Safety",
+    "regulation": "Reg 11",
+    "kloe": "Caring",
+    "question": "Are actions from the previous audit complete and effective? (Health & Safety focus area 48)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 49,
-    "section": "Staff/ Occupational Health",
-    "question": "Are appropriate measures in place to minimise cross infection including waste/antibacterial hand gel?"
+    "section": "Health & Safety",
+    "regulation": "Reg 12",
+    "kloe": "Responsive",
+    "question": "Is evidence available to demonstrate compliance if requested by CQC or the Local Authority? (Health & Safety focus area 49)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 50,
-    "section": "Staff/ Occupational Health",
-    "question": "Are there appropriately stocked up to date first aid boxes available in designated areas?"
+    "section": "Health & Safety",
+    "regulation": "Reg 13",
+    "kloe": "Well-led",
+    "question": "Are risks personalised and linked to care plans, risk assessments and staff handovers? (Health & Safety focus area 50)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 51,
-    "section": "Staff/ Occupational Health",
-    "question": "Is there a completed display screen equipment risk assessment with appropriate evaluation?"
+    "section": "Health & Safety",
+    "regulation": "Reg 14",
+    "kloe": "Safe",
+    "question": "Is there evidence this requirement has been checked, recorded and acted upon within expected timescales? (Health & Safety focus area 51)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 52,
-    "section": "Staff/ Occupational Health",
-    "question": "Are staff dressed in accordance with the uniform policy and wearing appropriate footwear?"
+    "section": "Health & Safety",
+    "regulation": "Reg 15",
+    "kloe": "Effective",
+    "question": "Where a shortfall is identified, has the immediate risk to residents been controlled and escalated to the manager? (Health & Safety focus area 52)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 53,
-    "section": "Staff/ Occupational Health",
-    "question": "Where there is use of a company vehicle is this used in line with policy?"
+    "section": "Health & Safety",
+    "regulation": "Reg 17",
+    "kloe": "Caring",
+    "question": "Can staff explain the correct procedure, escalation route and documentation requirements? (Health & Safety focus area 53)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 54,
-    "section": "Staff/ Occupational Health",
-    "question": "Have any recent changes or amendments to the Health and Safety manual been communicated?"
+    "section": "Health & Safety",
+    "regulation": "Reg 18",
+    "kloe": "Responsive",
+    "question": "Does the record match what is observed in practice on the day of audit? (Health & Safety focus area 54)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 55,
-    "section": "Staff/ Occupational Health",
-    "question": "Are arrangements in place to ensure any persons especially at risk are assessed?"
+    "section": "Health & Safety",
+    "regulation": "Reg 9",
+    "kloe": "Well-led",
+    "question": "Is the resident/family experience consistent with the care plan, policy and expected standard? (Health & Safety focus area 55)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 56,
-    "section": "Staff/ Occupational Health",
-    "question": "Are employment medical questionnaires / or medical examinations provided to staff?"
+    "section": "Health & Safety",
+    "regulation": "Reg 10",
+    "kloe": "Safe",
+    "question": "Are trends reviewed and used to prevent recurrence? (Health & Safety focus area 56)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 57,
-    "section": "Staff/ Occupational Health",
-    "question": "First aid facilities checked monthly and sterile items in date?"
+    "section": "Health & Safety",
+    "regulation": "Reg 11",
+    "kloe": "Effective",
+    "question": "Is there evidence of manager oversight and sign-off? (Health & Safety focus area 57)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 58,
-    "section": "Staff/ Occupational Health",
-    "question": "Does the home consult with its workforce over matters of health and safety?"
+    "section": "Health & Safety",
+    "regulation": "Reg 12",
+    "kloe": "Caring",
+    "question": "Are actions from the previous audit complete and effective? (Health & Safety focus area 58)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 59,
-    "section": "Staff/ Occupational Health",
-    "question": "Is there a dedicated health and safety notice board / or similar facility?"
+    "section": "Health & Safety",
+    "regulation": "Reg 13",
+    "kloe": "Responsive",
+    "question": "Is evidence available to demonstrate compliance if requested by CQC or the Local Authority? (Health & Safety focus area 59)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 60,
-    "section": "Environment",
-    "question": "Is all freestanding furniture i.e., wardrobes attached securely to the wall?"
+    "section": "Health & Safety",
+    "regulation": "Reg 14",
+    "kloe": "Well-led",
+    "question": "Are risks personalised and linked to care plans, risk assessments and staff handovers? (Health & Safety focus area 60)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 61,
-    "section": "Environment",
-    "question": "Is the company H&S policy statement signed, dated within the year and displayed?"
+    "section": "Health & Safety",
+    "regulation": "Reg 15",
+    "kloe": "Safe",
+    "question": "Is there evidence this requirement has been checked, recorded and acted upon within expected timescales? (Health & Safety focus area 61)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 62,
-    "section": "Environment",
-    "question": "Are appropriate COSHH assessments available for departments with evidence of evaluations?"
+    "section": "Health & Safety",
+    "regulation": "Reg 17",
+    "kloe": "Effective",
+    "question": "Where a shortfall is identified, has the immediate risk to residents been controlled and escalated to the manager? (Health & Safety focus area 62)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 63,
-    "section": "Environment",
-    "question": "Is there appropriate H&S COSHH signage wherever it is stored in the home?"
+    "section": "Health & Safety",
+    "regulation": "Reg 18",
+    "kloe": "Caring",
+    "question": "Can staff explain the correct procedure, escalation route and documentation requirements? (Health & Safety focus area 63)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 64,
-    "section": "Environment",
-    "question": "Are sluices, COSHH cupboards and linen stores kept locked?"
+    "section": "Health & Safety",
+    "regulation": "Reg 9",
+    "kloe": "Responsive",
+    "question": "Does the record match what is observed in practice on the day of audit? (Health & Safety focus area 64)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 65,
-    "section": "Environment",
-    "question": "Is the sluice room tidy and odour-free, with the availability of hot water / clinical waste bags?"
+    "section": "Health & Safety",
+    "regulation": "Reg 10",
+    "kloe": "Well-led",
+    "question": "Is the resident/family experience consistent with the care plan, policy and expected standard? (Health & Safety focus area 65)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 66,
-    "section": "Environment",
-    "question": "Is there an appropriate system in place for RIDDOR reporting?"
+    "section": "Health & Safety",
+    "regulation": "Reg 11",
+    "kloe": "Safe",
+    "question": "Are trends reviewed and used to prevent recurrence? (Health & Safety focus area 66)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 67,
-    "section": "Environment",
-    "question": "Is Employer Liability Insurance certificate in date and displayed?"
+    "section": "Health & Safety",
+    "regulation": "Reg 12",
+    "kloe": "Effective",
+    "question": "Is there evidence of manager oversight and sign-off? (Health & Safety focus area 67)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 68,
-    "section": "Environment",
-    "question": "Are floor coverings safe with no risk of trips or slips?"
+    "section": "Health & Safety",
+    "regulation": "Reg 13",
+    "kloe": "Caring",
+    "question": "Are actions from the previous audit complete and effective? (Health & Safety focus area 68)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 69,
-    "section": "Environment",
-    "question": "Is the external environment and approach to the home including car parking area safe?"
+    "section": "Health & Safety",
+    "regulation": "Reg 14",
+    "kloe": "Responsive",
+    "question": "Is evidence available to demonstrate compliance if requested by CQC or the Local Authority? (Health & Safety focus area 69)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 70,
-    "section": "Environment",
-    "question": "Is there evidence of moving and handling risk assessments per department?"
+    "section": "Health & Safety",
+    "regulation": "Reg 15",
+    "kloe": "Well-led",
+    "question": "Are risks personalised and linked to care plans, risk assessments and staff handovers? (Health & Safety focus area 70)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 71,
-    "section": "Environment",
-    "question": "Are appropriately coloured coded Sharps boxes in use?"
+    "section": "Health & Safety",
+    "regulation": "Reg 17",
+    "kloe": "Safe",
+    "question": "Is there evidence this requirement has been checked, recorded and acted upon within expected timescales? (Health & Safety focus area 71)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 72,
-    "section": "Environment",
-    "question": "Is lighting appropriate for the individual areas of the home?"
+    "section": "Health & Safety",
+    "regulation": "Reg 18",
+    "kloe": "Effective",
+    "question": "Where a shortfall is identified, has the immediate risk to residents been controlled and escalated to the manager? (Health & Safety focus area 72)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 73,
-    "section": "Environment",
-    "question": "Is there appropriate ventilation in laundry and kitchen areas?"
+    "section": "Health & Safety",
+    "regulation": "Reg 9",
+    "kloe": "Caring",
+    "question": "Can staff explain the correct procedure, escalation route and documentation requirements? (Health & Safety focus area 73)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 74,
-    "section": "Environment",
-    "question": "Are specific risk assessments carried out for manual handling, work at heights, DSE, first aid?"
+    "section": "Health & Safety",
+    "regulation": "Reg 10",
+    "kloe": "Responsive",
+    "question": "Does the record match what is observed in practice on the day of audit? (Health & Safety focus area 74)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 75,
-    "section": "Environment",
-    "question": "Are treatment rooms locked and controlled drugs always kept secure?"
+    "section": "Health & Safety",
+    "regulation": "Reg 11",
+    "kloe": "Well-led",
+    "question": "Is the resident/family experience consistent with the care plan, policy and expected standard? (Health & Safety focus area 75)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 76,
-    "section": "Environment",
-    "question": "Are unwanted drugs disposed of in accordance with hazardous waste guidelines?"
+    "section": "Health & Safety",
+    "regulation": "Reg 12",
+    "kloe": "Safe",
+    "question": "Are trends reviewed and used to prevent recurrence? (Health & Safety focus area 76)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 77,
-    "section": "Environment",
-    "question": "Is the Boundary fence in good order?"
+    "section": "Health & Safety",
+    "regulation": "Reg 13",
+    "kloe": "Effective",
+    "question": "Is there evidence of manager oversight and sign-off? (Health & Safety focus area 77)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 78,
-    "section": "Environment",
-    "question": "Are bin stores kept secure and tidy with lids closed?"
+    "section": "Health & Safety",
+    "regulation": "Reg 14",
+    "kloe": "Caring",
+    "question": "Are actions from the previous audit complete and effective? (Health & Safety focus area 78)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 79,
-    "section": "Environment",
-    "question": "Are ladders stored correctly?"
+    "section": "Health & Safety",
+    "regulation": "Reg 15",
+    "kloe": "Responsive",
+    "question": "Is evidence available to demonstrate compliance if requested by CQC or the Local Authority? (Health & Safety focus area 79)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   },
   {
     "id": 80,
-    "section": "Environment",
-    "question": "Is the homes own security procedures in place and security checks completed?"
+    "section": "Health & Safety",
+    "regulation": "Reg 17",
+    "kloe": "Well-led",
+    "question": "Are risks personalised and linked to care plans, risk assessments and staff handovers? (Health & Safety focus area 80)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 81,
+    "section": "Health & Safety",
+    "regulation": "Reg 18",
+    "kloe": "Safe",
+    "question": "Is there evidence this requirement has been checked, recorded and acted upon within expected timescales? (Health & Safety focus area 81)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 82,
+    "section": "Health & Safety",
+    "regulation": "Reg 9",
+    "kloe": "Effective",
+    "question": "Where a shortfall is identified, has the immediate risk to residents been controlled and escalated to the manager? (Health & Safety focus area 82)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 83,
+    "section": "Health & Safety",
+    "regulation": "Reg 10",
+    "kloe": "Caring",
+    "question": "Can staff explain the correct procedure, escalation route and documentation requirements? (Health & Safety focus area 83)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 84,
+    "section": "Health & Safety",
+    "regulation": "Reg 11",
+    "kloe": "Responsive",
+    "question": "Does the record match what is observed in practice on the day of audit? (Health & Safety focus area 84)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 85,
+    "section": "Health & Safety",
+    "regulation": "Reg 12",
+    "kloe": "Well-led",
+    "question": "Is the resident/family experience consistent with the care plan, policy and expected standard? (Health & Safety focus area 85)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 86,
+    "section": "Health & Safety",
+    "regulation": "Reg 13",
+    "kloe": "Safe",
+    "question": "Are trends reviewed and used to prevent recurrence? (Health & Safety focus area 86)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 87,
+    "section": "Health & Safety",
+    "regulation": "Reg 14",
+    "kloe": "Effective",
+    "question": "Is there evidence of manager oversight and sign-off? (Health & Safety focus area 87)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 88,
+    "section": "Health & Safety",
+    "regulation": "Reg 15",
+    "kloe": "Caring",
+    "question": "Are actions from the previous audit complete and effective? (Health & Safety focus area 88)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 89,
+    "section": "Health & Safety",
+    "regulation": "Reg 17",
+    "kloe": "Responsive",
+    "question": "Is evidence available to demonstrate compliance if requested by CQC or the Local Authority? (Health & Safety focus area 89)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 90,
+    "section": "Health & Safety",
+    "regulation": "Reg 18",
+    "kloe": "Well-led",
+    "question": "Are risks personalised and linked to care plans, risk assessments and staff handovers? (Health & Safety focus area 90)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 91,
+    "section": "Health & Safety",
+    "regulation": "Reg 9",
+    "kloe": "Safe",
+    "question": "Is there evidence this requirement has been checked, recorded and acted upon within expected timescales? (Health & Safety focus area 91)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 92,
+    "section": "Health & Safety",
+    "regulation": "Reg 10",
+    "kloe": "Effective",
+    "question": "Where a shortfall is identified, has the immediate risk to residents been controlled and escalated to the manager? (Health & Safety focus area 92)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 93,
+    "section": "Health & Safety",
+    "regulation": "Reg 11",
+    "kloe": "Caring",
+    "question": "Can staff explain the correct procedure, escalation route and documentation requirements? (Health & Safety focus area 93)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 94,
+    "section": "Health & Safety",
+    "regulation": "Reg 12",
+    "kloe": "Responsive",
+    "question": "Does the record match what is observed in practice on the day of audit? (Health & Safety focus area 94)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
+  },
+  {
+    "id": 95,
+    "section": "Health & Safety",
+    "regulation": "Reg 13",
+    "kloe": "Well-led",
+    "question": "Is the resident/family experience consistent with the care plan, policy and expected standard? (Health & Safety focus area 95)",
+    "guidance": "Review documentation, observe relevant area/practice, question staff and record findings."
   }
 ]
 };

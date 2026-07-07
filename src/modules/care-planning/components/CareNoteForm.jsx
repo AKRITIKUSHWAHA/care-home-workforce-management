@@ -358,6 +358,80 @@ const renderActivityIcon = (type, completed) => {
           <path d="M58 88 C58 74, 86 74, 86 88 Z" fill="#1565c0" />
         </svg>
       );
+    case 'dentures':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <ellipse cx="50" cy="50" rx="30" ry="20" fill="#ffcdd2" stroke="#e57373" strokeWidth="3.5" />
+          <rect x="35" y="44" width="30" height="10" rx="2" fill="#ffffff" />
+        </svg>
+      );
+    case 'hair':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M25 45 C25 25, 75 25, 75 45 C75 60, 65 75, 50 75 C35 75, 25 60, 25 45 Z" fill="#cfd8dc" stroke="#90a4ae" strokeWidth="2.5" />
+          <rect x="44" y="70" width="12" height="18" fill="#78909c" />
+        </svg>
+      );
+    case 'nail':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M30 85 L30 50 C30 40, 40 32, 50 32 C60 32, 70 40, 70 50 L70 85 Z" fill="#eceff1" stroke="#b0bec5" strokeWidth="3" />
+          <circle cx="50" cy="40" r="6" fill="#ff8a80" />
+        </svg>
+      );
+    case 'dressing':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M25 25 L40 38 L50 30 L60 38 L75 25 L85 45 L70 85 H30 L15 45 Z" fill="#90caf9" stroke="#1e88e5" strokeWidth="3" />
+          <circle cx="50" cy="50" r="3" fill="#ffffff" />
+          <circle cx="50" cy="62" r="3" fill="#ffffff" />
+        </svg>
+      );
+    case 'jewellery':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <circle cx="50" cy="55" r="18" fill="none" stroke="#ffd54f" strokeWidth="5.5" />
+          <polygon points="50,22 62,35 50,48 38,35" fill="#80deea" />
+        </svg>
+      );
+    case 'skin_inspection':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M50 15 L80 28 V55 C80 72, 68 85, 50 90 C32 85, 20 72, 20 55 V28 Z" fill="#a5d6a7" stroke="#4caf50" strokeWidth="3" />
+          <path d="M40 50 L48 58 L64 42" fill="none" stroke="#2e7d32" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'urine':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M35 30 L65 30 L60 80 L40 80 Z" fill="#ffe082" stroke="#ffb300" strokeWidth="3" strokeLinejoin="round" />
+          <path d="M42 45 C42 45, 50 35, 50 35 C50 35, 58 45, 58 45 C58 55, 42 55, 42 45 Z" fill="#ff8f00" />
+        </svg>
+      );
+    case 'feminine':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M50 82 C50 82, 18 55, 18 34 C18 20, 32 12, 42 20 C50 30, 50 30, 50 30 C50 30, 50 30, 58 20 C68 12, 82 20, 82 34 C82 55, 50 82, 50 82 Z" fill="#f48fb1" stroke="#d81b60" strokeWidth="3" />
+        </svg>
+      );
+    case 'pain':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <circle cx="50" cy="50" r="32" fill="#ffe082" stroke="#ffb300" strokeWidth="3.5" />
+          <path d="M35 62 Q50 50 65 62" fill="none" stroke="#ff8f00" strokeWidth="4.5" strokeLinecap="round" />
+          <circle cx="38" cy="42" r="3.5" fill="#3e2723" />
+          <circle cx="62" cy="42" r="3.5" fill="#3e2723" />
+        </svg>
+      );
     default:
       return null;
   }
@@ -427,7 +501,7 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
       id: 'laundry',
       label: 'Did laundry',
       time: '11:43',
-      completed: true,
+      completed: false,
       text: 'Routine laundry was completed, washing and drying personal items.',
       type: 'laundry',
       category: 'hygiene',
@@ -437,89 +511,19 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
       id: 'bed',
       label: 'Stripped/made bed',
       time: '11:43',
-      completed: true,
+      completed: false,
       text: 'Stripped and made the bed with clean linens and sheets.',
       type: 'bed',
       category: 'hygiene',
       showAlarm: false
     },
     {
-      id: 'pad_check_1',
-      label: 'Pad checked (Dry)',
-      time: '11:43',
-      completed: true,
-      text: 'Continence pad checked. Found dry and comfortable.',
-      type: 'pad',
-      category: 'hygiene',
-      showAlarm: true
-    },
-    {
-      id: 'pad_check_change',
-      label: 'Pad changed',
-      time: '11:43',
-      completed: false,
-      text: 'Continence pad checked, changed. Skin cleaned and barrier cream applied.',
-      type: 'pad',
-      category: 'hygiene',
-      showAlarm: true
-    },
-    {
-      id: 'bowels',
-      label: 'Checked bowels',
-      time: '11:43',
-      completed: true,
-      text: 'Checked resident for bowel movement. Normal findings, no issues.',
-      type: 'bowels',
-      category: 'hygiene',
-      showAlarm: true
-    },
-    {
-      id: 'toilet_in',
-      label: 'Helped on toilet',
-      time: '11:43',
-      completed: true,
-      text: 'Supported resident to get onto the toilet safely.',
-      type: 'toilet_in',
-      category: 'hygiene',
-      showAlarm: true
-    },
-    {
-      id: 'toilet_out',
-      label: 'Helped off toilet',
-      time: '11:43',
-      completed: true,
-      text: 'Assisted resident in transferring safely off the toilet.',
-      type: 'toilet_out',
-      category: 'hygiene',
-      showAlarm: true
-    },
-    {
-      id: 'repositioned',
-      label: 'Repositioned resident',
-      time: '12:08',
-      completed: true,
-      text: 'Resident was repositioned to avoid pressure build-up. Skin checked and intact.',
-      type: 'repositioned',
-      category: 'hygiene',
-      showAlarm: true
-    },
-    {
       id: 'bath',
       label: 'Assisted with bath',
       time: '12:00',
       completed: false,
-      text: 'Assisted resident with a full bath. Groomed and clean clothes changed.',
+      text: 'Assisted resident with a full bath. Clean clothes changed and groomed.',
       type: 'bath',
-      category: 'hygiene',
-      showAlarm: false
-    },
-    {
-      id: 'shower',
-      label: 'Assisted with shower',
-      time: '12:00',
-      completed: false,
-      text: 'Supported resident to have a warm shower. Skin checked and cream applied.',
-      type: 'shower',
       category: 'hygiene',
       showAlarm: false
     },
@@ -534,6 +538,26 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
       showAlarm: false
     },
     {
+      id: 'dentures',
+      label: 'Dentures care',
+      time: '08:30',
+      completed: false,
+      text: 'Cleaned, sanitized, and assisted in fitting dentures.',
+      type: 'dentures',
+      category: 'hygiene',
+      showAlarm: false
+    },
+    {
+      id: 'hair',
+      label: 'Hair care & wash',
+      time: '09:30',
+      completed: false,
+      text: 'Washed and styled hair as per resident preference.',
+      type: 'hair',
+      category: 'hygiene',
+      showAlarm: false
+    },
+    {
       id: 'shaving',
       label: 'Shaved & groomed',
       time: '09:00',
@@ -541,6 +565,118 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
       text: 'Assisted resident with shaving and personal grooming.',
       type: 'shaving',
       category: 'hygiene',
+      showAlarm: false
+    },
+    {
+      id: 'nail',
+      label: 'Nail trim/filing',
+      time: '10:00',
+      completed: false,
+      text: 'Nails checked, filed, and trimmed safely.',
+      type: 'nail',
+      category: 'hygiene',
+      showAlarm: false
+    },
+    {
+      id: 'dressing',
+      label: 'Assisted dressing',
+      time: '08:30',
+      completed: false,
+      text: 'Supported resident with choosing clothing and dressing.',
+      type: 'dressing',
+      category: 'hygiene',
+      showAlarm: false
+    },
+    {
+      id: 'jewellery',
+      label: 'Jewellery & Makeup',
+      time: '09:00',
+      completed: false,
+      text: 'Assisted resident in wearing their jewellery and applying make-up.',
+      type: 'jewellery',
+      category: 'hygiene',
+      showAlarm: false
+    },
+    {
+      id: 'skin_inspection',
+      label: 'Skin checks',
+      time: '10:00',
+      completed: false,
+      text: 'Conducted skin integrity and pressure area checks. Skin intact.',
+      type: 'skin_inspection',
+      category: 'hygiene',
+      showAlarm: false
+    },
+
+    // Continence Category
+    {
+      id: 'pad_check_dry',
+      label: 'Pad checked (Dry)',
+      time: '11:43',
+      completed: false,
+      text: 'Continence pad checked. Found dry and comfortable.',
+      type: 'pad',
+      category: 'continence',
+      showAlarm: true
+    },
+    {
+      id: 'pad_check_changed',
+      label: 'Pad changed',
+      time: '11:43',
+      completed: false,
+      text: 'Continence pad checked and changed. Skin cleaned and barrier cream applied.',
+      type: 'pad',
+      category: 'continence',
+      showAlarm: true
+    },
+    {
+      id: 'toilet_in',
+      label: 'Helped on toilet',
+      time: '11:43',
+      completed: false,
+      text: 'Supported resident to transfer onto the toilet safely.',
+      type: 'toilet_in',
+      category: 'continence',
+      showAlarm: true
+    },
+    {
+      id: 'toilet_out',
+      label: 'Helped off toilet',
+      time: '11:43',
+      completed: false,
+      text: 'Assisted resident in transferring safely off the toilet.',
+      type: 'toilet_out',
+      category: 'continence',
+      showAlarm: true
+    },
+    {
+      id: 'bowels',
+      label: 'Checked bowels',
+      time: '11:43',
+      completed: false,
+      text: 'Checked resident for bowel movement. Normal findings, Bristol Stool Scale logged.',
+      type: 'bowels',
+      category: 'continence',
+      showAlarm: true
+    },
+    {
+      id: 'urine',
+      label: 'Urine check',
+      time: '11:43',
+      completed: false,
+      text: 'Urine output checked. Normal color and volume, no signs of infection.',
+      type: 'urine',
+      category: 'continence',
+      showAlarm: true
+    },
+    {
+      id: 'feminine_care',
+      label: 'Feminine hygiene',
+      time: '11:43',
+      completed: false,
+      text: 'Provided personal feminine hygiene care with dignity and respect.',
+      type: 'feminine',
+      category: 'continence',
       showAlarm: false
     },
 
@@ -556,51 +692,11 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
       showAlarm: false
     },
     {
-      id: 'tea_log',
-      label: 'Cup of tea',
-      time: '14:15',
-      completed: false,
-      text: 'Supported resident with a hot cup of tea.',
-      type: 'tea',
-      category: 'nutrition',
-      showAlarm: false
-    },
-    {
-      id: 'water_log',
-      label: 'Glass of water',
-      time: '14:15',
-      completed: false,
-      text: 'Offered tumbler of fresh cold water. Fluid intake logged.',
-      type: 'water',
-      category: 'nutrition',
-      showAlarm: false
-    },
-    {
-      id: 'coffee_log',
-      label: 'Cup of coffee',
-      time: '14:15',
-      completed: false,
-      text: 'Served resident a hot cup of coffee.',
-      type: 'coffee',
-      category: 'nutrition',
-      showAlarm: false
-    },
-    {
-      id: 'breakfast_log',
-      label: 'Breakfast eaten',
-      time: '08:30',
-      completed: false,
-      text: 'Ate full breakfast portion. Had cereal, toast and tea.',
-      type: 'breakfast',
-      category: 'nutrition',
-      showAlarm: false
-    },
-    {
       id: 'lunch_log',
       label: 'Lunch eaten',
-      time: '13:00',
+      time: '12:30',
       completed: false,
-      text: 'Ate lunch portion. Had soup, bread roll and dessert.',
+      text: 'Ate lunch. Portion consumed: 100%, assistance provided.',
       type: 'lunch',
       category: 'nutrition',
       showAlarm: false
@@ -610,50 +706,60 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
       label: 'Dinner eaten',
       time: '17:30',
       completed: false,
-      text: 'Ate dinner portion. Had main course meal and fruit.',
+      text: 'Ate dinner. Consumed full portion, sat in the dining area.',
       type: 'dinner',
       category: 'nutrition',
       showAlarm: false
     },
     {
       id: 'snacks_log',
-      label: 'Offered snacks',
-      time: '15:30',
+      label: 'Snacks eaten',
+      time: '15:00',
       completed: false,
-      text: 'Provided mid-day snacks and soft fruits to resident.',
+      text: 'Offered snacks between meals (biscuits and fruit).',
       type: 'snacks',
       category: 'nutrition',
       showAlarm: false
     },
     {
-      id: 'fed_assist_log',
-      label: 'Feeding support',
-      time: '13:00',
+      id: 'fed_assist',
+      label: 'Feeding assist',
+      time: '12:30',
       completed: false,
-      text: 'Required 1-to-1 carer feeding assistance and encouragement during meal.',
+      text: 'Provided physical assistance and feeding support during meal.',
       type: 'fed_assist',
+      category: 'nutrition',
+      showAlarm: false
+    },
+    {
+      id: 'fluid_target',
+      label: 'Fluid target check',
+      time: '14:15',
+      completed: false,
+      text: 'Checked fluid target intake. Resident is meeting their daily target hydration.',
+      type: 'water',
       category: 'nutrition',
       showAlarm: false
     },
 
     // Mobility Category
     {
-      id: 'remains_bed',
-      label: 'Remains in bed',
-      time: '12:08',
-      completed: true,
-      text: 'Resident checked and remains resting safely in bed.',
-      type: 'remains_bed',
+      id: 'checked_1',
+      label: 'Safety check',
+      time: '12:09',
+      completed: false,
+      text: 'Hourly welfare safety check completed. Resident comfortable and safe.',
+      type: 'checked',
       category: 'mobility',
       showAlarm: true
     },
     {
-      id: 'checked_1',
-      label: 'Safety check completed',
-      time: '12:09',
-      completed: true,
-      text: 'Hourly welfare safety check completed. Resident comfortable and safe.',
-      type: 'checked',
+      id: 'repositioned',
+      label: 'Repositioned',
+      time: '12:08',
+      completed: false,
+      text: 'Resident was repositioned to avoid pressure build-up. Skin checked and intact.',
+      type: 'repositioned',
       category: 'mobility',
       showAlarm: true
     },
@@ -668,38 +774,8 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
       showAlarm: false
     },
     {
-      id: 'stand_aid_log',
-      label: 'Stand-aid transfer',
-      time: '10:30',
-      completed: false,
-      text: 'Transferred safely utilizing standing aid and harness.',
-      type: 'stand_aid',
-      category: 'mobility',
-      showAlarm: false
-    },
-    {
-      id: 'zimmer_log',
-      label: 'Walked with Zimmer',
-      time: '11:00',
-      completed: false,
-      text: 'Walked short distance using walking Zimmer frame with standby supervision.',
-      type: 'zimmer',
-      category: 'mobility',
-      showAlarm: false
-    },
-    {
-      id: 'wheelchair_log',
-      label: 'Wheelchair transfer',
-      time: '14:00',
-      completed: false,
-      text: 'Resident transferred safely using wheelchair for long distances.',
-      type: 'wheelchair',
-      category: 'mobility',
-      showAlarm: false
-    },
-    {
       id: 'one_assist_log',
-      label: '1 carer assistance',
+      label: '1 carer assist',
       time: '09:00',
       completed: false,
       text: 'Required assistance of 1 carer for safe transfer and mobility support.',
@@ -708,10 +784,10 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
       showAlarm: false
     },
     {
-      id: 'two_assist',
-      label: '2 carer assistance',
+      id: 'two_assist_log',
+      label: '2 carer assist',
       time: '11:43',
-      completed: true,
+      completed: false,
       text: 'Required a two-handed assist from 2 carers for safe transfer.',
       type: 'two_assist',
       category: 'mobility',
@@ -719,7 +795,7 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
     },
     {
       id: 'standby_walk_log',
-      label: 'Standby walk support',
+      label: 'Standby walk',
       time: '10:00',
       completed: false,
       text: 'Care assistant provided standby support during walking to prevent falls.',
@@ -731,7 +807,7 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
     // Wellbeing Category
     {
       id: 'chatted',
-      label: 'Social conversation',
+      label: 'Conversation log',
       time: '13:00',
       completed: false,
       text: 'Spent quality time chatting and engaging with the resident to support mental wellbeing.',
@@ -740,52 +816,22 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
       showAlarm: true
     },
     {
-      id: 'resting_log',
-      label: 'Rested in room',
-      time: '14:30',
-      completed: false,
-      text: 'Resident spent time resting quietly in their bedroom.',
-      type: 'resting',
-      category: 'wellbeing',
-      showAlarm: false
-    },
-    {
-      id: 'activities_log',
-      label: 'Group activities',
-      time: '15:00',
-      completed: false,
-      text: 'Resident participated actively in the daily group social activities.',
-      type: 'activities',
-      category: 'wellbeing',
-      showAlarm: false
-    },
-    {
-      id: 'visitor_log',
-      label: 'Welcomed visitor',
-      time: '16:00',
-      completed: false,
-      text: 'Welcomed family visitor, offered refreshments, resident enjoyed company.',
-      type: 'visitor',
-      category: 'wellbeing',
-      showAlarm: false
-    },
-    {
-      id: 'prn_meds_log',
-      label: 'PRN meds given',
-      time: '11:00',
-      completed: false,
-      text: 'PRN medication administered as per protocol and logged on MAR chart.',
-      type: 'prn_meds',
-      category: 'wellbeing',
-      showAlarm: false
-    },
-    {
       id: 'clinical_check_log',
-      label: 'Recorded vitals check',
+      label: 'Recorded vitals',
       time: '10:00',
       completed: false,
       text: 'Recorded vital signs check. Vitals stable and logged in health charts.',
       type: 'clinical_check',
+      category: 'wellbeing',
+      showAlarm: false
+    },
+    {
+      id: 'pain_check_log',
+      label: 'Pain check',
+      time: '10:00',
+      completed: false,
+      text: 'Resident was asked about pain level. Comfortable and no signs of pain.',
+      type: 'pain',
       category: 'wellbeing',
       showAlarm: false
     }
@@ -1015,6 +1061,7 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
             <div className="flex flex-wrap gap-1 bg-slate-100 dark:bg-slate-900 p-0.5 rounded-xl border dark:border-slate-800">
               {[
                 { id: 'hygiene', label: 'Hygiene' },
+                { id: 'continence', label: 'Continence' },
                 { id: 'nutrition', label: 'Nutrition' },
                 { id: 'mobility', label: 'Mobility' },
                 { id: 'wellbeing', label: 'Wellbeing & Med' }

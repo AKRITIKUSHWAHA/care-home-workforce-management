@@ -2,61 +2,51 @@ import React from 'react';
 import BaseAuditForm from './BaseAuditForm';
 import { useApp } from '../../../context/AppContext';
 
-// Import All Audit Forms for Dashboard
-import DailyWalkaroundAudit from '../forms/DailyWalkaroundAudit'; // Daily Chart Audit
-import MonthlyMedicationAudit from '../forms/MonthlyMedicationAudit';
-import WeeklyMedicationAudit from '../forms/WeeklyMedicationAudit';
-import MealTimeAudit from '../forms/MealTimeAudit';
-import InfectionControlAudit from '../forms/InfectionControlAudit';
-import CarePlanAudit from '../forms/CarePlanAudit';
-import DignityAudit from '../forms/DignityAudit';
-import FireAudit from '../forms/FireAudit';
-import HealthSafetyAudit from '../forms/HealthSafetyAudit';
-import PressureMattressAudit from '../forms/PressureMattressAudit'; // Mattress Audit
-import NutritionHydrationAudit from '../forms/NutritionHydrationAudit'; // Meal Nutrition Audit
-import CallBellAudit from '../forms/CallBellAudit';
-import HouseKeepingAudit from '../forms/HouseKeepingAudit';
-import KitchenAudit from '../forms/KitchenAudit';
-import OrderingMedicationAudit from '../forms/OrderingMedicationAudit';
-import StorageMedicationAudit from '../forms/StorageMedicationAudit';
-import CovertMedicationAudit from '../forms/CovertMedicationAudit';
-import DataSecurityAudit from '../forms/DataSecurityAudit';
-import DailyWalkround7Audit from '../forms/DailyWalkround7Audit';
-import HomeManagerWalkaroundAudit from '../forms/HomeManagerWalkaroundAudit';
+// Import All 15 CQC Spreadsheet configurations
+import { dailyWalkroundConfig } from '../configs/dailyWalkround.config';
+import { dailyChartConfig } from '../configs/dailyChart.config';
+import { weeklyMedicationConfig } from '../configs/weeklyMedication.config';
+import { monthlyMedicationConfig } from '../configs/monthlyMedication.config';
+import { carePlanConfig } from '../configs/carePlan.config';
+import { mealTimeConfig } from '../configs/mealTime.config';
+import { diningExperienceConfig } from '../configs/diningExperience.config';
+import { fireConfig } from '../configs/fire.config';
+import { healthSafetyConfig } from '../configs/healthSafety.config';
+import { infectionControlConfig } from '../configs/infectionControl.config';
+import { kitchenConfig } from '../configs/kitchen.config';
+import { callBellConfig } from '../configs/callBell.config';
+import { dataSecurityConfig } from '../configs/dataSecurity.config';
+import { firstAidConfig } from '../configs/firstAid.config';
+import { mattressConfig } from '../configs/mattress.config';
 
-// Note: The keys here MUST exactly match the strings in DEFAULT_AUDIT_CATEGORIES in AuditDashboard.jsx
-const FORM_MAP = {
-  "Daily Chart Audit": DailyWalkaroundAudit,
-  "Monthly Medication Audit": MonthlyMedicationAudit,
-  "Weekly Medication Audit": WeeklyMedicationAudit,
-  "Meal Time Audit": MealTimeAudit,
-  "Infection Control Audit": InfectionControlAudit,
-  "Care Plan Audit": CarePlanAudit,
-  "Dignity Audit": DignityAudit,
-  "Fire Audit": FireAudit,
-  "Health & Safety Audit": HealthSafetyAudit,
-  "House Keeping Cleaning Standards": HouseKeepingAudit,
-  "Kitchen Audit": KitchenAudit,
-  "Mattress Audit": PressureMattressAudit,
-  "Meal Nutrition Audit": NutritionHydrationAudit,
-  "Ordering and Receipt of Medication Audit": OrderingMedicationAudit,
-  "Call Bell Audit": CallBellAudit,
-  "Storage of Medication Audit": StorageMedicationAudit,
-  "Covert Medication Audit": CovertMedicationAudit,
-  "Data Security Audit": DataSecurityAudit,
-  "Daily Walkround 1.0 Audit": DailyWalkround7Audit,
-  "Home manager daily walkaround audit": HomeManagerWalkaroundAudit
+const CONFIG_MAP = {
+  "Daily Walkround 2026": dailyWalkroundConfig,
+  "Daily Chart Audit": dailyChartConfig,
+  "Weekly Medication Audit": weeklyMedicationConfig,
+  "Monthly Medication Audit": monthlyMedicationConfig,
+  "Care Plan Audit": carePlanConfig,
+  "Mealtime Audit": mealTimeConfig,
+  "Dining Experience Audit": diningExperienceConfig,
+  "Fire Audit": fireConfig,
+  "Health & Safety Audit": healthSafetyConfig,
+  "IPC Environment Audit": infectionControlConfig,
+  "Kitchen Audit": kitchenConfig,
+  "Call Bell Audit": callBellConfig,
+  "Data Security Audit": dataSecurityConfig,
+  "First Aid Audit": firstAidConfig,
+  "Mattress Audit": mattressConfig
 };
 
 export const AuditRenderer = ({ selectedAudit, submitAuditResult, setSelectedAudit, isEditMode }) => {
   if (!selectedAudit) return null;
 
   const { customAuditCategories } = useApp();
-  const FormComponent = FORM_MAP[selectedAudit.type];
+  const config = CONFIG_MAP[selectedAudit.type];
 
-  if (FormComponent) {
+  if (config) {
     return (
-      <FormComponent 
+      <BaseAuditForm 
+        config={config}
         selectedAudit={selectedAudit} 
         submitAuditResult={submitAuditResult} 
         setSelectedAudit={setSelectedAudit} 

@@ -34,26 +34,21 @@ import KitchenPaperwork from '../kitchen/KitchenPaperwork';
 import CompetencyManagement from '../manager/CompetencyManagement';
 
 const DEFAULT_AUDIT_CATEGORIES = [
-  "Meal Time Audit",
-  "Monthly Medication Audit",
-  "Weekly Medication Audit",
-  "Care Plan Audit",
-  "Dignity Audit",
-  "Call Bell Audit",
+  "Daily Walkround 2026",
   "Daily Chart Audit",
+  "Weekly Medication Audit",
+  "Monthly Medication Audit",
+  "Care Plan Audit",
+  "Mealtime Audit",
+  "Dining Experience Audit",
   "Fire Audit",
   "Health & Safety Audit",
-  "House Keeping Cleaning Standards",
-  "Infection Control Audit",
+  "IPC Environment Audit",
   "Kitchen Audit",
-  "Mattress Audit",
-  "Meal Nutrition Audit",
-  "Ordering and Receipt of Medication Audit",
-  "Storage of Medication Audit",
-  "Covert Medication Audit",
+  "Call Bell Audit",
   "Data Security Audit",
-  "Daily Walkround 1.0 Audit",
-  "Home manager daily walkaround audit"
+  "First Aid Audit",
+  "Mattress Audit"
 ];
 
 const AUDIT_GROUPS = [
@@ -61,7 +56,7 @@ const AUDIT_GROUPS = [
     name: "Fire Safety Compliance",
     key: "fire",
     icon: "🔥",
-    categories: ["Fire Audit", "Fire Safety", "Fire Risk Assessment"]
+    categories: ["Fire Audit", "Fire Safety"]
   },
   {
     name: "Medication Compliance",
@@ -69,23 +64,15 @@ const AUDIT_GROUPS = [
     icon: "💊",
     categories: [
       "Weekly Medication Audit",
-      "Monthly Medication Audit",
-      "Ordering and Receipt of Medication Audit",
-      "Storage of Medication Audit",
-      "Storage of Medication",
-      "Medication Competency Checklist",
-      "Covert Medication Audit"
+      "Monthly Medication Audit"
     ]
   },
   {
-    name: "Cleaning & Standards",
+    name: "Cleaning & Infection Control",
     key: "cleaning",
     icon: "🧹",
     categories: [
-      "House Keeping Cleaning Standards", 
-      "Home manager daily walkaround audit",
-      "Cleaning standards audit",
-      "Infection Control Audit",
+      "IPC Environment Audit",
       "Mattress Audit"
     ]
   },
@@ -95,33 +82,22 @@ const AUDIT_GROUPS = [
     icon: "🍳",
     categories: [
       "Kitchen Audit",
-      "Kitchen Daily Checklist",
-      "Kitchen Weekly Checklist",
-      "Fridge & Oven logs",
-      "Issues logs",
-      "SFBB logs",
-      "Meal Time Audit",
-      "Meal Nutrition Audit",
-      "Dining Room Experience Audit",
-      "Mealtime Audit"
+      "Mealtime Audit",
+      "Dining Experience Audit"
     ]
   },
   {
-    name: "General & Care Planning Audits",
+    name: "General Governance & Care Planning",
     key: "general",
     icon: "📋",
     categories: [
-      "Care Plan Audit",
-      "Dignity Audit",
-      "Call Bell Audit",
-      "Mattress Audit",
-      "Matress",
-      "Pressure cushion audit",
-      "MCA/DOLS",
-      "Health & Safety Audit",
+      "Daily Walkround 2026",
       "Daily Chart Audit",
+      "Care Plan Audit",
+      "Call Bell Audit",
       "Data Security Audit",
-      "Daily Walkround 1.0 Audit"
+      "First Aid Audit",
+      "Health & Safety Audit"
     ]
   }
 ];

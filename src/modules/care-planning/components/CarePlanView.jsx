@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Save, Edit3, User, ChevronDown, ChevronUp, Paperclip, Upload, AlertTriangle, Phone, MapPin, Heart, Shield, Stethoscope, Briefcase, Check, AlertOctagon, UserCheck } from 'lucide-react';
+import { Save, Edit3, User, ChevronDown, ChevronUp, Paperclip, Upload, AlertTriangle, Phone, MapPin, Heart, Shield, Stethoscope, Briefcase, Check, AlertOctagon, UserCheck, Sparkles } from 'lucide-react';
 import { useApp } from '../../../context/AppContext';
 import BodyMap from './BodyMap';
 import RiskAssessments from './RiskAssessments';
 import RestrictivePractices from './RestrictivePractices';
 import SafeguardingActionRecords from './SafeguardingActionRecords';
 import { cqcGuidance } from '../configs/cqcGuidance';
+import { personalTemplates, dementiaTemplates } from '../configs/cqcTemplates';
 
 const CareNotesTab = ({ patientName }) => {
   const { careNotes, addCareNote } = useApp();
@@ -250,24 +251,80 @@ const writingHelperTemplates = {
   healthConditions: [
     { label: 'Osteoarthritis', text: '[Conditions: Advanced osteoarthritis affecting knees. Administer gel as prescribed.]' },
     { label: 'Diabetes Monitoring', text: '[Medical: Type 2 Diabetes. Blood glucose monitored weekly. Keep record in glucose log.]' }
-  ],
-  endOfLife: [
-    { label: 'DNACPR Status', text: '[End of Life: DNACPR active, copy in file. Preferred place of care: Care home.]' },
-    { label: 'Comfort Protocol', text: '[Comfort: Ensure pain free. Syringe driver protocol ready. Respect religious preferences.]' }
   ]
 };
 
-const Section = ({ title, field, data, isEditing, onChange, isExpanded, onToggle, attachments }) => {
-  // Mock logic: randomly decide if a section is overdue for monthly review for demo purposes
-  const [isReviewed, setIsReviewed] = useState(field === 'personalProfile' || field === 'mobility');
-  const [activeSubTab, setActiveSubTab] = useState('details');
-  const guidance = cqcGuidance[field];
+const CqcStructuredSection = ({ title, field, data, isEditing, onChange, isExpanded, onToggle, template }) => {
+  const [isReviewed, setIsReviewed] = useState(false);
+
+  const cqcData = React.useMemo(() => {
+    if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+      return {
+        why: data.why || '',
+        how: data.how || '',
+        good: data.good || '',
+        poor: data.poor || '',
+        when: data.when || '',
+        who: data.who || '',
+        record: data.record || '',
+        dignity: data.dignity || '',
+        success: data.success || '',
+        evidence: data.evidence || ''
+      };
+    }
+    return {
+      why: typeof data === 'string' ? data : '',
+      how: '',
+      good: '',
+      poor: '',
+      when: '',
+      who: '',
+      record: '',
+      dignity: '',
+      success: '',
+      evidence: ''
+    };
+  }, [data]);
+
+  const handleFieldChange = (key, val) => {
+    onChange(field, { ...cqcData, [key]: val });
+  };
+
+  const handlePrepopulate = () => {
+    if (template) {
+      onChange(field, {
+        why: template.why,
+        how: template.how,
+        good: template.good,
+        poor: template.poor,
+        when: template.when,
+        who: template.who,
+        record: template.record,
+        dignity: template.dignity,
+        success: template.success,
+        evidence: template.evidence
+      });
+    }
+  };
+
+  const cqcFields = [
+    { key: 'why', label: '• WHY it matters', color: 'border-blue-200 bg-blue-50/20 text-blue-900 dark:bg-blue-950/20 dark:text-blue-200', placeholder: 'Explain why this intervention is important for the resident...' },
+    { key: 'how', label: '• HOW to do it safely', color: 'border-emerald-200 bg-emerald-50/20 text-emerald-900 dark:bg-emerald-950/20 dark:text-emerald-200', placeholder: 'Detail step-by-step instructions for safe delivery...' },
+    { key: 'good', label: '• WHAT good practice looks like', color: 'border-teal-200 bg-teal-50/20 text-teal-900 dark:bg-teal-950/20 dark:text-teal-200', placeholder: 'Provide examples of positive, dignified care outcomes...' },
+    { key: 'poor', label: '• WHAT poor practice looks like', color: 'border-red-200 bg-red-50/20 text-red-900 dark:bg-red-955/20 dark:text-red-200', placeholder: 'Outline actions/behaviors staff must avoid...' },
+    { key: 'when', label: '• WHEN to escalate concerns', color: 'border-amber-200 bg-amber-50/20 text-amber-900 dark:bg-amber-955/20 dark:text-amber-200', placeholder: 'Detail trigger warning signs that require escalation...' },
+    { key: 'who', label: '• WHO should be informed', color: 'border-indigo-200 bg-indigo-50/20 text-indigo-900 dark:bg-indigo-950/20 dark:text-indigo-200', placeholder: 'Specify staff roles or external bodies to notify...' },
+    { key: 'record', label: '• WHAT should be recorded', color: 'border-purple-200 bg-purple-50/20 text-purple-900 dark:bg-purple-950/20 dark:text-purple-200', placeholder: 'What logs, charts or daily notes must be completed...' },
+    { key: 'dignity', label: '• HOW the intervention promotes dignity, independence & wellbeing', color: 'border-pink-200 bg-pink-50/20 text-pink-900 dark:bg-pink-955/20 dark:text-pink-200', placeholder: 'How does this promote choice, privacy, and reablement...' },
+    { key: 'success', label: '• HOW success will be measured', color: 'border-cyan-200 bg-cyan-50/20 text-cyan-900 dark:bg-cyan-950/20 dark:text-cyan-200', placeholder: 'SMART measurable outcomes for the resident...' },
+    { key: 'evidence', label: '• WHAT evidence an inspector expects to see', color: 'border-slate-200 bg-slate-50/20 text-slate-900 dark:bg-slate-900/50 dark:text-slate-350', placeholder: 'Evidence demonstrating that the care plan is actively followed...' }
+  ];
 
   return (
     <div className={`bg-white dark:bg-slate-900 rounded-xl border ${!isReviewed ? 'border-red-400 dark:border-red-500/50 shadow-sm shadow-red-100 dark:shadow-none' : 'border-slate-200 dark:border-slate-800 shadow-sm'} overflow-hidden mb-3 transition-colors`}>
       <div className="w-full flex items-center justify-between p-4 bg-slate-55/60 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer" onClick={onToggle}>
         <div className="flex items-center gap-3">
-          <span className={`font-bold ${!isReviewed ? 'text-red-650 dark:text-red-400' : 'text-slate-800 dark:text-slate-200'}`}>{title}</span>
+          <span className={`font-bold text-sm ${!isReviewed ? 'text-red-650 dark:text-red-400' : 'text-slate-800 dark:text-slate-200'}`}>{title}</span>
           {!isReviewed && <span className="text-[10px] uppercase font-bold tracking-wider text-red-500 bg-red-100 dark:bg-red-900/30 px-2 py-0.5 rounded-full">Not Updated</span>}
         </div>
         {isExpanded ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
@@ -276,197 +333,55 @@ const Section = ({ title, field, data, isEditing, onChange, isExpanded, onToggle
       {isExpanded && (
         <div className="p-4 space-y-4 animate-fade-in border-t border-slate-100 dark:border-slate-800">
           
-          {/* Sub Tab Headers (Only if guidance is available) */}
-          {guidance && (
-            <div className="flex border-b border-slate-200 dark:border-slate-800 pb-2 mb-3 gap-2">
-              <button 
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">CQC compliance sections</span>
+            {isEditing && template && (
+              <button
                 type="button"
-                onClick={() => setActiveSubTab('details')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${activeSubTab === 'details' ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-400 hover:text-slate-600'}`}
+                onClick={handlePrepopulate}
+                className="flex items-center gap-1 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white rounded-lg px-2.5 py-1 text-[9.5px] font-bold uppercase transition-all shadow-sm cursor-pointer active:scale-95"
               >
-                Care Details
+                <Sparkles className="w-3 h-3 text-white" />
+                <span>Auto-draft standard templates</span>
               </button>
-              <button 
-                type="button"
-                onClick={() => setActiveSubTab('guidance')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${activeSubTab === 'guidance' ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-400 hover:text-slate-600'}`}
-              >
-                CQC 10-Point Guidance
-              </button>
-              <button 
-                type="button"
-                onClick={() => setActiveSubTab('language')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${activeSubTab === 'language' ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-400 hover:text-slate-600'}`}
-              >
-                Speech Language Guide
-              </button>
-            </div>
-          )}
+            )}
+          </div>
 
-          {/* Sub Tab Contents */}
-          {activeSubTab === 'details' && (
-            <>
-              {isEditing ? (
-                typeof data === 'string' ? (
-                  <div className="space-y-2">
-                    <textarea 
-                      className="w-full p-3 border border-slate-350 rounded-xl text-sm dark:bg-slate-900 dark:border-slate-700 dark:text-white min-h-[100px]"
-                      value={data}
-                      onChange={(e) => onChange(field, e.target.value)}
-                      placeholder={`Enter details for ${title}...`}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            {cqcFields.map((fieldItem) => (
+              <div 
+                key={fieldItem.key} 
+                className={`p-3 rounded-xl border dark:border-slate-800 dark:bg-slate-850/50 flex flex-col justify-between ${fieldItem.color}`}
+              >
+                <div>
+                  <label className="block text-[9.5px] font-black uppercase tracking-wider mb-1.5 opacity-80">
+                    {fieldItem.label}
+                  </label>
+                  {isEditing ? (
+                    <textarea
+                      rows={3}
+                      className="w-full p-2.5 text-xs bg-white text-slate-900 dark:bg-slate-900 dark:text-white border border-slate-205 dark:border-slate-700 rounded-xl outline-none focus:ring-1 focus:ring-brand-500 font-semibold leading-normal"
+                      value={cqcData[fieldItem.key] || ''}
+                      onChange={(e) => handleFieldChange(fieldItem.key, e.target.value)}
+                      placeholder={fieldItem.placeholder}
                     />
-                    {writingHelperTemplates[field] && (
-                      <div className="p-2.5 bg-blue-50/55 dark:bg-blue-950/10 border border-blue-150 dark:border-blue-900/35 rounded-xl space-y-1.5">
-                        <span className="text-[10px] font-black text-blue-600 dark:text-blue-405 uppercase tracking-widest block">💡 Click-to-Append Writing Guideline Templates:</span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {writingHelperTemplates[field].map((t, idx) => (
-                            <button
-                              key={idx}
-                              type="button"
-                              onClick={() => {
-                                const current = data || '';
-                                const separator = current ? '\n' : '';
-                                onChange(field, current + separator + t.text);
-                              }}
-                              className="px-2 py-1 bg-white hover:bg-blue-100 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-lg text-[9.5px] font-bold text-slate-700 dark:text-slate-300 transition-colors shadow-sm cursor-pointer"
-                            >
-                              + {t.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {Object.entries(data).map(([subField, val]) => (
-                      <div key={subField}>
-                        <label className="block text-xs font-medium text-slate-500 mb-1 capitalize">
-                          {subField.replace(/([A-Z])/g, ' $1').trim()}
-                        </label>
-                        <input 
-                          type="text"
-                          className="w-full p-2 border border-slate-350 rounded-lg text-sm dark:bg-slate-900 dark:border-slate-700 dark:text-white"
-                          value={val}
-                          onChange={(e) => onChange(field, { ...data, [subField]: e.target.value })}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )
-              ) : (
-                <div className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {typeof data === 'string' ? (
-                    <p>{data}</p>
                   ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {Object.entries(data).map(([subField, val]) => (
-                        <div key={subField}>
-                          <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
-                            {subField.replace(/([A-Z])/g, ' $1').trim()}
-                          </span>
-                          <span className="font-medium text-slate-800 dark:text-slate-200">{val}</span>
-                        </div>
-                      ))}
-                    </div>
+                    <p className="text-xs font-semibold leading-relaxed whitespace-pre-line text-slate-800 dark:text-slate-300">
+                      {cqcData[fieldItem.key] || <span className="text-slate-400 italic">Pending input...</span>}
+                    </p>
                   )}
                 </div>
-              )}
-            </>
-          )}
-
-          {activeSubTab === 'guidance' && guidance && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
-              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">1. WHY it matters</span>
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.why}</p>
               </div>
-              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">2. HOW to do it safely</span>
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.how}</p>
-              </div>
-              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">3. WHAT good practice looks like</span>
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.good}</p>
-              </div>
-              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">4. WHAT poor practice looks like</span>
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.poor}</p>
-              </div>
-              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">5. WHEN to escalate concerns</span>
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.when}</p>
-              </div>
-              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">6. WHO should be informed</span>
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.who}</p>
-              </div>
-              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">7. WHAT should be recorded</span>
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.record}</p>
-              </div>
-              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">8. Dignity & Wellbeing Link</span>
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.dignity}</p>
-              </div>
-              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">9. HOW success is measured</span>
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.success}</p>
-              </div>
-              <div className="p-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block mb-1">10. WHAT evidence an inspector expects</span>
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">{guidance.evidence}</p>
-              </div>
-            </div>
-          )}
-
-          {activeSubTab === 'language' && guidance && (
-            <div className="space-y-4 mt-2">
-              <div className="p-4 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-250 dark:border-emerald-900/50">
-                <span className="text-[10px] font-black uppercase tracking-wider bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-350 px-2 py-0.5 rounded-md mb-2 inline-block">
-                  ✓ What Staff Should Say (Respectful Communication)
-                </span>
-                <p className="text-xs font-extrabold text-emerald-800 dark:text-emerald-300 italic font-serif">
-                  "{guidance.say}"
-                </p>
-              </div>
-              
-              <div className="p-4 bg-rose-50 dark:bg-rose-955/20 rounded-2xl border border-rose-250 dark:border-rose-900/50">
-                <span className="text-[10px] font-black uppercase tracking-wider bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-350 px-2 py-0.5 rounded-md mb-2 inline-block">
-                  ✗ What Staff Should Never Say (Avoid)
-                </span>
-                <p className="text-xs font-extrabold text-rose-800 dark:text-rose-300 italic font-serif">
-                  "{guidance.notSay}"
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* Attachments UI (for specific sections) */}
-          {attachments && (
-            <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
-              <h4 className="text-xs font-bold text-slate-500 uppercase flex items-center gap-2 mb-3">
-                <Paperclip className="w-4 h-4" /> Attached Documents
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-brand-50 text-brand-700 dark:bg-brand-900/30 dark:text-brand-300 rounded-lg text-xs font-semibold">
-                  <span>{title}_Assessment.pdf</span>
-                </div>
-                {isEditing && (
-                  <button className="flex items-center gap-2 px-3 py-1.5 border border-dashed border-slate-300 dark:border-slate-600 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-xs font-semibold transition-colors">
-                    <Upload className="w-3 h-3" /> Upload New
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
+            ))}
+          </div>
 
           {/* Monthly Review Action */}
           <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
             <span className="text-xs font-semibold text-slate-500">Monthly Section Review</span>
             <button 
+              type="button"
               onClick={() => setIsReviewed(!isReviewed)}
-              className={`text-xs font-bold px-3 py-1.5 rounded-lg transition-colors ${isReviewed ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-slate-250 text-slate-655 dark:bg-slate-700 dark:text-slate-300 hover:bg-green-100 hover:text-green-700'}`}
+              className={`text-xs font-bold px-3 py-1.5 rounded-lg transition-colors ${isReviewed ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-350 hover:bg-green-150'}`}
             >
               {isReviewed ? 'Reviewed ✓' : 'Mark as Reviewed'}
             </button>
@@ -481,8 +396,26 @@ const Section = ({ title, field, data, isEditing, onChange, isExpanded, onToggle
 const CarePlanView = ({ patientName = "Margaret Smith", onBack }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [planData, setPlanData] = useState(mockPlanData);
-  const [expandedSection, setExpandedSection] = useState('personalProfile');
+  const [carePlanSubTab, setCarePlanSubTab] = useState('personal'); // 'personal' | 'dementia'
+
+  const [planData, setPlanData] = useState(() => {
+    const saved = localStorage.getItem(`carePlan_${patientName}`);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (!parsed.personalCarePlan) parsed.personalCarePlan = {};
+        if (!parsed.dementiaCarePlan) parsed.dementiaCarePlan = {};
+        return parsed;
+      } catch (e) {}
+    }
+    return {
+      ...mockPlanData,
+      personalCarePlan: {},
+      dementiaCarePlan: {}
+    };
+  });
+
+  const [expandedSection, setExpandedSection] = useState('morningRoutine');
   const [activeTab, setActiveTab] = useState('profile'); // 'profile' | 'bodymap' | 'assessments'
 
   // 🛡️ MULTI-ROLE APPROVAL WORKFLOW STATE
@@ -502,15 +435,31 @@ const CarePlanView = ({ patientName = "Margaret Smith", onBack }) => {
   const isLocked = approval.status === 'Locked' || approval.status === 'Approved';
 
   const handleChange = (field, value) => {
-    setPlanData(prev => ({ 
-      ...prev, 
-      sections: { ...prev.sections, [field]: value } 
-    }));
+    setPlanData(prev => {
+      if (carePlanSubTab === 'personal') {
+        return {
+          ...prev,
+          personalCarePlan: {
+            ...(prev.personalCarePlan || {}),
+            [field]: value
+          }
+        };
+      } else {
+        return {
+          ...prev,
+          dementiaCarePlan: {
+            ...(prev.dementiaCarePlan || {}),
+            [field]: value
+          }
+        };
+      }
+    });
   };
 
   const handleSave = () => {
     setIsEditing(false);
     setShowSuccess(true);
+    localStorage.setItem(`carePlan_${patientName}`, JSON.stringify(planData));
     // After save, reset to Draft for re-review
     setApproval(prev => ({
       ...prev,
@@ -563,22 +512,55 @@ const CarePlanView = ({ patientName = "Margaret Smith", onBack }) => {
     setApprovalPin('');
   };
 
-  const sections = [
-    { id: 'personalProfile', title: '1. Personal Profile' },
-    { id: 'communication', title: '2. Communication' },
-    { id: 'mobility', title: '3. Mobility' },
-    { id: 'fallsRisk', title: '4. Falls Risk' },
-    { id: 'personalCare', title: '5. Personal Care' },
-    { id: 'continence', title: '6. Continence' },
-    { id: 'nutrition', title: '7. Nutrition & Hydration' },
-    { id: 'medication', title: '8. Medication', hasAttachments: true },
-    { id: 'skinIntegrity', title: '9. Skin Integrity' },
-    { id: 'mentalHealth', title: '10. Mental Health' },
-    { id: 'dementiaCare', title: '11. Dementia Care' },
-    { id: 'activities', title: '12. Activities & Social Needs' },
-    { id: 'sleep', title: '13. Sleep & Night Needs' },
-    { id: 'healthConditions', title: '14. Health Conditions' },
-    { id: 'endOfLife', title: '15. End of Life (MCA/DoLS)', hasAttachments: true }
+  const personalSections = [
+    { id: 'morningRoutine', title: '1. Morning Routine' },
+    { id: 'eveningRoutine', title: '2. Evening Routine' },
+    { id: 'bathing', title: '3. Bathing & Showering' },
+    { id: 'washing', title: '4. Washing & Daily Hygiene' },
+    { id: 'hairCare', title: '5. Hair Care & Styling' },
+    { id: 'oralCare', title: '6. Oral Care' },
+    { id: 'dentures', title: '7. Dentures Care' },
+    { id: 'shaving', title: '8. Shaving & Grooming' },
+    { id: 'skinInspection', title: '9. Skin Inspection' },
+    { id: 'nailCare', title: '10. Nail Care' },
+    { id: 'dressing', title: '11. Dressing & Clothing' },
+    { id: 'jewellery', title: '12. Jewellery & Make-up' },
+    { id: 'continence', title: '13. Continence Management' },
+    { id: 'feminineCare', title: '14. Feminine Care' },
+    { id: 'toileting', title: '15. Toileting Assistance' },
+    { id: 'privacy', title: '16. Privacy & Modesty (CQC Reg 10)' },
+    { id: 'independence', title: '17. Independence & Reablement' },
+    { id: 'preferredCarers', title: '18. Preferred Carers Choice' },
+    { id: 'communication', title: '19. Communication Preferences' },
+    { id: 'positioning', title: '20. Positioning & Pressure Care' },
+    { id: 'pain', title: '21. Pain Management' },
+    { id: 'equipment', title: '22. Equipment Checks (LOLER)' },
+    { id: 'pressureChecks', title: '23. Pressure Area Checks (Waterlow)' },
+    { id: 'infectionControl', title: '24. Infection Control & PPE' },
+    { id: 'escalation', title: '25. Escalation & Warning Signs (NEWS2)' },
+    { id: 'review', title: '26. Care Plan Reviews' },
+    { id: 'expectedOutcomes', title: '27. Expected Outcomes (SMART)' }
+  ];
+
+  const dementiaSections = [
+    { id: 'diagnosis', title: '1. Diagnosis & Stage' },
+    { id: 'memory', title: '2. Memory & Cognitive Function' },
+    { id: 'orientation', title: '3. Orientation Support' },
+    { id: 'communication', title: '4. Dementia Communication Guide' },
+    { id: 'decisionMaking', title: '5. Decision Making & Mental Capacity Act' },
+    { id: 'confusion', title: '6. Confusion & Reassurance' },
+    { id: 'nightBehaviour', title: '7. Night-time Behaviour' },
+    { id: 'sundowning', title: '8. Sundowning Support' },
+    { id: 'distress', title: '9. Distress & Hallucinations' },
+    { id: 'repetitiveQuestions', title: '10. Repetitive Questions Response' },
+    { id: 'lifeStory', title: '11. Personal History & Life Story' },
+    { id: 'familyHistory', title: '12. Family History' },
+    { id: 'favouriteTopics', title: '13. Favourite Topics & Hobbies' },
+    { id: 'sensorySupport', title: '14. Sensory Support & Music' },
+    { id: 'environment', title: '15. Environment & Lighting' },
+    { id: 'sleepHydration', title: '16. Sleep, Hydration & Nutrition' },
+    { id: 'medicationSafeguarding', title: '17. Medication & Safeguarding (DoLS)' },
+    { id: 'staffSayings', title: '18. Dementia Communication guide (what to say/never say)' }
   ];
 
   return (
@@ -663,7 +645,7 @@ const CarePlanView = ({ patientName = "Margaret Smith", onBack }) => {
             activeTab === 'profile' ? 'bg-white text-slate-950 shadow-sm dark:bg-slate-800 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
           }`}
         >
-          15 CQC Accordions
+          Personal &amp; Dementia Care Plans
         </button>
         <button
           onClick={() => setActiveTab('bodymap')}
@@ -734,25 +716,64 @@ const CarePlanView = ({ patientName = "Margaret Smith", onBack }) => {
         <CareNotesTab patientName={patientName} />
       )}
 
-      {/* C. STANDARD 15 ACCORDIONS VIEW TAB */}
+      {/* C. STANDARD ACCORDIONS VIEW TAB */}
       {activeTab === 'profile' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
           
           {/* Accordion Sections (Takes 2 columns) */}
-          <div className="lg:col-span-2">
-            {sections.map(section => (
-              <Section 
-                key={section.id}
-                title={section.title}
-                field={section.id}
-                data={planData.sections[section.id]}
-                isEditing={isEditing}
-                onChange={handleChange}
-                isExpanded={expandedSection === section.id}
-                onToggle={() => setExpandedSection(expandedSection === section.id ? null : section.id)}
-                attachments={section.hasAttachments}
-              />
-            ))}
+          <div className="lg:col-span-2 space-y-4">
+            
+            {/* Sub-tab selection for Personal vs Dementia Care Plan */}
+            <div className="flex border border-slate-200 dark:border-slate-800 p-1.5 rounded-2xl bg-slate-50 dark:bg-slate-900 gap-2 mb-4">
+              <button 
+                type="button"
+                onClick={() => { setCarePlanSubTab('personal'); setExpandedSection('morningRoutine'); }}
+                className={`flex-1 py-2 rounded-xl text-xs font-black uppercase transition-all shrink-0 ${carePlanSubTab === 'personal' ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-800 dark:text-white border dark:border-slate-700' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white'}`}
+              >
+                📋 Personal Care Plan (27 Sections)
+              </button>
+              <button 
+                type="button"
+                onClick={() => { setCarePlanSubTab('dementia'); setExpandedSection('diagnosis'); }}
+                className={`flex-1 py-2 rounded-xl text-xs font-black uppercase transition-all shrink-0 ${carePlanSubTab === 'dementia' ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-800 dark:text-white border dark:border-slate-700' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white'}`}
+              >
+                🧠 Dementia Care Plan (18 Sections)
+              </button>
+            </div>
+
+            {carePlanSubTab === 'personal' ? (
+              <div className="space-y-1">
+                {personalSections.map(section => (
+                  <CqcStructuredSection 
+                    key={section.id}
+                    title={section.title}
+                    field={section.id}
+                    data={(planData.personalCarePlan || {})[section.id]}
+                    isEditing={isEditing}
+                    onChange={handleChange}
+                    isExpanded={expandedSection === section.id}
+                    onToggle={() => setExpandedSection(expandedSection === section.id ? null : section.id)}
+                    template={personalTemplates[section.id]}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-1">
+                {dementiaSections.map(section => (
+                  <CqcStructuredSection 
+                    key={section.id}
+                    title={section.title}
+                    field={section.id}
+                    data={(planData.dementiaCarePlan || {})[section.id]}
+                    isEditing={isEditing}
+                    onChange={handleChange}
+                    isExpanded={expandedSection === section.id}
+                    onToggle={() => setExpandedSection(expandedSection === section.id ? null : section.id)}
+                    template={dementiaTemplates[section.id]}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Right Panel: Contacts & Workflow Sign-off */}
