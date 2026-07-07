@@ -5,9 +5,9 @@ const GovernanceHub = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ "domain": "", "metric": "", "score": "", "trend": "", "actionPlan": "", status: 'Active' });
-  const [editingRowId, setEditingRowId] = useState(null);
   const [activeDropdownRowId, setActiveDropdownRowId] = useState(null);
-  const [viewLimit, setViewLimit] = useState(2); // Default limit is 2 to showcase "View All" functionality
+  const [editingRowId, setEditingRowId] = useState(null);
+  const [viewLimit, setViewLimit] = useState(2);
 
   // Close actions dropdown on any external window click
   useEffect(() => {
@@ -30,7 +30,7 @@ const GovernanceHub = () => {
   {
     "label": "CQC Alerts",
     "val": "0",
-    "color": "from-rose-500 to-red-650"
+    "color": "from-brand-500 to-brand-600"
   }
 ];
   const schema = [
@@ -125,21 +125,21 @@ const GovernanceHub = () => {
   const handleEditRow = (row, e) => {
     e.stopPropagation();
     setEditingRowId(row.id);
-    setFormData({
-      domain: row.domain || '',
-      metric: row.metric || '',
-      score: row.score || '',
-      trend: row.trend || '',
-      actionPlan: row.actionPlan || '',
-      status: row.status || 'Active'
+    const editData = {};
+    schema.forEach(field => {
+      editData[field.id] = row[field.id] || '';
     });
+    editData.status = row.status || 'Active';
+    setFormData(editData);
     setIsModalOpen(true);
     setActiveDropdownRowId(null);
   };
 
   const handleDeleteRow = (rowId, e) => {
     e.stopPropagation();
-    setTableData(prev => prev.filter(r => r.id !== rowId));
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      setTableData(prev => prev.filter(r => r.id !== rowId));
+    }
     setActiveDropdownRowId(null);
   };
 
@@ -154,32 +154,6 @@ const GovernanceHub = () => {
     } else {
       setViewLimit(2);
     }
-  };
-
-  const handleExportCSV = () => {
-    const headers = ['CQC Domain', 'Metric Name', 'Current Score', 'Trend', 'Status'];
-    const rows = tableData.map(row => [
-      row.domain || '',
-      row.metric || '',
-      row.score || '',
-      row.trend || '',
-      row.status || ''
-    ]);
-    
-    // Add UTF-8 BOM to ensure compatibility with Microsoft Excel
-    const csvContent = "\uFEFF" + [
-      headers.join(','), 
-      ...rows.map(e => e.map(val => `"${val.replace(/"/g, '""')}"`).join(','))
-    ].join('\n');
-      
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", `CQC_Governance_Records_${new Date().toISOString().split('T')[0]}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   const filteredData = tableData.filter(row => 
@@ -201,10 +175,7 @@ const GovernanceHub = () => {
           </p>
         </div>
         <div className="flex gap-3">
-          <button 
-            onClick={handleExportCSV}
-            className="h-10 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 px-4 text-xs font-bold text-white transition-all flex items-center gap-1.5 backdrop-blur-sm"
-          >
+          <button className="h-10 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 px-4 text-xs font-bold text-white transition-all flex items-center gap-1.5 backdrop-blur-sm">
             <Download className="h-4 w-4" />
             <span>Export</span>
           </button>
@@ -295,9 +266,9 @@ const GovernanceHub = () => {
                       <div className="absolute right-6 top-11 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl z-50 py-1.5 w-32 text-left animate-slide-up">
                         <button 
                           onClick={(e) => handleEditRow(row, e)}
-                          className="w-full px-3 py-2 text-xs font-bold text-slate-750 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
+                          className="w-full px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
                         >
-                          <Edit className="w-3.5 h-3.5 text-brand-655" />
+                          <Edit className="w-3.5 h-3.5 text-brand-600" />
                           <span>Edit Record</span>
                         </button>
                         <button 
@@ -320,26 +291,23 @@ const GovernanceHub = () => {
             onClick={handleToggleViewLimit}
             className="text-xs font-bold text-brand-600 hover:text-brand-700 dark:text-brand-400 flex items-center justify-center gap-1 w-full"
           >
-            {viewLimit < filteredData.length ? (
-              <>View All Records ({filteredData.length}) <ChevronRight className="w-4 h-4" /></>
-            ) : (
-              <>Show Less Records <ChevronRight className="w-4 h-4 transform rotate-180" /></>
-            )}
+            {viewLimit < filteredData.length ? 'View All Records' : 'Show Less'} <ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </div>
 
+      {/* Add New Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 overflow-y-auto">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-6 w-full max-w-lg animate-fade-in border border-slate-200 dark:border-slate-800 my-8 max-h-[90vh] flex flex-col">
-            <div className="flex justify-between items-center mb-6 shrink-0">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-6 w-full max-w-lg animate-fade-in border border-slate-200 dark:border-slate-800 my-8">
+            <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">{editingRowId ? 'Edit Record' : 'Add New Record'}</h2>
-              <button onClick={handleCloseModal} className="text-slate-400 hover:text-slate-655 dark:hover:text-slate-205 bg-slate-100 dark:bg-slate-800 rounded-full p-1.5">
+              <button onClick={handleCloseModal} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-full p-1.5">
                 <X className="w-5 h-5" />
               </button>
             </div>
             
-            <div className="space-y-4 pr-2 custom-scrollbar flex-1 overflow-y-auto">
+            <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
               {schema.map((field) => (
                 <div key={field.id}>
                   <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">{field.label}</label>

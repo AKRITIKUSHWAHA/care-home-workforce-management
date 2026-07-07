@@ -81,7 +81,7 @@ export const MasterActionPlan = () => {
         <div>
           <button 
             onClick={() => setShowAddModal(true)}
-            className="h-10 rounded-xl bg-white px-5 text-xs font-bold text-indigo-805 hover:bg-indigo-50 transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
+            className="h-10 rounded-xl bg-white px-5 text-xs font-bold text-indigo-800 hover:bg-indigo-50 transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
           >
             <Plus className="h-4 w-4" />
             <span>Create Action Plan</span>

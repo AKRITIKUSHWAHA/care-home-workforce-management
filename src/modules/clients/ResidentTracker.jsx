@@ -70,7 +70,7 @@ export const ResidentTracker = () => {
         <div>
           <button 
             onClick={() => setShowAddModal(true)}
-            className="h-10 rounded-xl bg-white px-5 text-xs font-bold text-blue-805 hover:bg-blue-50 transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
+            className="h-10 rounded-xl bg-white px-5 text-xs font-bold text-blue-800 hover:bg-blue-50 transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
           >
             <Plus className="h-4 w-4" />
             <span>Admit New Resident</span>

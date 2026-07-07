@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
-import { Calendar, Search, Filter, Download, Plus, ChevronRight, MoreHorizontal, X, FileUp } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Calendar, Search, Filter, Download, Plus, ChevronRight, MoreHorizontal, X, FileUp, Edit, Trash2 } from 'lucide-react';
 
 const ClientSchedules = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ "time": "", "client": "", "carer": "", "taskType": "", "duration": "", status: 'Active' });
+  const [activeDropdownRowId, setActiveDropdownRowId] = useState(null);
+  const [editingRowId, setEditingRowId] = useState(null);
+  const [viewLimit, setViewLimit] = useState(2);
+
+  // Close actions dropdown on any external window click
+  useEffect(() => {
+    const handleOutsideClick = () => setActiveDropdownRowId(null);
+    window.addEventListener('click', handleOutsideClick);
+    return () => window.removeEventListener('click', handleOutsideClick);
+  }, []);
 
   const kpis = [
   {
@@ -96,13 +106,58 @@ const ClientSchedules = () => {
 ]);
 
   const handleAddRecord = () => {
-    const newRecord = {
-      id: Date.now().toString(),
-      ...formData
-    };
-    setTableData([newRecord, ...tableData]);
+    if (editingRowId) {
+      setTableData(prev => prev.map(row => row.id === editingRowId ? { ...row, ...formData } : row));
+      setEditingRowId(null);
+    } else {
+      const newRecord = {
+        id: Date.now().toString(),
+        ...formData
+      };
+      setTableData([newRecord, ...tableData]);
+    }
     setIsModalOpen(false);
     setFormData({ "time": "", "client": "", "carer": "", "taskType": "", "duration": "", status: 'Active' });
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingRowId(null);
+    setFormData({ "time": "", "client": "", "carer": "", "taskType": "", "duration": "", status: 'Active' });
+  };
+
+  const handleEditRow = (row, e) => {
+    e.stopPropagation();
+    setEditingRowId(row.id);
+    const editData = {};
+    schema.forEach(field => {
+      editData[field.id] = row[field.id] || '';
+    });
+    editData.status = row.status || 'Active';
+    setFormData(editData);
+    setIsModalOpen(true);
+    setActiveDropdownRowId(null);
+  };
+
+  const handleDeleteRow = (rowId, e) => {
+    e.stopPropagation();
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      setTableData(prev => prev.filter(r => r.id !== rowId));
+    }
+    setActiveDropdownRowId(null);
+  };
+
+  const handleToggleDropdown = (rowId, e) => {
+    e.stopPropagation();
+    setActiveDropdownRowId(prev => prev === rowId ? null : rowId);
+  };
+
+  const handleToggleViewLimit = () => {
+    if (viewLimit < filteredData.length) {
+      setViewLimit(filteredData.length);
+    } else {
+      setViewLimit(2);
+    }
   };
 
   const filteredData = tableData.filter(row => 
@@ -185,25 +240,50 @@ const ClientSchedules = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
-              {filteredData.map((row) => (
+              {filteredData.slice(0, viewLimit).map((row) => (
                 <tr key={row.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20 transition-colors group cursor-pointer">
                   <td className="px-6 py-4 font-semibold text-slate-800 dark:text-slate-200">{row[dataKeys[0]]}</td>
                   <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{row[dataKeys[1]]}</td>
                   <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{row[dataKeys[2]]}</td>
                   {columns.length > 3 && <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{row[dataKeys[3]]}</td>}
-                  <td className="px-6 py-4 text-right flex items-center justify-end gap-3">
-                    <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider inline-block
-                      ${row.status.includes('Active') || row.status.includes('Completed') || row.status.includes('Valid') || row.status.includes('Green') || row.status.includes('Paid') || row.status.includes('Good') || row.status.includes('Given') || row.status.includes('Normal') || row.status.includes('0')
-                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400'
-                        : row.status.includes('Alert') || row.status.includes('Red') || row.status.includes('Overdue') || row.status.includes('Escalate') || row.status.includes('Missing') || row.status.includes('Upheld') || row.status.includes('5')
-                        ? 'bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-500/10 dark:text-rose-400'
-                        : 'bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-500/10 dark:text-amber-400'
-                      }`}>
-                      {row.status}
-                    </span>
-                    <button className="p-1.5 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">
-                      <MoreHorizontal className="w-5 h-5" />
-                    </button>
+                  <td className="px-6 py-4 text-right relative">
+                    <div className="flex items-center justify-end gap-3">
+                      <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider inline-block
+                        ${row.status.includes('Active') || row.status.includes('Completed') || row.status.includes('Valid') || row.status.includes('Green') || row.status.includes('Paid') || row.status.includes('Good') || row.status.includes('Given') || row.status.includes('Normal') || row.status.includes('0')
+                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400'
+                          : row.status.includes('Alert') || row.status.includes('Red') || row.status.includes('Overdue') || row.status.includes('Escalate') || row.status.includes('Missing') || row.status.includes('Upheld') || row.status.includes('5')
+                          ? 'bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-500/10 dark:text-rose-400'
+                          : 'bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-500/10 dark:text-amber-400'
+                        }`}>
+                        {row.status}
+                      </span>
+                      <button 
+                        onClick={(e) => handleToggleDropdown(row.id, e)}
+                        className="p-1.5 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
+                      >
+                        <MoreHorizontal className="w-5 h-5" />
+                      </button>
+                    </div>
+
+                    {/* Actions Dropdown */}
+                    {activeDropdownRowId === row.id && (
+                      <div className="absolute right-6 top-11 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl z-50 py-1.5 w-32 text-left animate-slide-up">
+                        <button 
+                          onClick={(e) => handleEditRow(row, e)}
+                          className="w-full px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
+                        >
+                          <Edit className="w-3.5 h-3.5 text-brand-600" />
+                          <span>Edit Record</span>
+                        </button>
+                        <button 
+                          onClick={(e) => handleDeleteRow(row.id, e)}
+                          className="w-full px-3 py-2 text-xs font-bold text-red-600 hover:bg-red-50 dark:text-red-450 dark:hover:bg-red-950/20 flex items-center gap-2 transition-colors"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                          <span>Delete</span>
+                        </button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -211,8 +291,11 @@ const ClientSchedules = () => {
           </table>
         </div>
         <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/10 text-center">
-          <button className="text-xs font-bold text-brand-600 hover:text-brand-700 dark:text-brand-400 flex items-center justify-center gap-1 w-full">
-            View All Records <ChevronRight className="w-4 h-4" />
+          <button 
+            onClick={handleToggleViewLimit}
+            className="text-xs font-bold text-brand-600 hover:text-brand-700 dark:text-brand-400 flex items-center justify-center gap-1 w-full"
+          >
+            {viewLimit < filteredData.length ? 'View All Records' : 'Show Less'} <ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -222,8 +305,8 @@ const ClientSchedules = () => {
         <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 overflow-y-auto">
           <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-6 w-full max-w-lg animate-fade-in border border-slate-200 dark:border-slate-800 my-8">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Add New Record</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-full p-1.5">
+              <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">{editingRowId ? 'Edit Record' : 'Add New Record'}</h2>
+              <button onClick={handleCloseModal} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-full p-1.5">
                 <X className="w-5 h-5" />
               </button>
             </div>

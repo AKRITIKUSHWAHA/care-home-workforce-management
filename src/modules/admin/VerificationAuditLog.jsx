@@ -179,13 +179,17 @@ const VerificationAuditLog = () => {
   return (
     <div className="space-y-6 animate-fade-in p-2 text-slate-800 dark:text-slate-100">
       
-      {/* Page Header */}
-      <div className="flex flex-col gap-2 border-b border-slate-200 dark:border-slate-800 pb-5">
-        <h2 className="text-xl font-bold tracking-tight flex items-center gap-2">
-          <ShieldCheck className="h-6 w-6 text-brand-600 dark:text-brand-400" />
-          <span>Verification Audit Log Dashboard</span>
-        </h2>
-        <p className="text-xs text-slate-500">System-wide monitoring of employee document compliance, verifiers, and audit trails</p>
+      {/* Header Banner */}
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between rounded-3xl bg-gradient-to-r from-brand-800 to-brand-600 p-6 text-white shadow-lg">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight font-sans flex items-center gap-3 text-white">
+            <ShieldCheck className="w-8 h-8 text-brand-200" />
+            Verification Audit Log Dashboard
+          </h1>
+          <p className="mt-1 text-sm text-brand-100 font-medium">
+            System-wide monitoring of employee document compliance, verifiers, and audit trails
+          </p>
+        </div>
       </div>
 
       {/* METRIC BOXES */}
@@ -255,15 +259,15 @@ const VerificationAuditLog = () => {
         <div className="lg:col-span-2 space-y-4">
           <div className="border border-slate-200/60 dark:border-slate-800/80 rounded-3xl overflow-hidden bg-white dark:bg-slate-950 shadow-sm text-xs">
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full text-left border-collapse table-auto">
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-200 dark:bg-slate-900 dark:border-slate-800 text-[10px] font-bold text-slate-400 uppercase">
-                    <th className="p-3.5 pl-5">Staff Member</th>
-                    <th className="p-3.5">Document Type</th>
-                    <th className="p-3.5">Uploaded</th>
-                    <th className="p-3.5">Status</th>
-                    <th className="p-3.5">Verified By / Action Log</th>
-                    <th className="p-3.5 text-right pr-5">Review Actions</th>
+                    <th className="p-3.5 pl-5 min-w-[160px]">Staff Member</th>
+                    <th className="p-3.5 min-w-[120px]">Document Type</th>
+                    <th className="p-3.5 min-w-[90px]">Uploaded</th>
+                    <th className="p-3.5 min-w-[80px]">Status</th>
+                    <th className="p-3.5 min-w-[200px]">Verified By / Action Log</th>
+                    <th className="p-3.5 text-right pr-5 min-w-[130px]">Review Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-[11px]">
@@ -291,24 +295,26 @@ const VerificationAuditLog = () => {
                         reviewBtnStyle = 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800 dark:text-slate-300 border border-slate-200/50 dark:border-slate-800';
                       } else if (doc.status === 'Rejected') {
                         reviewBtnText = 'Re-verify & Approve';
-                        reviewBtnStyle = 'bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 dark:bg-red-950/20 dark:text-red-400 dark:border-red-900/35';
+                        reviewBtnStyle = 'bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 dark:bg-red-955/20 dark:text-red-400 dark:border-red-900/35';
                       }
 
                       return (
                         <tr key={idx} className="hover:bg-slate-50/45 dark:hover:bg-slate-900/10 transition-colors">
-                          <td className="p-3.5 pl-5 flex items-center gap-2.5">
-                            <img
-                              src={doc.employeePhoto}
-                              alt={doc.employeeName}
-                              className="h-8 w-8 rounded-lg object-cover border dark:border-slate-800"
-                            />
-                            <div>
-                              <p className="font-extrabold text-slate-800 dark:text-white">{doc.employeeName}</p>
-                              <p className="text-[9px] text-slate-400 font-medium">{doc.employeeTitle}</p>
+                          <td className="p-3.5 pl-5">
+                            <div className="flex items-center gap-2.5">
+                              <img
+                                src={doc.employeePhoto}
+                                alt={doc.employeeName}
+                                className="h-8 w-8 rounded-lg object-cover border dark:border-slate-800 shrink-0"
+                              />
+                              <div className="min-w-0">
+                                <p className="font-extrabold text-slate-800 dark:text-white whitespace-nowrap">{doc.employeeName}</p>
+                                <p className="text-[9px] text-slate-400 font-medium whitespace-nowrap">{doc.employeeTitle}</p>
+                              </div>
                             </div>
                           </td>
-                          <td className="p-3.5 font-bold text-slate-700 dark:text-slate-300">{doc.name}</td>
-                          <td className="p-3.5 text-slate-400 font-semibold">{doc.uploadDate || 'N/A'}</td>
+                          <td className="p-3.5 font-bold text-slate-700 dark:text-slate-300 whitespace-nowrap">{doc.name}</td>
+                          <td className="p-3.5 text-slate-400 font-semibold whitespace-nowrap">{doc.uploadDate || 'N/A'}</td>
                           <td className="p-3.5">
                             <span className={`inline-flex px-2 py-0.5 rounded-full border text-[8px] font-bold uppercase ${badgeStyle}`}>
                               {badgeText}
@@ -316,29 +322,29 @@ const VerificationAuditLog = () => {
                           </td>
                           <td className="p-3.5">
                             {doc.status === 'Verified' ? (
-                              <div>
-                                <span className="font-bold text-emerald-650 dark:text-emerald-400 block">
+                              <div className="space-y-0.5">
+                                <span className="font-bold text-emerald-650 dark:text-emerald-400 block whitespace-nowrap">
                                   {doc.verifiedBy || 'Manager'}
                                 </span>
-                                <span className="text-[9px] text-slate-400 block mt-0.5 font-medium">
+                                <span className="text-[9px] text-slate-400 block font-medium whitespace-nowrap">
                                   {doc.verificationDate} {doc.verificationTime}
                                 </span>
                                 {doc.verificationNotes && (
-                                  <span className="text-[9px] text-slate-400 italic block mt-1">
+                                  <span className="text-[9px] text-slate-400 italic block leading-relaxed max-w-[180px] break-words">
                                     Notes: "{doc.verificationNotes}"
                                   </span>
                                 )}
                               </div>
                             ) : doc.status === 'Rejected' ? (
-                              <div>
-                                <span className="font-bold text-red-600 dark:text-red-400 block">
+                              <div className="space-y-0.5">
+                                <span className="font-bold text-red-600 dark:text-red-400 block whitespace-nowrap">
                                   {doc.rejectedBy || 'Manager'}
                                 </span>
-                                <span className="text-[9px] text-slate-400 block mt-0.5 font-medium">
+                                <span className="text-[9px] text-slate-400 block font-medium whitespace-nowrap">
                                   {doc.rejectedDate} {doc.rejectedTime}
                                 </span>
                                 {doc.rejectionReason && (
-                                  <span className="text-[9px] text-red-500/80 italic block mt-1 font-bold">
+                                  <span className="text-[9px] text-red-500/85 italic block leading-relaxed max-w-[180px] break-words font-bold">
                                     Reason: "{doc.rejectionReason}"
                                   </span>
                                 )}
@@ -350,7 +356,7 @@ const VerificationAuditLog = () => {
                           <td className="p-3.5 text-right pr-5">
                             <button
                               onClick={() => handleOpenVerification(doc)}
-                              className={`px-2.5 py-1 rounded-lg font-bold text-[9px] transition-all ${reviewBtnStyle}`}
+                              className={`px-2.5 py-1.5 rounded-lg font-bold text-[9px] transition-all whitespace-nowrap active:scale-[0.97] ${reviewBtnStyle}`}
                             >
                               {reviewBtnText}
                             </button>

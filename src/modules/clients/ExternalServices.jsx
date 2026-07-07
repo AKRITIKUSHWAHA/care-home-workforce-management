@@ -11,7 +11,8 @@ import {
   X, 
   AlertTriangle,
   FileCheck2,
-  Lock
+  Lock,
+  Search
 } from 'lucide-react';
 
 const ExternalServices = () => {
@@ -146,7 +147,7 @@ const ExternalServices = () => {
   return (
     <div className="space-y-6 animate-fade-in p-1">
       {/* Banner */}
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between rounded-3xl bg-gradient-to-r from-brand-850 to-brand-650 p-6 text-white shadow-md">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between rounded-3xl bg-gradient-to-r from-brand-800 to-brand-600 p-6 text-white shadow-md">
         <div>
           <h1 className="text-xl md:text-2xl font-extrabold tracking-tight font-sans flex items-center gap-2.5">
             <Calendar className="w-6 h-6 text-emerald-400" />
