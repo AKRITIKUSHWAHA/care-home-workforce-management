@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Save, Edit3, User, ChevronDown, ChevronUp, Paperclip, Upload, AlertTriangle, Phone, MapPin, Heart, Shield, Stethoscope, Briefcase, Check, AlertOctagon, UserCheck, Sparkles } from 'lucide-react';
+import { Save, Edit3, User, ChevronDown, ChevronUp, Paperclip, Upload, AlertTriangle, Phone, MapPin, Heart, Shield, Stethoscope, Briefcase, Check, AlertOctagon, UserCheck, Sparkles, RotateCcw } from 'lucide-react';
 import { useApp } from '../../../context/AppContext';
 import BodyMap from './BodyMap';
 import RiskAssessments from './RiskAssessments';
@@ -612,9 +612,18 @@ const CarePlanView = ({ patientName = "Margaret Smith", onBack }) => {
         {activeTab === 'profile' && (
           <div className="shrink-0 w-full sm:w-auto">
             {isLocked ? (
-              <div className="flex items-center justify-center gap-2 px-4 py-2 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl">
-                <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400">Plan Locked &amp; Approved</span>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <div className="flex items-center justify-center gap-2 px-4 py-2 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                  <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400">Plan Locked &amp; Approved</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => { setApprovalAction({ type: 'revise', label: 'Send Back for Revision' }); setShowApprovalModal(true); }}
+                  className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" /> Unlock &amp; Edit
+                </button>
               </div>
             ) : !isEditing ? (
               <button 
