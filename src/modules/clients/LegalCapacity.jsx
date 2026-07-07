@@ -297,8 +297,8 @@ const LegalCapacity = () => {
 
       {/* Add New Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 overflow-y-auto">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-6 w-full max-w-lg animate-fade-in border border-slate-200 dark:border-slate-800 my-8">
+        <div className="fixed inset-0 z-[1000] flex items-start justify-center bg-black/50 backdrop-blur-sm p-4 overflow-y-auto">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-6 w-full max-w-lg animate-fade-in border border-slate-200 dark:border-slate-800 my-auto">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">{editingRowId ? 'Edit Record' : 'Add New Record'}</h2>
               <button onClick={handleCloseModal} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-full p-1.5">
@@ -306,7 +306,7 @@ const LegalCapacity = () => {
               </button>
             </div>
             
-            <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="space-y-4 max-h-[50vh] overflow-y-auto pr-2 custom-scrollbar">
               {schema.map((field) => (
                 <div key={field.id}>
                   <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">{field.label}</label>
