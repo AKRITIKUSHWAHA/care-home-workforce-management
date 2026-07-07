@@ -1,11 +1,13 @@
 import React from 'react';
+import BaseAuditForm from '../core/BaseAuditForm';
+import { mattressConfig } from '../configs/mattress.config';
 
-const PressureMattressAudit = () => {
+const PressureMattressAudit = (props) => {
   return (
-    <div>
-      <h2>Pressure Mattress Audit</h2>
-      <p>This form is under construction.</p>
-    </div>
+    <BaseAuditForm 
+      config={mattressConfig}
+      {...props}
+    />
   );
 };
 

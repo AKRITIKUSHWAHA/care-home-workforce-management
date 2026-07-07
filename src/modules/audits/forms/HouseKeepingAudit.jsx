@@ -1,11 +1,13 @@
 import React from 'react';
+import BaseAuditForm from '../core/BaseAuditForm';
+import { houseKeepingConfig } from '../configs/houseKeeping.config';
 
-const HouseKeepingAudit = () => {
+const HouseKeepingAudit = (props) => {
   return (
-    <div>
-      <h2>House Keeping Audit</h2>
-      <p>This form is under construction.</p>
-    </div>
+    <BaseAuditForm 
+      config={houseKeepingConfig}
+      {...props}
+    />
   );
 };
 

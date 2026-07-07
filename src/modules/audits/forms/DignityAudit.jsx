@@ -1,11 +1,13 @@
 import React from 'react';
+import BaseAuditForm from '../core/BaseAuditForm';
+import { dignityConfig } from '../configs/dignity.config';
 
-const DignityAudit = () => {
+const DignityAudit = (props) => {
   return (
-    <div>
-      <h2>Dignity Audit</h2>
-      <p>This form is under construction.</p>
-    </div>
+    <BaseAuditForm 
+      config={dignityConfig}
+      {...props}
+    />
   );
 };
 

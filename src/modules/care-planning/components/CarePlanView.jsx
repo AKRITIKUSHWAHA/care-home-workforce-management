@@ -192,6 +192,71 @@ const mockPlanData = {
   }
 };
 
+const writingHelperTemplates = {
+  communication: [
+    { label: 'Hearing Aid Routine', text: '[Sensory needs: Right-ear hearing aid. Cleaned daily by night staff. Batteries checked weekly.]' },
+    { label: 'Speech Support', text: '[Communication: Needs clear, slow speech. Face-to-face contact. Use visual choice cards.]' },
+    { label: 'Reading & Visual Aids', text: '[Aids used: Large-print documents, glasses for reading, picture charts for meals.]' }
+  ],
+  mobility: [
+    { label: 'Zimmer Frame', text: '[Mobility: Zimmer frame used. Needs standby supervision of 1 carer for transfers.]' },
+    { label: 'LOLER Hoist Protocol', text: '[Transfer: Mechanical hoist transfer. Requires 2-carer assist at all times. Medium clip sling.]' },
+    { label: 'Safe Footwear', text: '[Footwear: Non-slip supportive shoes. Orthotic inserts. Check shoe fit monthly.]' }
+  ],
+  fallsRisk: [
+    { label: 'FRAT Score Profile', text: '[Falls Risk: FRAT score of 18 (High Risk). Sensor mat active next to bed.]' },
+    { label: 'Bed & Safety Height', text: '[Environment: Low-profile profiling bed kept at lowest height. Call bell within easy reach.]' },
+    { label: 'Clutter-Free Rooms', text: '[Checks: Room corridors clear of clutter. Staff to check foot alignment during walking.]' }
+  ],
+  personalCare: [
+    { label: 'Bathing Choice', text: '[Hygiene preference: Shower twice weekly on Mon/Thu. Prefers female carers. Warm room required.]' },
+    { label: 'Skin Care & Creams', text: '[Skin Care: Doublebase cream applied to legs daily. Assess pressure areas daily during washes.]' },
+    { label: 'Oral & Dentures', text: '[Oral Care: Brush teeth twice daily. Soak dentures overnight in container.]' }
+  ],
+  continence: [
+    { label: 'Toileting Regime', text: '[Toileting: Prompt every 2 hours. Bowel motions logged using Bristol Stool Chart.]' },
+    { label: 'Pad Profile & Creams', text: '[Pad Profile: TENA Slip Super (Size Medium). Change 4-hourly. Use Cavilon barrier cream.]' },
+    { label: 'Infection Monitoring', text: '[UTI Checks: Monitor urine color. Report foul smell immediately to team leader.]' }
+  ],
+  nutrition: [
+    { label: 'Diet consistency', text: '[Diet: Normal diet. Fork-mashable. Must be cut into bite-sized pieces.]' },
+    { label: 'Fluid Balance Target', text: '[Hydration: Target 1500ml daily. Record in ml. Prefers cold squash or hot tea.]' },
+    { label: 'MUST score & Weight', text: '[Nutrition check: MUST score of 1. Weigh monthly. Log food intake %.]' }
+  ],
+  medication: [
+    { label: 'MAR Level Support', text: '[Medication: Level 1 support. Administer with water. Check MAR charts after each round.]' },
+    { label: 'PRN Protocol', text: '[PRN Meds: PRN Paracetamol 1g for joint pain, max 4 times daily. Log pain scores.]' }
+  ],
+  skinIntegrity: [
+    { label: 'Waterlow Parameters', text: '[Skin Integrity: Waterlow score of 16 (High Risk). Foam mattress. Reposition 4-hourly in bed.]' },
+    { label: 'Dressings & Nurses', text: '[Wounds: Minor skin tear on left forearm. Dressings changed every 3 days by District Nurse.]' }
+  ],
+  mentalHealth: [
+    { label: 'Anxiety Indicators', text: '[Mood: Can experience low mood in evenings. Engage in 1-to-1 conversation about family.]' },
+    { label: 'Dementia Reassurance', text: '[Cognition: Reassure when disoriented. Avoid conflicting statements. Validation therapy.]' }
+  ],
+  dementiaCare: [
+    { label: 'Cognitive Baseline', text: '[Cognition: Mild dementia. Needs orientation prompts. Reassure about routine regularly.]' },
+    { label: 'Memory Helpers', text: '[Memory: Prefers structured schedules. Display daily orientation calendar on bedroom wall.]' }
+  ],
+  activities: [
+    { label: 'Social Interests', text: '[Activities: Prefers small group activities. Loves quiz night. Does not like loud bingo.]' },
+    { label: 'Garden Walks', text: '[Outdoors: Enjoys walking in the home garden with family. Needs 1 carer standby.]' }
+  ],
+  sleep: [
+    { label: 'Night Routine', text: '[Sleeping: Settles after warm milk. Leave low-level light on in bathroom. Check 2-hourly.]' },
+    { label: 'PRN Sleep Aids', text: '[Sleep Aids: PRN Zopiclone available if distressed. Administered as per protocol.]' }
+  ],
+  healthConditions: [
+    { label: 'Osteoarthritis', text: '[Conditions: Advanced osteoarthritis affecting knees. Administer gel as prescribed.]' },
+    { label: 'Diabetes Monitoring', text: '[Medical: Type 2 Diabetes. Blood glucose monitored weekly. Keep record in glucose log.]' }
+  ],
+  endOfLife: [
+    { label: 'DNACPR Status', text: '[End of Life: DNACPR active, copy in file. Preferred place of care: Care home.]' },
+    { label: 'Comfort Protocol', text: '[Comfort: Ensure pain free. Syringe driver protocol ready. Respect religious preferences.]' }
+  ]
+};
+
 const Section = ({ title, field, data, isEditing, onChange, isExpanded, onToggle, attachments }) => {
   // Mock logic: randomly decide if a section is overdue for monthly review for demo purposes
   const [isReviewed, setIsReviewed] = useState(field === 'personalProfile' || field === 'mobility');
@@ -243,12 +308,35 @@ const Section = ({ title, field, data, isEditing, onChange, isExpanded, onToggle
             <>
               {isEditing ? (
                 typeof data === 'string' ? (
-                  <textarea 
-                    className="w-full p-3 border border-slate-350 rounded-xl text-sm dark:bg-slate-900 dark:border-slate-700 dark:text-white min-h-[100px]"
-                    value={data}
-                    onChange={(e) => onChange(field, e.target.value)}
-                    placeholder={`Enter details for ${title}...`}
-                  />
+                  <div className="space-y-2">
+                    <textarea 
+                      className="w-full p-3 border border-slate-350 rounded-xl text-sm dark:bg-slate-900 dark:border-slate-700 dark:text-white min-h-[100px]"
+                      value={data}
+                      onChange={(e) => onChange(field, e.target.value)}
+                      placeholder={`Enter details for ${title}...`}
+                    />
+                    {writingHelperTemplates[field] && (
+                      <div className="p-2.5 bg-blue-50/55 dark:bg-blue-950/10 border border-blue-150 dark:border-blue-900/35 rounded-xl space-y-1.5">
+                        <span className="text-[10px] font-black text-blue-600 dark:text-blue-405 uppercase tracking-widest block">💡 Click-to-Append Writing Guideline Templates:</span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {writingHelperTemplates[field].map((t, idx) => (
+                            <button
+                              key={idx}
+                              type="button"
+                              onClick={() => {
+                                const current = data || '';
+                                const separator = current ? '\n' : '';
+                                onChange(field, current + separator + t.text);
+                              }}
+                              className="px-2 py-1 bg-white hover:bg-blue-100 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-lg text-[9.5px] font-bold text-slate-700 dark:text-slate-300 transition-colors shadow-sm cursor-pointer"
+                            >
+                              + {t.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {Object.entries(data).map(([subField, val]) => (

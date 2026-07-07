@@ -1,11 +1,13 @@
 import React from 'react';
+import BaseAuditForm from '../core/BaseAuditForm';
+import { dailyWalkroundConfig } from '../configs/dailyWalkround.config';
 
-const DailyWalkround7Audit = () => {
+const DailyWalkround7Audit = (props) => {
   return (
-    <div>
-      <h2>Daily Walkround 1.0 Audit</h2>
-      <p>This form is under construction.</p>
-    </div>
+    <BaseAuditForm 
+      config={dailyWalkroundConfig}
+      {...props}
+    />
   );
 };
 

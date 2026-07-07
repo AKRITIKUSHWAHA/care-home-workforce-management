@@ -1,11 +1,13 @@
 import React from 'react';
+import BaseAuditForm from '../core/BaseAuditForm';
+import { fireConfig } from '../configs/fire.config';
 
-const FireAudit = () => {
+const FireAudit = (props) => {
   return (
-    <div>
-      <h2>Fire Audit</h2>
-      <p>This form is under construction.</p>
-    </div>
+    <BaseAuditForm 
+      config={fireConfig}
+      {...props}
+    />
   );
 };
 

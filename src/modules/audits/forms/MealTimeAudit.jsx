@@ -1,11 +1,13 @@
 import React from 'react';
+import BaseAuditForm from '../core/BaseAuditForm';
+import { mealTimeConfig } from '../configs/mealTime.config';
 
-const MealTimeAudit = () => {
+const MealTimeAudit = (props) => {
   return (
-    <div>
-      <h2>Meal Time Audit</h2>
-      <p>This form is under construction.</p>
-    </div>
+    <BaseAuditForm 
+      config={mealTimeConfig}
+      {...props}
+    />
   );
 };
 

@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
-import { Building2, Search, Filter, Download, Plus, ChevronRight, MoreHorizontal, X, FileUp } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Building2, Search, Filter, Download, Plus, ChevronRight, MoreHorizontal, X, FileUp, Edit, Trash2 } from 'lucide-react';
 
 const GovernanceHub = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ "domain": "", "metric": "", "score": "", "trend": "", "actionPlan": "", status: 'Active' });
+  const [editingRowId, setEditingRowId] = useState(null);
+  const [activeDropdownRowId, setActiveDropdownRowId] = useState(null);
+  const [viewLimit, setViewLimit] = useState(2); // Default limit is 2 to showcase "View All" functionality
+
+  // Close actions dropdown on any external window click
+  useEffect(() => {
+    const handleOutsideClick = () => setActiveDropdownRowId(null);
+    window.addEventListener('click', handleOutsideClick);
+    return () => window.removeEventListener('click', handleOutsideClick);
+  }, []);
 
   const kpis = [
   {
@@ -20,7 +30,7 @@ const GovernanceHub = () => {
   {
     "label": "CQC Alerts",
     "val": "0",
-    "color": "from-brand-500 to-brand-600"
+    "color": "from-rose-500 to-red-650"
   }
 ];
   const schema = [
@@ -92,13 +102,84 @@ const GovernanceHub = () => {
 ]);
 
   const handleAddRecord = () => {
-    const newRecord = {
-      id: Date.now().toString(),
-      ...formData
-    };
-    setTableData([newRecord, ...tableData]);
+    if (editingRowId) {
+      setTableData(prev => prev.map(row => row.id === editingRowId ? { ...row, ...formData } : row));
+      setEditingRowId(null);
+    } else {
+      const newRecord = {
+        id: Date.now().toString(),
+        ...formData
+      };
+      setTableData([newRecord, ...tableData]);
+    }
     setIsModalOpen(false);
     setFormData({ "domain": "", "metric": "", "score": "", "trend": "", "actionPlan": "", status: 'Active' });
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingRowId(null);
+    setFormData({ "domain": "", "metric": "", "score": "", "trend": "", "actionPlan": "", status: 'Active' });
+  };
+
+  const handleEditRow = (row, e) => {
+    e.stopPropagation();
+    setEditingRowId(row.id);
+    setFormData({
+      domain: row.domain || '',
+      metric: row.metric || '',
+      score: row.score || '',
+      trend: row.trend || '',
+      actionPlan: row.actionPlan || '',
+      status: row.status || 'Active'
+    });
+    setIsModalOpen(true);
+    setActiveDropdownRowId(null);
+  };
+
+  const handleDeleteRow = (rowId, e) => {
+    e.stopPropagation();
+    setTableData(prev => prev.filter(r => r.id !== rowId));
+    setActiveDropdownRowId(null);
+  };
+
+  const handleToggleDropdown = (rowId, e) => {
+    e.stopPropagation();
+    setActiveDropdownRowId(prev => prev === rowId ? null : rowId);
+  };
+
+  const handleToggleViewLimit = () => {
+    if (viewLimit < filteredData.length) {
+      setViewLimit(filteredData.length);
+    } else {
+      setViewLimit(2);
+    }
+  };
+
+  const handleExportCSV = () => {
+    const headers = ['CQC Domain', 'Metric Name', 'Current Score', 'Trend', 'Status'];
+    const rows = tableData.map(row => [
+      row.domain || '',
+      row.metric || '',
+      row.score || '',
+      row.trend || '',
+      row.status || ''
+    ]);
+    
+    // Add UTF-8 BOM to ensure compatibility with Microsoft Excel
+    const csvContent = "\uFEFF" + [
+      headers.join(','), 
+      ...rows.map(e => e.map(val => `"${val.replace(/"/g, '""')}"`).join(','))
+    ].join('\n');
+      
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `CQC_Governance_Records_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const filteredData = tableData.filter(row => 
@@ -120,7 +201,10 @@ const GovernanceHub = () => {
           </p>
         </div>
         <div className="flex gap-3">
-          <button className="h-10 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 px-4 text-xs font-bold text-white transition-all flex items-center gap-1.5 backdrop-blur-sm">
+          <button 
+            onClick={handleExportCSV}
+            className="h-10 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 px-4 text-xs font-bold text-white transition-all flex items-center gap-1.5 backdrop-blur-sm"
+          >
             <Download className="h-4 w-4" />
             <span>Export</span>
           </button>
@@ -181,25 +265,50 @@ const GovernanceHub = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
-              {filteredData.map((row) => (
+              {filteredData.slice(0, viewLimit).map((row) => (
                 <tr key={row.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20 transition-colors group cursor-pointer">
                   <td className="px-6 py-4 font-semibold text-slate-800 dark:text-slate-200">{row[dataKeys[0]]}</td>
                   <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{row[dataKeys[1]]}</td>
                   <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{row[dataKeys[2]]}</td>
                   {columns.length > 3 && <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{row[dataKeys[3]]}</td>}
-                  <td className="px-6 py-4 text-right flex items-center justify-end gap-3">
-                    <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider inline-block
-                      ${row.status.includes('Active') || row.status.includes('Completed') || row.status.includes('Valid') || row.status.includes('Green') || row.status.includes('Paid') || row.status.includes('Good') || row.status.includes('Given') || row.status.includes('Normal') || row.status.includes('0')
-                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400'
-                        : row.status.includes('Alert') || row.status.includes('Red') || row.status.includes('Overdue') || row.status.includes('Escalate') || row.status.includes('Missing') || row.status.includes('Upheld') || row.status.includes('5')
-                        ? 'bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-500/10 dark:text-rose-400'
-                        : 'bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-500/10 dark:text-amber-400'
-                      }`}>
-                      {row.status}
-                    </span>
-                    <button className="p-1.5 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">
-                      <MoreHorizontal className="w-5 h-5" />
-                    </button>
+                  <td className="px-6 py-4 text-right relative">
+                    <div className="flex items-center justify-end gap-3">
+                      <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider inline-block
+                        ${row.status.includes('Active') || row.status.includes('Completed') || row.status.includes('Valid') || row.status.includes('Green') || row.status.includes('Paid') || row.status.includes('Good') || row.status.includes('Given') || row.status.includes('Normal') || row.status.includes('0')
+                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400'
+                          : row.status.includes('Alert') || row.status.includes('Red') || row.status.includes('Overdue') || row.status.includes('Escalate') || row.status.includes('Missing') || row.status.includes('Upheld') || row.status.includes('5')
+                          ? 'bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-500/10 dark:text-rose-400'
+                          : 'bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-500/10 dark:text-amber-400'
+                        }`}>
+                        {row.status}
+                      </span>
+                      <button 
+                        onClick={(e) => handleToggleDropdown(row.id, e)}
+                        className="p-1.5 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
+                      >
+                        <MoreHorizontal className="w-5 h-5" />
+                      </button>
+                    </div>
+
+                    {/* Actions Dropdown */}
+                    {activeDropdownRowId === row.id && (
+                      <div className="absolute right-6 top-11 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl z-50 py-1.5 w-32 text-left animate-slide-up">
+                        <button 
+                          onClick={(e) => handleEditRow(row, e)}
+                          className="w-full px-3 py-2 text-xs font-bold text-slate-750 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
+                        >
+                          <Edit className="w-3.5 h-3.5 text-brand-655" />
+                          <span>Edit Record</span>
+                        </button>
+                        <button 
+                          onClick={(e) => handleDeleteRow(row.id, e)}
+                          className="w-full px-3 py-2 text-xs font-bold text-red-600 hover:bg-red-50 dark:text-red-450 dark:hover:bg-red-950/20 flex items-center gap-2 transition-colors"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                          <span>Delete</span>
+                        </button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -207,24 +316,30 @@ const GovernanceHub = () => {
           </table>
         </div>
         <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/10 text-center">
-          <button className="text-xs font-bold text-brand-600 hover:text-brand-700 dark:text-brand-400 flex items-center justify-center gap-1 w-full">
-            View All Records <ChevronRight className="w-4 h-4" />
+          <button 
+            onClick={handleToggleViewLimit}
+            className="text-xs font-bold text-brand-600 hover:text-brand-700 dark:text-brand-400 flex items-center justify-center gap-1 w-full"
+          >
+            {viewLimit < filteredData.length ? (
+              <>View All Records ({filteredData.length}) <ChevronRight className="w-4 h-4" /></>
+            ) : (
+              <>Show Less Records <ChevronRight className="w-4 h-4 transform rotate-180" /></>
+            )}
           </button>
         </div>
       </div>
 
-      {/* Add New Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 overflow-y-auto">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-6 w-full max-w-lg animate-fade-in border border-slate-200 dark:border-slate-800 my-8">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Add New Record</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-full p-1.5">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-6 w-full max-w-lg animate-fade-in border border-slate-200 dark:border-slate-800 my-8 max-h-[90vh] flex flex-col">
+            <div className="flex justify-between items-center mb-6 shrink-0">
+              <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">{editingRowId ? 'Edit Record' : 'Add New Record'}</h2>
+              <button onClick={handleCloseModal} className="text-slate-400 hover:text-slate-655 dark:hover:text-slate-205 bg-slate-100 dark:bg-slate-800 rounded-full p-1.5">
                 <X className="w-5 h-5" />
               </button>
             </div>
             
-            <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="space-y-4 pr-2 custom-scrollbar flex-1 overflow-y-auto">
               {schema.map((field) => (
                 <div key={field.id}>
                   <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">{field.label}</label>

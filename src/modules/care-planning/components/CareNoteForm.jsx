@@ -14,7 +14,6 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Washing machine */}
           <rect x="22" y="16" width="56" height="68" rx="6" fill="#eceff1" stroke="#b0bec5" strokeWidth="4" />
           <line x1="22" y1="34" x2="78" y2="34" stroke="#b0bec5" strokeWidth="3" />
           <circle cx="50" cy="58" r="20" fill="#e0f7fa" stroke="#b0bec5" strokeWidth="4" />
@@ -28,7 +27,6 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Bed & Sheet */}
           <rect x="15" y="44" width="70" height="42" rx="4" fill="#cfd8dc" stroke="#90a4ae" strokeWidth="3" />
           <rect x="8" y="22" width="8" height="66" rx="2" fill="#78909c" />
           <rect x="84" y="44" width="8" height="44" rx="2" fill="#78909c" />
@@ -41,7 +39,6 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Diaper shape */}
           <path d="M12 40 C28 28, 72 28, 88 40 C78 78, 22 78, 12 40 Z" fill="#eceff1" stroke="#cfd8dc" strokeWidth="2.5" />
           <path d="M18 42 C30 35, 70 35, 82 42" fill="none" stroke="#b0bec5" strokeWidth="2.5" strokeDasharray="3 3" />
           <path d="M26 45 C36 40, 64 40, 74 45" fill="none" stroke="#78909c" strokeWidth="3.5" />
@@ -51,7 +48,6 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Toilet paper roll */}
           <ellipse cx="50" cy="32" rx="24" ry="12" fill="#ffffff" stroke="#b0bec5" strokeWidth="3.5" />
           <ellipse cx="50" cy="32" rx="8" ry="4" fill="#8d6e63" />
           <rect x="26" y="32" width="48" height="32" fill="#ffffff" stroke="#b0bec5" strokeWidth="3.5" />
@@ -63,7 +59,6 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Toilet bowl & down arrow */}
           <rect x="30" y="32" width="40" height="18" rx="3" fill="#ffffff" stroke="#b0bec5" strokeWidth="3" />
           <path d="M34 50 L66 50 C66 68, 60 80, 50 86 C40 80, 34 68, 34 50 Z" fill="#cfd8dc" stroke="#b0bec5" strokeWidth="3" />
           <circle cx="50" cy="50" r="12" fill="#90a4ae" />
@@ -74,7 +69,6 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Toilet bowl & up arrow */}
           <rect x="30" y="32" width="40" height="18" rx="3" fill="#ffffff" stroke="#b0bec5" strokeWidth="3" />
           <path d="M34 50 L66 50 C66 68, 60 80, 50 86 C40 80, 34 68, 34 50 Z" fill="#cfd8dc" stroke="#b0bec5" strokeWidth="3" />
           <circle cx="50" cy="50" r="12" fill="#90a4ae" />
@@ -85,7 +79,6 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Two carers holding hands */}
           <circle cx="34" cy="34" r="11" fill="#ffe082" />
           <path d="M18 78 C18 58, 50 58, 50 78 Z" fill="#ab47bc" />
           <circle cx="66" cy="34" r="11" fill="#ffe082" />
@@ -97,7 +90,6 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Bed backdrop & lying body */}
           <rect x="15" y="46" width="70" height="38" rx="3" fill="#cfd8dc" stroke="#90a4ae" strokeWidth="2.5" />
           <rect x="8" y="28" width="8" height="58" rx="1" fill="#78909c" />
           <circle cx="32" cy="40" r="9" fill="#ffcc80" />
@@ -109,7 +101,6 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Body symbol & circular arrows */}
           <circle cx="50" cy="34" r="8" fill="#ffe082" />
           <path d="M38 70 C38 52, 62 52, 62 70 Z" fill="#78909c" />
           <path d="M22 50 A28 28 0 0 1 78 50" fill="none" stroke="#2e7d32" strokeWidth="5.5" strokeLinecap="round" />
@@ -122,7 +113,6 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Double carer heads & check badge */}
           <circle cx="36" cy="38" r="10" fill="#ffcc80" />
           <path d="M20 74 C20 58, 52 58, 52 74 Z" fill="#6a1b9a" />
           <circle cx="64" cy="38" r="10" fill="#ffe082" />
@@ -135,21 +125,207 @@ const renderActivityIcon = (type, completed) => {
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Speech bubbles */}
           <path d="M15 42 C15 28, 44 28, 44 42 C44 55, 33 55, 27 58 L27 51 C15 51, 15 46, 15 42 Z" fill="#2e7d32" opacity="0.9" />
           <path d="M52 50 C52 36, 82 36, 82 50 C82 64, 71 64, 65 67 L65 60 C52 60, 52 54, 52 50 Z" fill="#6a1b9a" opacity="0.9" />
         </svg>
       );
-    case 'check_ok':
+    case 'juice':
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
           <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          {/* Clock Check */}
-          <circle cx="45" cy="45" r="24" fill="none" stroke="#ffffff" strokeWidth="4.5" />
-          <line x1="45" y1="45" x2="45" y2="28" stroke="#ffffff" strokeWidth="4.5" strokeLinecap="round" />
-          <line x1="45" y1="45" x2="58" y2="45" stroke="#ffffff" strokeWidth="4.5" strokeLinecap="round" />
-          <circle cx="68" cy="68" r="14" fill="#4caf50" stroke="#ffffff" strokeWidth="2.5" />
-          <path d="M62 68 L66 72 L74 64" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M35 25 L65 25 L58 85 L42 85 Z" fill="none" stroke="#ffffff" strokeWidth="4" strokeLinejoin="round" />
+          <path d="M37 40 L63 40 L59 81 L41 81 Z" fill="#ff9800" />
+          <circle cx="50" cy="55" r="4" fill="#ffb74d" />
+          <line x1="52" y1="12" x2="48" y2="45" stroke="#ffffff" strokeWidth="4.5" strokeLinecap="round" />
+        </svg>
+      );
+    case 'tea':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M30 45 C30 35, 70 35, 70 45 C75 55, 75 75, 70 80 C60 85, 40 85, 30 80 C25 75, 25 55, 30 45 Z" fill="#eceff1" stroke="#b0bec5" strokeWidth="3" />
+          <path d="M68 50 C78 50, 84 64, 68 72" fill="none" stroke="#78909c" strokeWidth="4" strokeLinecap="round" />
+        </svg>
+      );
+    case 'lounge':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <rect x="25" y="44" width="50" height="28" rx="4" fill="#a78bfa" stroke="#7c3aed" strokeWidth="3" />
+          <rect x="28" y="22" width="44" height="28" rx="6" fill="#8b5cf6" stroke="#6d28d9" strokeWidth="3" />
+        </svg>
+      );
+    case 'bath':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M15 50 H85 V75 C85 80, 80 85, 75 85 H25 C20 85, 15 80, 15 75 Z" fill="#b0ecef" stroke="#00acc1" strokeWidth="4" />
+          <path d="M78 40 A6 6 0 0 0 85 46" fill="none" stroke="#80deea" strokeWidth="4" />
+        </svg>
+      );
+    case 'shower':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M50 15 A12 12 0 0 1 62 27 H38 A12 12 0 0 1 50 15 Z" fill="#cfd8dc" stroke="#90a4ae" strokeWidth="3" />
+          <line x1="50" y1="27" x2="50" y2="40" stroke="#90a4ae" strokeWidth="4" />
+          <circle cx="45" cy="55" r="2.5" fill="#80deea" />
+          <circle cx="50" cy="62" r="2.5" fill="#80deea" />
+          <circle cx="55" cy="55" r="2.5" fill="#80deea" />
+        </svg>
+      );
+    case 'oral_care':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <rect x="15" y="44" width="70" height="12" rx="3" fill="#ffffff" stroke="#cfd8dc" strokeWidth="2.5" />
+          <rect x="22" y="32" width="16" height="12" rx="1.5" fill="#42a5f5" />
+          <rect x="42" y="32" width="16" height="12" rx="1.5" fill="#42a5f5" />
+        </svg>
+      );
+    case 'shaving':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <rect x="35" y="20" width="30" height="15" fill="#90a4ae" stroke="#cfd8dc" strokeWidth="3" />
+          <rect x="45" y="35" width="10" height="45" fill="#78909c" />
+        </svg>
+      );
+    case 'water':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M35 25 L65 25 L58 85 L42 85 Z" fill="#e0f7fa" stroke="#00838f" strokeWidth="4" />
+          <line x1="50" y1="12" x2="54" y2="40" stroke="#00838f" strokeWidth="4" />
+        </svg>
+      );
+    case 'coffee':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <rect x="30" y="40" width="40" height="40" rx="6" fill="#d7ccc8" stroke="#8d6e63" strokeWidth="4" />
+          <path d="M70 48 Q82 48 82 58 Q82 68 70 68" fill="none" stroke="#8d6e63" strokeWidth="4" />
+        </svg>
+      );
+    case 'breakfast':
+    case 'lunch':
+    case 'dinner':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <circle cx="50" cy="50" r="30" fill="#ffffff" stroke="#b0bec5" strokeWidth="3" />
+          <path d="M38 50 H62" stroke="#b0bec5" strokeWidth="2.5" />
+        </svg>
+      );
+    case 'snacks':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <circle cx="50" cy="52" r="22" fill="#ef5350" stroke="#b71c1c" strokeWidth="3" />
+          <path d="M50 30 Q54 20 60 22" fill="none" stroke="#8d6e63" strokeWidth="3.5" />
+        </svg>
+      );
+    case 'fed_assist':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <circle cx="34" cy="38" r="10" fill="#ffcc80" />
+          <circle cx="66" cy="38" r="10" fill="#ffe082" />
+          <line x1="38" y1="58" x2="62" y2="58" stroke="#ffffff" strokeWidth="4.5" />
+        </svg>
+      );
+    case 'hoist':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <rect x="22" y="70" width="56" height="12" rx="2" fill="#cfd8dc" stroke="#90a4ae" strokeWidth="3" />
+          <path d="M50 20 V70 M30 36 H70" fill="none" stroke="#78909c" strokeWidth="4.5" />
+        </svg>
+      );
+    case 'stand_aid':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M30 80 V30 H70 V80" fill="none" stroke="#78909c" strokeWidth="5" />
+          <line x1="30" y1="46" x2="70" y2="46" stroke="#90a4ae" strokeWidth="4.5" />
+        </svg>
+      );
+    case 'zimmer':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M30 84 V32 H70 V84 M30 52 H70" fill="none" stroke="#78909c" strokeWidth="6" strokeLinecap="round" />
+          <circle cx="30" cy="84" r="5" fill="#475569" />
+          <circle cx="70" cy="84" r="5" fill="#475569" />
+        </svg>
+      );
+    case 'wheelchair':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <circle cx="46" cy="62" r="20" fill="none" stroke="#b0bec5" strokeWidth="5.5" />
+          <path d="M26 32 H54 V58 H78" fill="none" stroke="#78909c" strokeWidth="5.5" strokeLinecap="round" />
+        </svg>
+      );
+    case 'one_assist':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <circle cx="50" cy="32" r="14" fill="#ffe082" />
+          <path d="M25 80 C25 60, 75 60, 75 80 Z" fill="#1565c0" />
+        </svg>
+      );
+    case 'standby_walk':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <circle cx="34" cy="38" r="9" fill="#ffcc80" />
+          <path d="M20 74 C20 60, 48 60, 48 74 Z" fill="#6a1b9a" />
+          <path d="M58 50 L78 50 M68 40 L78 50 L68 60" fill="none" stroke="#4caf50" strokeWidth="5.5" strokeLinecap="round" />
+        </svg>
+      );
+    case 'resting':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <path d="M15 65 H85 M32 38 H68" stroke="#b0bec5" strokeWidth="4.5" />
+          <path d="M25 45 Q50 30 75 45" fill="none" stroke="#cfd8dc" strokeWidth="3" />
+        </svg>
+      );
+    case 'activities':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <polygon points="50,15 80,45 80,85 20,85 20,45" fill="#ffe082" stroke="#ab47bc" strokeWidth="3.5" />
+          <circle cx="50" cy="55" r="12" fill="#ab47bc" />
+        </svg>
+      );
+    case 'visitor':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <circle cx="35" cy="34" r="10" fill="#ffcc80" />
+          <path d="M18 78 C18 60, 52 60, 52 78 Z" fill="#1565c0" />
+          <circle cx="65" cy="34" r="10" fill="#ffe082" />
+          <path d="M48 78 C48 60, 82 60, 82 78 Z" fill="#2e7d32" />
+        </svg>
+      );
+    case 'prn_meds':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <rect x="25" y="38" width="50" height="24" rx="12" transform="rotate(45 50 50)" fill="#e53935" stroke="#ffffff" strokeWidth="2.5" />
+          <rect x="50" y="38" width="25" height="24" rx="12" transform="rotate(45 50 50)" fill="#ffffff" />
+        </svg>
+      );
+    case 'clinical_check':
+      return (
+        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
+          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
+          <rect x="25" y="16" width="50" height="68" rx="4" fill="#eceff1" stroke="#b0bec5" strokeWidth="4.5" />
+          <rect x="40" y="10" width="20" height="10" fill="#78909c" />
+          <line x1="36" y1="36" x2="64" y2="36" stroke="#90a4ae" strokeWidth="4.5" />
+          <line x1="36" y1="52" x2="64" y2="52" stroke="#90a4ae" strokeWidth="4.5" />
         </svg>
       );
     case 'clock':
@@ -161,51 +337,7 @@ const renderActivityIcon = (type, completed) => {
           <line x1="50" y1="50" x2="70" y2="50" stroke="#cfd8dc" strokeWidth="5.5" strokeLinecap="round" />
         </svg>
       );
-    case 'pencil':
-      return (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
-          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          <rect x="22" y="22" width="56" height="56" rx="8" fill="none" stroke="#78909c" strokeWidth="6" />
-          <path d="M36 64 L58 42 L64 48 L42 70 Z" fill="#ffffff" />
-          <path d="M58 42 L64 36 L70 42 L64 48 Z" fill="#ffb74d" />
-          <path d="M36 64 L33 71 L40 69 Z" fill="#37474f" />
-        </svg>
-      );
-    case 'juice':
-      return (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
-          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          <path d="M35 25 L65 25 L58 85 L42 85 Z" fill="none" stroke="#ffffff" strokeWidth="4" strokeLinejoin="round" />
-          <path d="M37 40 L63 40 L59 81 L41 81 Z" fill="#ff9800" />
-          <circle cx="50" cy="55" r="4" fill="#ffb74d" />
-          <circle cx="45" cy="65" r="3" fill="#ffb74d" />
-          <line x1="52" y1="12" x2="48" y2="45" stroke="#ffffff" strokeWidth="4.5" strokeLinecap="round" />
-          <line x1="52" y1="12" x2="62" y2="18" stroke="#ffffff" strokeWidth="4.5" strokeLinecap="round" />
-        </svg>
-      );
-    case 'tea':
-      return (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
-          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          <path d="M30 45 C30 35, 70 35, 70 45 C75 55, 75 75, 70 80 C60 85, 40 85, 30 80 C25 75, 25 55, 30 45 Z" fill="#eceff1" stroke="#b0bec5" strokeWidth="3" />
-          <path d="M28 58 L12 48 L15 42 L31 52 Z" fill="#eceff1" stroke="#b0bec5" strokeWidth="2.5" />
-          <path d="M68 50 C78 50, 84 64, 68 72" fill="none" stroke="#78909c" strokeWidth="4" strokeLinecap="round" />
-          <path d="M42 22 Q46 12 40 6" fill="none" stroke="#b0bec5" strokeWidth="2" strokeLinecap="round" />
-          <path d="M52 22 Q56 12 50 6" fill="none" stroke="#b0bec5" strokeWidth="2" strokeLinecap="round" />
-        </svg>
-      );
-    case 'lounge':
-      return (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
-          <rect x="0" y="0" width="100" height="100" fill={bgFill} />
-          <rect x="25" y="44" width="50" height="28" rx="4" fill="#a78bfa" stroke="#7c3aed" strokeWidth="3" />
-          <rect x="18" y="38" width="12" height="34" rx="4" fill="#8b5cf6" stroke="#6d28d9" strokeWidth="3" />
-          <rect x="70" y="38" width="12" height="34" rx="4" fill="#8b5cf6" stroke="#6d28d9" strokeWidth="3" />
-          <rect x="28" y="22" width="44" height="28" rx="6" fill="#8b5cf6" stroke="#6d28d9" strokeWidth="3" />
-          <line x1="28" y1="72" x2="24" y2="86" stroke="#4b5563" strokeWidth="4.5" strokeLinecap="round" />
-          <line x1="72" y1="72" x2="76" y2="86" stroke="#4b5563" strokeWidth="4.5" strokeLinecap="round" />
-        </svg>
-      );
+
     case 'assistance':
       return (
         <svg viewBox="0 0 100 100" className="w-12 h-12 object-contain rounded-md">
@@ -287,186 +419,374 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
   const [isRefusedCare, setIsRefusedCare] = useState(false);
   const [show24hModal, setShow24hModal] = useState(false);
   const commentsRef = useRef(null);
+  const [activeActivityTab, setActiveActivityTab] = useState('hygiene'); // hygiene, nutrition, mobility, wellbeing
 
   const [activities, setActivities] = useState([
+    // Hygiene Category
     {
       id: 'laundry',
-      label: 'Did their laundry',
+      label: 'Did laundry',
       time: '11:43',
       completed: true,
       text: 'Routine laundry was completed, washing and drying personal items.',
       type: 'laundry',
+      category: 'hygiene',
       showAlarm: false
     },
     {
       id: 'bed',
-      label: 'Stripped made the bed',
+      label: 'Stripped/made bed',
       time: '11:43',
       completed: true,
       text: 'Stripped and made the bed with clean linens and sheets.',
       type: 'bed',
+      category: 'hygiene',
       showAlarm: false
     },
     {
       id: 'pad_check_1',
-      label: 'Pad was checked',
+      label: 'Pad checked (Dry)',
       time: '11:43',
       completed: true,
       text: 'Continence pad checked. Found dry and comfortable.',
       type: 'pad',
+      category: 'hygiene',
+      showAlarm: true
+    },
+    {
+      id: 'pad_check_change',
+      label: 'Pad changed',
+      time: '11:43',
+      completed: false,
+      text: 'Continence pad checked, changed. Skin cleaned and barrier cream applied.',
+      type: 'pad',
+      category: 'hygiene',
       showAlarm: true
     },
     {
       id: 'bowels',
-      label: 'Checked for bowels',
+      label: 'Checked bowels',
       time: '11:43',
       completed: true,
       text: 'Checked resident for bowel movement. Normal findings, no issues.',
       type: 'bowels',
+      category: 'hygiene',
       showAlarm: true
     },
     {
       id: 'toilet_in',
-      label: 'Helped to get on to toilet',
+      label: 'Helped on toilet',
       time: '11:43',
       completed: true,
       text: 'Supported resident to get onto the toilet safely.',
       type: 'toilet_in',
+      category: 'hygiene',
       showAlarm: true
     },
     {
       id: 'toilet_out',
-      label: 'Helped to get out of toilet',
+      label: 'Helped off toilet',
       time: '11:43',
       completed: true,
       text: 'Assisted resident in transferring safely off the toilet.',
       type: 'toilet_out',
-      showAlarm: true
-    },
-    {
-      id: 'two_assist',
-      label: 'Needed a two handed assist',
-      time: '11:43',
-      completed: true,
-      text: 'Required a two-handed assist from carers for safe transfer/mobility.',
-      type: 'two_assist',
-      showAlarm: false
-    },
-    {
-      id: 'remains_bed',
-      label: 'Resident remains in bed',
-      time: '12:08',
-      completed: true,
-      text: 'Resident checked and remains resting safely in bed.',
-      type: 'remains_bed',
-      showAlarm: true
-    },
-    {
-      id: 'pad_check_2',
-      label: 'Pad was checked',
-      time: '12:08',
-      completed: true,
-      text: 'Scheduled continence pad check completed. Pad changed and skin dry.',
-      type: 'pad',
+      category: 'hygiene',
       showAlarm: true
     },
     {
       id: 'repositioned',
-      label: 'Repositioned to avoid pressure',
+      label: 'Repositioned resident',
       time: '12:08',
       completed: true,
       text: 'Resident was repositioned to avoid pressure build-up. Skin checked and intact.',
       type: 'repositioned',
+      category: 'hygiene',
       showAlarm: true
     },
     {
-      id: 'checked_1',
-      label: 'Checked',
-      time: '12:09',
-      completed: true,
-      text: 'Safety check completed. Resident comfortable and safe.',
-      type: 'checked',
-      showAlarm: true
-    },
-    {
-      id: 'checked_2',
-      label: 'Checked',
-      time: '12:09',
-      completed: true,
-      text: 'Hourly welfare check completed. No concerns.',
-      type: 'checked',
-      showAlarm: true
-    },
-    {
-      id: 'chatted',
-      label: 'Chatted',
-      time: '13:00',
+      id: 'bath',
+      label: 'Assisted with bath',
+      time: '12:00',
       completed: false,
-      text: 'Spent time chatting and engaging with the resident to promote social interaction.',
-      type: 'chatted',
-      showAlarm: true
+      text: 'Assisted resident with a full bath. Groomed and clean clothes changed.',
+      type: 'bath',
+      category: 'hygiene',
+      showAlarm: false
     },
     {
-      id: 'check_ok_1',
-      label: 'Check OK',
-      time: '13:30',
+      id: 'shower',
+      label: 'Assisted with shower',
+      time: '12:00',
       completed: false,
-      text: 'Welfare check OK. Resident is settled.',
-      type: 'check_ok',
-      showAlarm: true
+      text: 'Supported resident to have a warm shower. Skin checked and cream applied.',
+      type: 'shower',
+      category: 'hygiene',
+      showAlarm: false
     },
     {
-      id: 'check_ok_2',
-      label: 'Check OK',
-      time: '14:00',
+      id: 'oral_care',
+      label: 'Mouth & oral care',
+      time: '08:30',
       completed: false,
-      text: 'Welfare check OK. All safety parameters met.',
-      type: 'check_ok',
-      showAlarm: true
+      text: 'Oral care completed. Teeth/dentures brushed and mouth clean.',
+      type: 'oral_care',
+      category: 'hygiene',
+      showAlarm: false
     },
+    {
+      id: 'shaving',
+      label: 'Shaved & groomed',
+      time: '09:00',
+      completed: false,
+      text: 'Assisted resident with shaving and personal grooming.',
+      type: 'shaving',
+      category: 'hygiene',
+      showAlarm: false
+    },
+
+    // Nutrition Category
     {
       id: 'juice_log',
-      label: 'Had a glass of fruit juice',
+      label: 'Glass of juice',
       time: '14:15',
       completed: false,
       text: 'Assisted resident with a cold glass of fruit juice for hydration.',
       type: 'juice',
+      category: 'nutrition',
       showAlarm: false
     },
     {
       id: 'tea_log',
-      label: 'Had a cup of tea',
+      label: 'Cup of tea',
       time: '14:15',
       completed: false,
       text: 'Supported resident with a hot cup of tea.',
       type: 'tea',
+      category: 'nutrition',
       showAlarm: false
     },
     {
-      id: 'lounge_log',
-      label: 'Spent time in lounge',
+      id: 'water_log',
+      label: 'Glass of water',
       time: '14:15',
       completed: false,
-      text: 'Resident was supported to spend time relaxing in the lounge.',
-      type: 'lounge',
+      text: 'Offered tumbler of fresh cold water. Fluid intake logged.',
+      type: 'water',
+      category: 'nutrition',
       showAlarm: false
     },
     {
-      id: 'assistance_log',
-      label: 'Offered assistance',
+      id: 'coffee_log',
+      label: 'Cup of coffee',
       time: '14:15',
       completed: false,
-      text: 'Offered general assistance and support to resident, ensuring safety.',
-      type: 'assistance',
+      text: 'Served resident a hot cup of coffee.',
+      type: 'coffee',
+      category: 'nutrition',
       showAlarm: false
     },
     {
-      id: 'emotional_log',
-      label: 'Emotional support',
-      time: '14:15',
+      id: 'breakfast_log',
+      label: 'Breakfast eaten',
+      time: '08:30',
       completed: false,
-      text: 'Provided emotional support and reassurance, encouraging conversation.',
-      type: 'emotional',
+      text: 'Ate full breakfast portion. Had cereal, toast and tea.',
+      type: 'breakfast',
+      category: 'nutrition',
+      showAlarm: false
+    },
+    {
+      id: 'lunch_log',
+      label: 'Lunch eaten',
+      time: '13:00',
+      completed: false,
+      text: 'Ate lunch portion. Had soup, bread roll and dessert.',
+      type: 'lunch',
+      category: 'nutrition',
+      showAlarm: false
+    },
+    {
+      id: 'dinner_log',
+      label: 'Dinner eaten',
+      time: '17:30',
+      completed: false,
+      text: 'Ate dinner portion. Had main course meal and fruit.',
+      type: 'dinner',
+      category: 'nutrition',
+      showAlarm: false
+    },
+    {
+      id: 'snacks_log',
+      label: 'Offered snacks',
+      time: '15:30',
+      completed: false,
+      text: 'Provided mid-day snacks and soft fruits to resident.',
+      type: 'snacks',
+      category: 'nutrition',
+      showAlarm: false
+    },
+    {
+      id: 'fed_assist_log',
+      label: 'Feeding support',
+      time: '13:00',
+      completed: false,
+      text: 'Required 1-to-1 carer feeding assistance and encouragement during meal.',
+      type: 'fed_assist',
+      category: 'nutrition',
+      showAlarm: false
+    },
+
+    // Mobility Category
+    {
+      id: 'remains_bed',
+      label: 'Remains in bed',
+      time: '12:08',
+      completed: true,
+      text: 'Resident checked and remains resting safely in bed.',
+      type: 'remains_bed',
+      category: 'mobility',
+      showAlarm: true
+    },
+    {
+      id: 'checked_1',
+      label: 'Safety check completed',
+      time: '12:09',
+      completed: true,
+      text: 'Hourly welfare safety check completed. Resident comfortable and safe.',
+      type: 'checked',
+      category: 'mobility',
+      showAlarm: true
+    },
+    {
+      id: 'hoist_log',
+      label: 'Hoist transfer',
+      time: '10:00',
+      completed: false,
+      text: 'Resident transferred safely using full mechanical hoist with 2-carer support.',
+      type: 'hoist',
+      category: 'mobility',
+      showAlarm: false
+    },
+    {
+      id: 'stand_aid_log',
+      label: 'Stand-aid transfer',
+      time: '10:30',
+      completed: false,
+      text: 'Transferred safely utilizing standing aid and harness.',
+      type: 'stand_aid',
+      category: 'mobility',
+      showAlarm: false
+    },
+    {
+      id: 'zimmer_log',
+      label: 'Walked with Zimmer',
+      time: '11:00',
+      completed: false,
+      text: 'Walked short distance using walking Zimmer frame with standby supervision.',
+      type: 'zimmer',
+      category: 'mobility',
+      showAlarm: false
+    },
+    {
+      id: 'wheelchair_log',
+      label: 'Wheelchair transfer',
+      time: '14:00',
+      completed: false,
+      text: 'Resident transferred safely using wheelchair for long distances.',
+      type: 'wheelchair',
+      category: 'mobility',
+      showAlarm: false
+    },
+    {
+      id: 'one_assist_log',
+      label: '1 carer assistance',
+      time: '09:00',
+      completed: false,
+      text: 'Required assistance of 1 carer for safe transfer and mobility support.',
+      type: 'one_assist',
+      category: 'mobility',
+      showAlarm: false
+    },
+    {
+      id: 'two_assist',
+      label: '2 carer assistance',
+      time: '11:43',
+      completed: true,
+      text: 'Required a two-handed assist from 2 carers for safe transfer.',
+      type: 'two_assist',
+      category: 'mobility',
+      showAlarm: false
+    },
+    {
+      id: 'standby_walk_log',
+      label: 'Standby walk support',
+      time: '10:00',
+      completed: false,
+      text: 'Care assistant provided standby support during walking to prevent falls.',
+      type: 'standby_walk',
+      category: 'mobility',
+      showAlarm: false
+    },
+
+    // Wellbeing Category
+    {
+      id: 'chatted',
+      label: 'Social conversation',
+      time: '13:00',
+      completed: false,
+      text: 'Spent quality time chatting and engaging with the resident to support mental wellbeing.',
+      type: 'chatted',
+      category: 'wellbeing',
+      showAlarm: true
+    },
+    {
+      id: 'resting_log',
+      label: 'Rested in room',
+      time: '14:30',
+      completed: false,
+      text: 'Resident spent time resting quietly in their bedroom.',
+      type: 'resting',
+      category: 'wellbeing',
+      showAlarm: false
+    },
+    {
+      id: 'activities_log',
+      label: 'Group activities',
+      time: '15:00',
+      completed: false,
+      text: 'Resident participated actively in the daily group social activities.',
+      type: 'activities',
+      category: 'wellbeing',
+      showAlarm: false
+    },
+    {
+      id: 'visitor_log',
+      label: 'Welcomed visitor',
+      time: '16:00',
+      completed: false,
+      text: 'Welcomed family visitor, offered refreshments, resident enjoyed company.',
+      type: 'visitor',
+      category: 'wellbeing',
+      showAlarm: false
+    },
+    {
+      id: 'prn_meds_log',
+      label: 'PRN meds given',
+      time: '11:00',
+      completed: false,
+      text: 'PRN medication administered as per protocol and logged on MAR chart.',
+      type: 'prn_meds',
+      category: 'wellbeing',
+      showAlarm: false
+    },
+    {
+      id: 'clinical_check_log',
+      label: 'Recorded vitals check',
+      time: '10:00',
+      completed: false,
+      text: 'Recorded vital signs check. Vitals stable and logged in health charts.',
+      type: 'clinical_check',
+      category: 'wellbeing',
       showAlarm: false
     }
   ]);
@@ -685,11 +1005,35 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
           </button>
         </div>
 
-        {/* Custom Timeline Care Activities Toolbar (PCS Style) */}
-        <div className="space-y-2">
-          <label className="block text-sm font-bold text-slate-707 dark:text-slate-300">
-            Quick Care Activities (One-Click Log)
-          </label>
+        {/* Custom Timeline Care Activities Toolbar (PCS Style with Categories) */}
+        <div className="space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <label className="block text-sm font-bold text-slate-707 dark:text-slate-300">
+              Quick Care Activities (One-Click Log)
+            </label>
+            {/* Category Selectors */}
+            <div className="flex flex-wrap gap-1 bg-slate-100 dark:bg-slate-900 p-0.5 rounded-xl border dark:border-slate-800">
+              {[
+                { id: 'hygiene', label: 'Hygiene' },
+                { id: 'nutrition', label: 'Nutrition' },
+                { id: 'mobility', label: 'Mobility' },
+                { id: 'wellbeing', label: 'Wellbeing & Med' }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveActivityTab(tab.id)}
+                  className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase transition-all ${
+                    activeActivityTab === tab.id
+                      ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm'
+                      : 'text-slate-500 hover:text-slate-750'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
           
           <div className="bg-black p-2 rounded-xl flex gap-1 overflow-x-auto select-none scrollbar-thin scrollbar-thumb-neutral-800">
             {/* 1. Refused Card */}
@@ -706,40 +1050,42 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
               <span className="text-[8px] leading-tight text-red-200">times in last 24h</span>
             </div>
 
-            {/* Activities List */}
-            {activities.map((item) => {
-              const isCompleted = item.completed;
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => handleToggleActivity(item.id)}
-                  className={`w-[90px] min-w-[90px] h-[120px] rounded-lg flex flex-col justify-between items-center text-center p-1.5 cursor-pointer select-none transition-all duration-200 border ${
-                    isCompleted 
-                      ? 'bg-[#003c00] border-[#083b0b]' 
-                      : 'bg-[#222222] hover:bg-[#2e2e2e] border-neutral-800'
-                  }`}
-                >
-                  {/* Time Header */}
-                  <span className={`text-[9px] font-bold ${isCompleted ? 'text-white' : 'text-neutral-400'}`}>
-                    {item.time} {isCompleted && '✓'}
-                  </span>
+            {/* Activities List (Filtered by selected category tab) */}
+            {activities
+              .filter((item) => item.category === activeActivityTab)
+              .map((item) => {
+                const isCompleted = item.completed;
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => handleToggleActivity(item.id)}
+                    className={`w-[90px] min-w-[90px] h-[120px] rounded-lg flex flex-col justify-between items-center text-center p-1.5 cursor-pointer select-none transition-all duration-200 border ${
+                      isCompleted 
+                        ? 'bg-[#003c00] border-[#083b0b]' 
+                        : 'bg-[#222222] hover:bg-[#2e2e2e] border-neutral-800'
+                    }`}
+                  >
+                    {/* Time Header */}
+                    <span className={`text-[9px] font-bold ${isCompleted ? 'text-white' : 'text-neutral-400'}`}>
+                      {item.time} {isCompleted && '✓'}
+                    </span>
 
-                  {/* Icon Container */}
-                  <div className={`relative w-11 h-11 flex items-center justify-center ${!isCompleted && 'grayscale opacity-70'}`}>
-                    {renderActivityIcon(item.type, isCompleted)}
-                    {item.showAlarm && <AlarmClockBadge />}
-                    {isCompleted && <SmileyBadge />}
+                    {/* Icon Container */}
+                    <div className={`relative w-11 h-11 flex items-center justify-center ${!isCompleted && 'grayscale opacity-70'}`}>
+                      {renderActivityIcon(item.type, isCompleted)}
+                      {item.showAlarm && <AlarmClockBadge />}
+                      {isCompleted && <SmileyBadge />}
+                    </div>
+
+                    {/* Label */}
+                    <span className={`text-[8.5px] font-bold leading-snug line-clamp-2 px-0.5 ${
+                      isCompleted ? 'text-white' : 'text-neutral-300'
+                    }`}>
+                      {item.label}
+                    </span>
                   </div>
-
-                  {/* Label */}
-                  <span className={`text-[8.5px] font-bold leading-snug line-clamp-2 px-0.5 ${
-                    isCompleted ? 'text-white' : 'text-neutral-300'
-                  }`}>
-                    {item.label}
-                  </span>
-                </div>
-              );
-            })}
+                );
+              })}
 
             {/* Action 1: Add daily record */}
             <div 
@@ -768,36 +1114,57 @@ const CareNoteForm = ({ patientName = "Alan", onSave, onBehaviourShortcut }) => 
           </div>
         </div>
 
-        {/* Care Plan Prompt Checklists */}
-        <div className="bg-blue-50/60 dark:bg-blue-950/10 border border-blue-200 dark:border-blue-800/50 p-4 rounded-xl space-y-2">
+        {/* Care Plan Prompt Checklists (Grouped Categories) */}
+        <div className="bg-blue-50/60 dark:bg-blue-950/10 border border-blue-200 dark:border-blue-800/50 p-4 rounded-2xl space-y-3">
           <span className="text-[10px] font-black uppercase text-blue-600 dark:text-blue-400 tracking-wider flex items-center gap-1.5">
             <Info className="w-3.5 h-3.5" /> Care Plan Writing Prompts Guide
           </span>
           <p className="text-xs text-slate-500 leading-normal">
-            For CQC compliance and outstanding care records, ensure your daily notes cover these key areas. Click any prompt to append it to your comments:
+            For compliance and outstanding CQC audit logs, verify your daily notes cover these key areas. Click any prompt to append it to your comments:
           </p>
-          <div className="flex flex-wrap gap-1.5 pt-1">
+          
+          <div className="space-y-2">
             {[
-              'Morning routine', 'Evening routine', 'Bathing', 'Washing', 'Hair', 
-              'Oral care', 'Dentures', 'Shaving', 'Skin inspection', 'Nail care', 
-              'Dressing', 'Jewellery', 'Make-up'
-            ].map((prompt) => (
-              <button
-                key={prompt}
-                type="button"
-                onClick={() => {
-                  const currentText = formData.notes || '';
-                  const separator = currentText ? '\n' : '';
-                  setFormData({
-                    ...formData,
-                    notes: currentText + separator + `[${prompt}: ]`
-                  });
-                  commentsRef.current?.focus();
-                }}
-                className="px-2 py-1 bg-white hover:bg-blue-100 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-850 rounded-lg text-[10.5px] font-semibold text-slate-600 dark:text-slate-350 transition-colors shadow-sm cursor-pointer"
-              >
-                + {prompt}
-              </button>
+              {
+                category: 'Hygiene & Skin',
+                prompts: ['Morning routine', 'Evening routine', 'Shower assist', 'Bathing check', 'Oral hygiene', 'Dentures care', 'Skin checked (intact)', 'Skin redness check', 'Dressing support', 'Shaving complete']
+              },
+              {
+                category: 'Mobility & Positioning',
+                prompts: ['Transfer assist 1-carer', 'Two-carer assist', 'LOLER Hoist used', 'Walked with Zimmer', 'Standby walk support', 'Repositioned: left side', 'Repositioned: right side', 'Rested comfortably']
+              },
+              {
+                category: 'Nutrition & Hydration',
+                prompts: ['Glass of juice', 'Cup of tea/coffee', 'Tumbler of water', '1500ml target met', 'Ate 100% of breakfast', 'Ate lunch portion', 'Ate dinner portion', 'Pureed diet check', 'Assisted feed']
+              },
+              {
+                category: 'Continence & Wellbeing',
+                prompts: ['Pad checked (Dry)', 'Pad changed (Wet)', 'Bowel check normal', 'GP information shared', 'PRN meds logged', 'activities log', 'Rested in room', 'Social interaction']
+              }
+            ].map((group) => (
+              <div key={group.category} className="space-y-1">
+                <span className="text-[9.5px] font-black text-slate-400 dark:text-slate-550 uppercase tracking-widest block">{group.category}</span>
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  {group.prompts.map((prompt) => (
+                    <button
+                      key={prompt}
+                      type="button"
+                      onClick={() => {
+                        const currentText = formData.notes || '';
+                        const separator = currentText ? '\n' : '';
+                        setFormData({
+                          ...formData,
+                          notes: currentText + separator + `[${prompt}: ]`
+                        });
+                        commentsRef.current?.focus();
+                      }}
+                      className="px-2 py-1 bg-white hover:bg-blue-100 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-850 rounded-lg text-[10px] font-bold text-slate-600 dark:text-slate-350 transition-colors shadow-sm cursor-pointer"
+                    >
+                      + {prompt}
+                    </button>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>

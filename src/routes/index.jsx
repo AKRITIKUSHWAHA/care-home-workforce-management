@@ -189,10 +189,6 @@ export const AppRouter = () => {
       case 'visitor-tablet':
         return <AdminVisitorTablet />;
       case 'audits':
-      case 'audit-fire':
-      case 'audit-medication':
-      case 'audit-cleaning':
-      case 'audit-kitchen':
         return <AdminAuditDashboard />;
       case 'observation':
         return <AdminObservationManagement />;
@@ -277,10 +273,6 @@ export const AppRouter = () => {
       case 'dashboard':
         return <ComplianceCalendarDashboard />;
       case 'audits':
-      case 'audit-fire':
-      case 'audit-medication':
-      case 'audit-cleaning':
-      case 'audit-kitchen':
         return <ComplianceAuditDashboard />;
       case 'rota':
         return <ComplianceRotaCalendar />;
@@ -340,10 +332,6 @@ export const AppRouter = () => {
       case 'payroll':
         return <ManagerPayroll />;
       case 'audits':
-      case 'audit-fire':
-      case 'audit-medication':
-      case 'audit-cleaning':
-      case 'audit-kitchen':
         return <ManagerAuditDashboard />;
       case 'observation':
         return <ManagerObservationManagement />;
@@ -409,10 +397,6 @@ export const AppRouter = () => {
         return <KitchenPaperwork />;
       case 'medication-cleaning':
         return <MedicationRoomCleaning />;
-      case 'audit-fire':
-      case 'audit-medication':
-      case 'audit-cleaning':
-      case 'audit-kitchen':
       case 'audits':
         return <ComplianceAuditDashboard />;
       case 'incidents':

@@ -1,11 +1,13 @@
 import React from 'react';
+import BaseAuditForm from '../core/BaseAuditForm';
+import { dailyChartConfig } from '../configs/dailyChart.config';
 
-const DailyWalkaroundAudit = () => {
+const DailyWalkaroundAudit = (props) => {
   return (
-    <div>
-      <h2>Daily Walkaround Audit</h2>
-      <p>This form is under construction.</p>
-    </div>
+    <BaseAuditForm 
+      config={dailyChartConfig}
+      {...props}
+    />
   );
 };
 

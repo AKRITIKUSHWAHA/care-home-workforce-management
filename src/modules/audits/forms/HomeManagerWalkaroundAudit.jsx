@@ -1,11 +1,13 @@
 import React from 'react';
+import BaseAuditForm from '../core/BaseAuditForm';
+import { homeManagerWalkaroundConfig } from '../configs/homeManagerWalkaround.config';
 
-const HomeManagerWalkaroundAudit = () => {
+const HomeManagerWalkaroundAudit = (props) => {
   return (
-    <div>
-      <h2>Home Manager Walkaround Audit</h2>
-      <p>This form is under construction.</p>
-    </div>
+    <BaseAuditForm 
+      config={homeManagerWalkaroundConfig}
+      {...props}
+    />
   );
 };
 
