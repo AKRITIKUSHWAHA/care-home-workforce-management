@@ -1,7 +1,7 @@
 export const mattressConfig = {
   title: "Mattress Audit",
   category: "Compliance",
-  frequency: "Monthly",
+  frequency: "Quarterly",
   targetScore: 90,
   questions: [
   {

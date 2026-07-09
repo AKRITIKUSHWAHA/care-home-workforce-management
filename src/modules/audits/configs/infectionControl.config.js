@@ -1,7 +1,7 @@
 export const infectionControlConfig = {
   title: "IPC Environment Audit",
   category: "Compliance",
-  frequency: "Monthly",
+  frequency: "Weekly",
   targetScore: 90,
   questions: [
   {

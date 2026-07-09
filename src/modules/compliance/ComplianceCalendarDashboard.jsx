@@ -188,6 +188,14 @@ export default function ComplianceCalendarDashboard() {
     for (let i = 1; i <= numDays; i++) {
       days.push(new Date(year, month, i));
     }
+    
+    // Pad next month days to complete the 7-column grid rows
+    const totalCells = Math.ceil(days.length / 7) * 7;
+    const paddingNeeded = totalCells - days.length;
+    for (let i = 0; i < paddingNeeded; i++) {
+      days.push(null);
+    }
+    
     return days;
   };
 
@@ -320,7 +328,7 @@ export default function ComplianceCalendarDashboard() {
             </div>
 
             {/* Calendar Days */}
-            <div className="grid grid-cols-7 grid-rows-5 divide-x divide-y divide-slate-150 dark:divide-slate-850 border-collapse min-h-[500px]">
+            <div className="grid grid-cols-7 gap-px bg-slate-150 dark:bg-slate-850 min-h-[500px]">
               {monthDays.map((day, idx) => {
                 const dayEvents = getEventsForDay(day);
                 const isToday = day && day.getDate() === 15 && day.getMonth() === 5 && day.getFullYear() === 2026; // Highlight refDate June 15, 2026

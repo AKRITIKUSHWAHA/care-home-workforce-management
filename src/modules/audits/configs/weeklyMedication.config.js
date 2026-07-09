@@ -2,7 +2,7 @@ export const weeklyMedicationConfig = {
   title: "Weekly Medication Audit",
   category: "Compliance",
   frequency: "Weekly",
-  targetScore: 90,
+  targetScore: 95,
   questions: [
   {
     "id": 1,

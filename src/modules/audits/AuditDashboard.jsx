@@ -34,6 +34,29 @@ import KitchenPaperwork from '../kitchen/KitchenPaperwork';
 import CompetencyManagement from '../manager/CompetencyManagement';
 
 const DEFAULT_AUDIT_CATEGORIES = [
+  // 1st Set (Weekly)
+  "Equipment & Maintenance",
+  "Water & Legionella",
+  "Infection Surveillance",
+  
+  // 1st Set (Monthly)
+  "Resident Dignity",
+  "Personnel & Workforce",
+  "Environmental",
+  "Nutrition & Hydration (Excel)",
+  "Safeguarding & Incidents",
+  "Business Continuity",
+  "End of Life (Excel)",
+  "Finance & Property",
+  "Consent & Documentation",
+  "Falls Audit",
+  "Pressure Cushion Audit",
+  "Controlled Drugs Audit",
+  "PRN Protocol Audit",
+  "Homely Remedies Audit",
+  "Medication Fridge Audit",
+
+  // 2nd Set
   "Daily Walkround 2026",
   "Daily Chart Audit",
   "Weekly Medication Audit",
@@ -64,7 +87,11 @@ const AUDIT_GROUPS = [
     icon: "💊",
     categories: [
       "Weekly Medication Audit",
-      "Monthly Medication Audit"
+      "Monthly Medication Audit",
+      "Controlled Drugs Audit",
+      "PRN Protocol Audit",
+      "Homely Remedies Audit",
+      "Medication Fridge Audit"
     ]
   },
   {
@@ -73,7 +100,8 @@ const AUDIT_GROUPS = [
     icon: "🧹",
     categories: [
       "IPC Environment Audit",
-      "Mattress Audit"
+      "Mattress Audit",
+      "Infection Surveillance"
     ]
   },
   {
@@ -83,21 +111,41 @@ const AUDIT_GROUPS = [
     categories: [
       "Kitchen Audit",
       "Mealtime Audit",
-      "Dining Experience Audit"
+      "Dining Experience Audit",
+      "Nutrition & Hydration (Excel)"
     ]
   },
   {
-    name: "General Governance & Care Planning",
-    key: "general",
+    name: "Facilities & Maintenance",
+    key: "facilities",
+    icon: "🔧",
+    categories: [
+      "Equipment & Maintenance",
+      "Water & Legionella",
+      "Environmental",
+      "Health & Safety Audit",
+      "First Aid Audit",
+      "Call Bell Audit",
+      "Data Security Audit",
+      "Business Continuity",
+      "Finance & Property"
+    ]
+  },
+  {
+    name: "Care Quality & Resident Governance",
+    key: "governance",
     icon: "📋",
     categories: [
       "Daily Walkround 2026",
       "Daily Chart Audit",
       "Care Plan Audit",
-      "Call Bell Audit",
-      "Data Security Audit",
-      "First Aid Audit",
-      "Health & Safety Audit"
+      "Resident Dignity",
+      "Personnel & Workforce",
+      "Safeguarding & Incidents",
+      "End of Life (Excel)",
+      "Consent & Documentation",
+      "Falls Audit",
+      "Pressure Cushion Audit"
     ]
   }
 ];
@@ -535,7 +583,7 @@ const AuditDashboard = () => {
             </button>
             <button
               onClick={() => setActiveTab('creator')}
-              className="h-9 px-4 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-750 dark:text-slate-250 transition-all flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700"
+              className="h-9 px-4 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 transition-all flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700"
             >
               <PlusCircle className="h-4 w-4" />
               <span>Create Custom Audit</span>
@@ -965,7 +1013,7 @@ const AuditDashboard = () => {
                                 ) : '—'}
                               </td>
                               <td className="p-3.5">
-                                <span className={`px-2.5 py-0.5 rounded-full border text-[9px] font-extrabold uppercase shrink-0 ${getStatusBadge(aud.status)}`}>
+                                <span className={`px-2.5 py-0.5 rounded-full border text-[9px] font-extrabold uppercase shrink-0 whitespace-nowrap ${getStatusBadge(aud.status)}`}>
                                   {isFailed ? 'Failed' : isCompleted ? 'Passed' : aud.status}
                                 </span>
                               </td>
@@ -1162,7 +1210,7 @@ const AuditDashboard = () => {
                             <option value="Overdue">Overdue</option>
                           </select>
                         ) : (
-                          <span className={`px-2.5 py-0.5 rounded-full border text-[9px] font-extrabold uppercase shrink-0 ${getStatusBadge(aud.status)}`}>
+                          <span className={`px-2.5 py-0.5 rounded-full border text-[9px] font-extrabold uppercase shrink-0 whitespace-nowrap ${getStatusBadge(aud.status)}`}>
                             {isFailed ? 'Failed' : isCompleted ? 'Passed' : aud.status}
                           </span>
                         )}
@@ -1470,7 +1518,7 @@ const AuditDashboard = () => {
                 <select
                   value={newAuditType}
                   onChange={(e) => setNewAuditType(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 font-semibold dark:bg-slate-850 dark:border-slate-800"
+                  className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 font-semibold dark:bg-slate-850 dark:border-slate-800 text-slate-900 dark:text-white"
                 >
                   {dynamicCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                 </select>
@@ -1483,7 +1531,7 @@ const AuditDashboard = () => {
                   required
                   value={newAuditDate}
                   onChange={(e) => setNewAuditDate(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 font-semibold dark:bg-slate-850 dark:border-slate-800"
+                  className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 font-semibold dark:bg-slate-850 dark:border-slate-800 text-slate-900 dark:text-white"
                 />
               </div>
 
@@ -1492,7 +1540,7 @@ const AuditDashboard = () => {
                 <select
                   value={newAuditOfficer}
                   onChange={(e) => setNewAuditOfficer(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 font-semibold dark:bg-slate-850 dark:border-slate-800"
+                  className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 font-semibold dark:bg-slate-850 dark:border-slate-800 text-slate-900 dark:text-white"
                 >
                   {employees.map(emp => (
                     <option key={emp.id} value={emp.id}>{emp.name} ({emp.title})</option>
@@ -1508,7 +1556,7 @@ const AuditDashboard = () => {
                   placeholder="e.g. Clinical Room 1, Kitchen Area"
                   value={newAuditArea}
                   onChange={(e) => setNewAuditArea(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 font-semibold dark:bg-slate-850 dark:border-slate-800"
+                  className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 font-semibold dark:bg-slate-850 dark:border-slate-800 text-slate-900 dark:text-white"
                 />
               </div>
 
@@ -1519,7 +1567,7 @@ const AuditDashboard = () => {
                   placeholder="e.g. Staff member or Resident name"
                   value={newAuditPersonAudited}
                   onChange={(e) => setNewAuditPersonAudited(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 font-semibold dark:bg-slate-850 dark:border-slate-800"
+                  className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 font-semibold dark:bg-slate-850 dark:border-slate-800 text-slate-900 dark:text-white"
                 />
               </div>
 

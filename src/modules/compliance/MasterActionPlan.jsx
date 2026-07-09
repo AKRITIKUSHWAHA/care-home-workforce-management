@@ -166,7 +166,7 @@ export const MasterActionPlan = () => {
                     <td className="px-6 py-4 text-slate-500 font-mono font-bold">{plan.targetDate}</td>
                     <td className="px-6 py-4 text-slate-500 font-mono font-bold">{plan.dateCompleted || '—'}</td>
                     <td className="px-6 py-4 text-center">
-                      <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider border
+                      <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider border whitespace-nowrap inline-block
                         ${plan.status === 'Verified' 
                           ? 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-450' 
                           : 'bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-450'}`}>

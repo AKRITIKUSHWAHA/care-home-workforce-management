@@ -1,7 +1,7 @@
 export const dataSecurityConfig = {
   title: "Data Security Audit",
   category: "Compliance",
-  frequency: "Monthly",
+  frequency: "Quarterly",
   targetScore: 90,
   questions: [
   {

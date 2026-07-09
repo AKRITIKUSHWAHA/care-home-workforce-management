@@ -19,7 +19,50 @@ import { dataSecurityConfig } from '../configs/dataSecurity.config';
 import { firstAidConfig } from '../configs/firstAid.config';
 import { mattressConfig } from '../configs/mattress.config';
 
+// Import New 18 Excel configs
+import { equipmentMaintenanceConfig } from '../configs/equipmentMaintenance.config';
+import { waterLegionellaConfig } from '../configs/waterLegionella.config';
+import { infectionSurveillanceConfig } from '../configs/infectionSurveillance.config';
+import { residentDignityConfig } from '../configs/residentDignity.config';
+import { personnelWorkforceConfig } from '../configs/personnelWorkforce.config';
+import { environmentalConfig } from '../configs/environmental.config';
+import { nutritionHydrationExcelConfig } from '../configs/nutritionHydrationExcel.config';
+import { safeguardingIncidentsConfig } from '../configs/safeguardingIncidents.config';
+import { businessContinuityConfig } from '../configs/businessContinuity.config';
+import { endOfLifeExcelConfig } from '../configs/endOfLifeExcel.config';
+import { financePropertyConfig } from '../configs/financeProperty.config';
+import { consentDocumentationConfig } from '../configs/consentDocumentation.config';
+import { fallsConfig } from '../configs/falls.config';
+import { pressureCushionExcelConfig } from '../configs/pressureCushionExcel.config';
+import { controlledDrugsExcelConfig } from '../configs/controlledDrugsExcel.config';
+import { prnProtocolConfig } from '../configs/prnProtocol.config';
+import { homelyRemediesConfig } from '../configs/homelyRemedies.config';
+import { medicationFridgeConfig } from '../configs/medicationFridge.config';
+
 const CONFIG_MAP = {
+  // 1st Set Weekly
+  "Equipment & Maintenance": equipmentMaintenanceConfig,
+  "Water & Legionella": waterLegionellaConfig,
+  "Infection Surveillance": infectionSurveillanceConfig,
+  
+  // 1st Set Monthly
+  "Resident Dignity": residentDignityConfig,
+  "Personnel & Workforce": personnelWorkforceConfig,
+  "Environmental": environmentalConfig,
+  "Nutrition & Hydration (Excel)": nutritionHydrationExcelConfig,
+  "Safeguarding & Incidents": safeguardingIncidentsConfig,
+  "Business Continuity": businessContinuityConfig,
+  "End of Life (Excel)": endOfLifeExcelConfig,
+  "Finance & Property": financePropertyConfig,
+  "Consent & Documentation": consentDocumentationConfig,
+  "Falls Audit": fallsConfig,
+  "Pressure Cushion Audit": pressureCushionExcelConfig,
+  "Controlled Drugs Audit": controlledDrugsExcelConfig,
+  "PRN Protocol Audit": prnProtocolConfig,
+  "Homely Remedies Audit": homelyRemediesConfig,
+  "Medication Fridge Audit": medicationFridgeConfig,
+
+  // 2nd Set
   "Daily Walkround 2026": dailyWalkroundConfig,
   "Daily Chart Audit": dailyChartConfig,
   "Weekly Medication Audit": weeklyMedicationConfig,
@@ -36,7 +79,6 @@ const CONFIG_MAP = {
   "First Aid Audit": firstAidConfig,
   "Mattress Audit": mattressConfig
 };
-
 export const AuditRenderer = ({ selectedAudit, submitAuditResult, setSelectedAudit, isEditMode }) => {
   if (!selectedAudit) return null;
 
