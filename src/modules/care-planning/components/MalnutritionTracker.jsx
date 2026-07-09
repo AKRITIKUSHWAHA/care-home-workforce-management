@@ -378,7 +378,7 @@ const MalnutritionTracker = () => {
       {activeTab === 'ledger' && (
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden animate-fade-in space-y-4">
           <div className="p-4 bg-slate-50 dark:bg-slate-950 border-b dark:border-slate-850 flex items-center justify-between">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-slate-500">Weight Monitoring Sheet ({selectedMonth})</span>
+            <span className="text-xs font-extrabold uppercase tracking-widest text-slate-500">Weight Monitoring Sheet ({selectedMonth}) - Total: {malnutritionLogs.residents.length}</span>
             <button
               onClick={addResident}
               className="h-8 px-3 rounded-lg bg-[#2e6559] hover:bg-[#234d44] dark:bg-[#3a8273] text-white font-bold text-xs flex items-center gap-1.5 transition-colors"
