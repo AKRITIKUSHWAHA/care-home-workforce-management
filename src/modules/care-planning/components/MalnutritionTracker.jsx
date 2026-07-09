@@ -37,51 +37,70 @@ const MalnutritionTracker = () => {
   };
 
   // Handler for weight changes
+  // Handler for weight changes
   const handleWeightChange = (resIndex, month, value) => {
     const numVal = value === '' ? null : Math.max(0, parseFloat(value) || 0);
-    const updated = { ...malnutritionLogs };
-    if (!updated.residents[resIndex].weights) updated.residents[resIndex].weights = {};
-    if (numVal === null) {
-      delete updated.residents[resIndex].weights[month];
-    } else {
-      updated.residents[resIndex].weights[month] = numVal;
-    }
-    setMalnutritionLogs(updated);
+    setMalnutritionLogs(prev => {
+      const residents = prev.residents.map((res, i) => {
+        if (i !== resIndex) return res;
+        const weights = { ...(res.weights || {}) };
+        if (numVal === null) {
+          delete weights[month];
+        } else {
+          weights[month] = numVal;
+        }
+        return { ...res, weights };
+      });
+      return { ...prev, residents };
+    });
   };
 
   // Handler for date weight taken
   const handleDateChange = (resIndex, month, value) => {
-    const updated = { ...malnutritionLogs };
-    if (!updated.residents[resIndex].dates) updated.residents[resIndex].dates = {};
-    updated.residents[resIndex].dates[month] = value;
-    setMalnutritionLogs(updated);
+    setMalnutritionLogs(prev => {
+      const residents = prev.residents.map((res, i) => {
+        if (i !== resIndex) return res;
+        const dates = { ...(res.dates || {}) };
+        dates[month] = value;
+        return { ...res, dates };
+      });
+      return { ...prev, residents };
+    });
   };
 
   // Handler for height changes
   const handleHeightChange = (resIndex, value) => {
     const numVal = Math.max(0.1, parseFloat(value) || 0);
-    const updated = { ...malnutritionLogs };
-    updated.residents[resIndex].height = numVal;
-    setMalnutritionLogs(updated);
+    setMalnutritionLogs(prev => {
+      const residents = prev.residents.map((res, i) => {
+        if (i !== resIndex) return res;
+        return { ...res, height: numVal };
+      });
+      return { ...prev, residents };
+    });
   };
 
   // Add resident
   const addResident = () => {
-    const updated = { ...malnutritionLogs };
-    updated.residents.push({
-      name: '',
-      height: 1.70,
-      weights: {},
-      dates: {}
+    setMalnutritionLogs(prev => {
+      const residents = prev.residents ? [...prev.residents] : [];
+      residents.push({
+        name: '',
+        height: 1.70,
+        weights: {},
+        dates: {}
+      });
+      return { ...prev, residents };
     });
-    setMalnutritionLogs(updated);
   };
 
   // Remove resident
   const removeResident = (index) => {
-    const updated = { ...malnutritionLogs };
-    updated.residents.splice(index, 1);
-    setMalnutritionLogs(updated);
+    setMalnutritionLogs(prev => {
+      const residents = prev.residents ? [...prev.residents] : [];
+      residents.splice(index, 1);
+      return { ...prev, residents };
+    });
   };
 
   // Add action plan
@@ -94,10 +113,11 @@ const MalnutritionTracker = () => {
       ...newActionPlan
     };
 
-    const updated = { ...malnutritionLogs };
-    if (!updated.actionPlans) updated.actionPlans = [];
-    updated.actionPlans.push(entry);
-    setMalnutritionLogs(updated);
+    setMalnutritionLogs(prev => {
+      const actionPlans = prev.actionPlans ? [...prev.actionPlans] : [];
+      actionPlans.push(entry);
+      return { ...prev, actionPlans };
+    });
 
     // Reset
     setNewActionPlan({
@@ -114,9 +134,10 @@ const MalnutritionTracker = () => {
 
   // Delete action plan
   const deleteActionPlan = (id) => {
-    const updated = { ...malnutritionLogs };
-    updated.actionPlans = updated.actionPlans.filter(p => p.id !== id);
-    setMalnutritionLogs(updated);
+    setMalnutritionLogs(prev => ({
+      ...prev,
+      actionPlans: (prev.actionPlans || []).filter(p => p.id !== id)
+    }));
   };
 
   // Add monthly review
@@ -130,10 +151,11 @@ const MalnutritionTracker = () => {
       ...newReview
     };
 
-    const updated = { ...malnutritionLogs };
-    if (!updated.monthlyReviews) updated.monthlyReviews = [];
-    updated.monthlyReviews.push(entry);
-    setMalnutritionLogs(updated);
+    setMalnutritionLogs(prev => {
+      const monthlyReviews = prev.monthlyReviews ? [...prev.monthlyReviews] : [];
+      monthlyReviews.push(entry);
+      return { ...prev, monthlyReviews };
+    });
 
     // Reset form
     setNewReview({
@@ -147,11 +169,13 @@ const MalnutritionTracker = () => {
 
   // Delete monthly review
   const handleDeleteMonthlyReview = (id) => {
-    const updated = { ...malnutritionLogs };
-    if (updated.monthlyReviews) {
-      updated.monthlyReviews = updated.monthlyReviews.filter(r => r.id !== id);
-    }
-    setMalnutritionLogs(updated);
+    setMalnutritionLogs(prev => {
+      const monthlyReviews = prev.monthlyReviews ? [...prev.monthlyReviews] : [];
+      return {
+        ...prev,
+        monthlyReviews: monthlyReviews.filter(r => r.id !== id)
+      };
+    });
   };
 
   const saveToLocalStorage = () => {
@@ -416,9 +440,14 @@ const MalnutritionTracker = () => {
                           type="text"
                           value={res.name}
                           onChange={(e) => {
-                            const updated = { ...malnutritionLogs };
-                            updated.residents[idx].name = e.target.value;
-                            setMalnutritionLogs(updated);
+                            const val = e.target.value;
+                            setMalnutritionLogs(prev => {
+                              const residents = prev.residents.map((r, i) => {
+                                if (i !== idx) return r;
+                                return { ...r, name: val };
+                              });
+                              return { ...prev, residents };
+                            });
                           }}
                           placeholder="Resident Name..."
                           className="w-full bg-transparent px-1 py-0.5 outline-none font-bold dark:text-white"
