@@ -90,7 +90,9 @@ const MalnutritionTracker = () => {
         weights: {},
         dates: {}
       });
-      return { ...prev, residents };
+      const updated = { ...prev, residents };
+      console.log("addResident clicked. Previous state:", prev, "Updated state:", updated);
+      return updated;
     });
   };
 
