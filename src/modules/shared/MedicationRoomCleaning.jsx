@@ -185,7 +185,7 @@ const MedicationRoomCleaning = () => {
           {/* Trigger save feedback */}
           <button
             onClick={triggerSaveNotification}
-            className={`h-10 px-5 rounded-xl text-white font-bold transition-all shadow-sm flex items-center gap-2 ${
+            className={`h-10 px-5 rounded-xl text-white font-bold transition-all shadow-sm flex items-center gap-2 whitespace-nowrap ${
               saveAlert ? 'bg-emerald-600' : 'bg-[#2e6559] hover:bg-[#234d44] dark:bg-[#3a8273]'
             }`}
           >
